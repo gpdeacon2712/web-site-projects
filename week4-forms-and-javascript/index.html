@@ -1,64 +1,285 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 
 <head>
-    <title>Graham Deacon - Personal Web Page</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Personal profile of Graham Deacon demonstrating responsive HTML, CSS and form design techniques.">
+
+    <title>Graham Deacon - Responsive Personal Web Page</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
             background-color: #f4f4f4;
-            margin: 20px;
             color: #333333;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .container {
-            background-color: white;
-            padding: 20px;
+            width: min(100%, 900px);
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
             border-radius: 10px;
         }
 
         h1 {
-            text-align: center;
+            margin-top: 0;
             color: darkblue;
+            font-size: clamp(2rem, 6vw, 3rem);
+            line-height: 1.2;
+            text-align: center;
         }
 
         h2 {
+            margin-top: 2rem;
             color: darkgreen;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            line-height: 1.3;
         }
 
-        img {
-            border-radius: 10px;
-            max-width: 600px;
+        h3 {
+            line-height: 1.3;
+        }
+
+        .introductory-text {
+            text-align: center;
+        }
+
+        .interests-heading {
+            color: darkred;
         }
 
         .highlight {
+            padding: 15px;
             background-color: #ffffcc;
-            padding: 10px;
+            border-left: 5px solid #665c00;
             border-radius: 5px;
         }
-    </style>
 
+        .learning-summary {
+            color: darkblue;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 1rem auto 0;
+            border-radius: 10px;
+        }
+
+        a {
+            color: #0046a8;
+            text-decoration-thickness: 0.12em;
+            text-underline-offset: 0.15em;
+        }
+
+        a:hover {
+            text-decoration-thickness: 0.2em;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 4px;
+        }
+
+        form {
+            margin-top: 1rem;
+        }
+
+        fieldset {
+            margin: 0 0 1.5rem;
+            padding: 1.25rem;
+            border: 1px solid #767676;
+            border-radius: 8px;
+        }
+
+        legend {
+            padding: 0 0.5rem;
+            color: darkblue;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            color: #333333;
+            background-color: #ffffff;
+            border: 1px solid #767676;
+            border-radius: 5px;
+            font: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        .option-group input {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
+        button {
+            min-height: 44px;
+            padding: 0.75rem 1.25rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003f7f;
+        }
+
+        .secondary-button {
+            color: darkblue;
+            background-color: #ffffff;
+        }
+
+        .secondary-button:hover {
+            color: #ffffff;
+            background-color: darkblue;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-note {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.95rem;
+        }
+
+        .form-notes {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #f4f7fa;
+            border-left: 5px solid darkblue;
+            border-radius: 6px;
+        }
+
+        .form-notes h3 {
+            margin-top: 0;
+            color: darkblue;
+            font-size: 1.2rem;
+        }
+
+        .form-notes code {
+            padding: 0.1rem 0.3rem;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, monospace;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 6px;
+            }
+
+            .introductory-text {
+                text-align: left;
+            }
+
+            h2 {
+                margin-top: 1.5rem;
+            }
+
+            ul {
+                padding-left: 1.4rem;
+            }
+
+            fieldset {
+                padding: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
         <h1>Graham Deacon</h1>
 
-        <p style="text-align: center;">
-            <em>MSc Computing and Cyber Security Student | IT Professional | GRC and AI Governance</em>
+        <p class="introductory-text">
+            <em>
+                MSc Computing and Cyber Security Student |
+                IT Professional | GRC and AI Governance
+            </em>
         </p>
 
         <h2>About Me</h2>
 
         <p>
-            Welcome to my first web page. My name is
-            <strong>Graham Deacon</strong> and I work in Information Technology
-            within the industrial automation sector. I have extensive experience
-            in IT Operations, programme delivery, governance and technology
-            improvement initiatives.
+            Welcome to my responsive personal web page. My name is
+            <strong>Graham Deacon</strong>, and I work in information
+            technology within the industrial automation sector. I have
+            extensive experience in IT operations, programme delivery,
+            governance and technology improvement initiatives.
         </p>
 
         <p>
@@ -66,7 +287,7 @@
             <strong>Rockwell Automation</strong> within the
             <mark>Governance, Risk and Compliance (GRC)</mark>
             domain, supporting projects focused on
-            <strong>AI Risk Governance</strong>.
+            <strong>AI risk governance</strong>.
         </p>
 
         <p>
@@ -79,7 +300,8 @@
         <h2>Professional Qualifications and Profile</h2>
 
         <p>
-            I hold a number of professional certifications including:
+            I hold a number of professional qualifications and
+            certifications, including:
         </p>
 
         <ul>
@@ -92,20 +314,22 @@
             <li>CISM</li>
             <li>CRISC</li>
             <li>CISA</li>
-           
         </ul>
 
         <p>
             These qualifications reflect my experience across engineering,
-            project delivery, governance, risk management, information security
-            and audit disciplines.
+            project delivery, governance, risk management, information
+            security and audit disciplines.
         </p>
 
         <p>
             You can learn more about my professional background,
             qualifications and experience on my
-            <a href="https://www.linkedin.com/in/gpdeacon/" target="_blank">
-                LinkedIn Profile
+            <a
+                href="https://www.linkedin.com/in/gpdeacon/"
+                target="_blank"
+                rel="noopener noreferrer">
+                LinkedIn profile (opens in a new tab)
             </a>.
         </p>
 
@@ -114,7 +338,7 @@
         <p>
             I am married to my wife, <strong>Fiona</strong>, and together we
             have two daughters and a son. Family life keeps me busy outside
-            of work and university, and we enjoy spending time together.
+            work and university, and we enjoy spending time together.
         </p>
 
         <p>
@@ -122,7 +346,7 @@
             long walks and is very much part of the family.
         </p>
 
-        <h2 style="color: darkred;">My Interests</h2>
+        <h2 class="interests-heading">My Interests</h2>
 
         <ul>
             <li>Reading, especially fiction novels</li>
@@ -142,56 +366,354 @@
             the season and following the club's progress.
         </p>
 
-       <img
+        <img
             src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
-            alt="Oxford United Football Club"
-            width="600">
-
+            alt="Oxford United football players during a match"
+            width="600"
+            height="400">
 
         <h2>Why I Am Studying Computing and Cyber Security</h2>
 
         <p>
-            Technology continues to evolve rapidly and I believe lifelong
+            Technology continues to evolve rapidly, and I believe lifelong
             learning is essential. My MSc studies are helping me develop
             deeper knowledge of software development, cyber security,
             data management and artificial intelligence, complementing my
             professional experience.
         </p>
 
-        <p style="color: darkblue;">
-            This webpage has helped me better understand HTML elements,
-            attributes, formatting, styling and the importance of testing
-            webpages before publishing them.
+        <p class="learning-summary">
+            Developing this page has helped me understand how HTML provides
+            the content structure while CSS controls presentation, spacing,
+            colour and responsive behaviour across different devices.
         </p>
 
-        <h2>Styling Techniques Used</h2>
+        <h2>Responsive Styling Techniques Used</h2>
 
         <p>
-            To improve the appearance of this webpage, I applied several HTML
-            styling techniques and basic CSS.
+            For this version of the webpage, I extended the original styling
+            so that the content adapts more effectively to desktop, tablet and
+            mobile screen sizes.
         </p>
 
         <ul>
-            <li>Applied colours to headings using the <strong>color</strong> property.</li>
-            <li>Used a light grey <strong>background colour</strong> for the page.</li>
-            <li>Applied the <strong>Arial</strong> font across the webpage.</li>
-            <li>Centred the main page heading using <strong>text-align</strong>.</li>
-            <li>Used <strong>padding</strong> and <strong>border-radius</strong> to improve layout and appearance.</li>
-            <li>Applied emphasis using the <strong> strong </strong> and <strong> em </strong> formatting tags.</li>
-            <li>Created a reusable CSS class called <strong>highlight</strong>.</li>
-            <li>Rounded the corners of the image using CSS.</li>
-            <li>Used hyperlinks to connect the page to external resources such as LinkedIn.</li>
+            <li>
+                Added the viewport meta tag so mobile browsers use the
+                physical width of the device.
+            </li>
+
+            <li>
+                Used a responsive container with a maximum width to prevent
+                text lines becoming too long on larger screens.
+            </li>
+
+            <li>
+                Used relative sizing and the CSS
+                <strong>clamp()</strong> function so headings adapt to
+                different screen widths.
+            </li>
+
+            <li>
+                Made the Oxford United image responsive using
+                <strong>width: 100%</strong> and
+                <strong>height: auto</strong>.
+            </li>
+
+            <li>
+                Added a media query for screens below 600 pixels to reduce
+                margins, padding and heading spacing.
+            </li>
+
+            <li>
+                Used the CSS <strong>box-sizing</strong> property to make
+                element widths easier to manage.
+            </li>
+
+            <li>
+                Centred the main content on larger screens while allowing it
+                to use most of the available width on mobile devices.
+            </li>
+
+            <li>
+                Replaced inline styles with reusable CSS classes to make the
+                code more consistent and easier to maintain.
+            </li>
+
+            <li>
+                Added visible keyboard focus styling to improve navigation
+                for users who do not use a mouse.
+            </li>
+
+            <li>
+                Used line spacing and scalable text to maintain readability
+                on small and large screens.
+            </li>
         </ul>
 
+        <h2>Responsive Design Reflection</h2>
+
         <p>
-            These styling enhancements improved the readability and
-            presentation of the page while helping me understand the
-            difference between content structure (HTML) and visual
-            presentation (CSS).
+            The original page remained functional on a mobile device, but it
+            was designed mainly for a desktop-sized screen. Fixed image sizes,
+            page margins and padding could make the content appear cramped or
+            require unnecessary scaling on smaller devices.
         </p>
 
-    </div>
+        <p>
+            The revised page uses responsive CSS so that the same HTML content
+            can be presented appropriately across mobile, tablet and desktop
+            screens. The image reduces in size when required, the text remains
+            readable, and the content container adjusts to the available width
+            without causing horizontal scrolling.
+        </p>
+
+        <p>
+            I tested the page using the responsive device tools in the browser
+            developer tools at mobile, tablet and desktop widths. This showed
+            that responsive web design involves more than making a desktop page
+            smaller. It also requires suitable spacing, readable text, flexible
+            images and controls that remain easy to use on touchscreen devices.
+        </p>
+
+        <section aria-labelledby="contact-heading">
+
+            <h2 id="contact-heading">Contact and Interests Form</h2>
+
+            <p>
+                This form demonstrates common HTML form controls. Required
+                fields are marked with an asterisk.
+            </p>
+
+            <form action="#" method="post">
+
+                <fieldset>
+                    <legend>Your Details</legend>
+
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Your role</label>
+
+                        <select id="role" name="role">
+                            <option value="">Please select</option>
+                            <option value="student">Student</option>
+                            <option value="it-professional">
+                                IT professional
+                            </option>
+                            <option value="engineer">Engineer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Areas of Interest</legend>
+
+                    <p>Select all that apply:</p>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="cyber-security"
+                            name="interests"
+                            value="cyber-security">
+
+                        <label for="cyber-security">
+                            Cyber security
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="ai-governance"
+                            name="interests"
+                            value="ai-governance">
+
+                        <label for="ai-governance">
+                            AI governance
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="web-development"
+                            name="interests"
+                            value="web-development">
+
+                        <label for="web-development">
+                            Web development
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferred Contact Method</legend>
+
+                    <div class="option-group">
+                        <input
+                            type="radio"
+                            id="contact-email"
+                            name="contact-method"
+                            value="email"
+                            checked>
+
+                        <label for="contact-email">
+                            Email
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="radio"
+                            id="contact-linkedin"
+                            name="contact-method"
+                            value="linkedin">
+
+                        <label for="contact-linkedin">
+                            LinkedIn
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        maxlength="500"
+                        placeholder="Enter your message here"></textarea>
+
+                    <small class="form-note">
+                        Maximum 500 characters.
+                    </small>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">
+                        Submit form
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="secondary-button">
+                        Clear form
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="form-notes">
+
+                <h3>HTML Form Elements Added</h3>
+
+                <p>
+                    This form was added to demonstrate several commonly used
+                    HTML form elements and attributes.
+                </p>
+
+                <ul>
+                    <li>
+                        The <code>&lt;form&gt;</code> element groups the
+                        controls and defines how the information would be
+                        submitted.
+                    </li>
+
+                    <li>
+                        The <code>&lt;fieldset&gt;</code> and
+                        <code>&lt;legend&gt;</code> elements organise related
+                        questions into clearly identified sections.
+                    </li>
+
+                    <li>
+                        Each control has a corresponding
+                        <code>&lt;label&gt;</code> connected using matching
+                        <code>for</code> and <code>id</code> attributes.
+                    </li>
+
+                    <li>
+                        Text and email inputs collect the user's name and
+                        email address. The email input also provides basic
+                        browser validation.
+                    </li>
+
+                    <li>
+                        The <code>&lt;select&gt;</code> element provides a
+                        drop-down list from which the user can choose a role.
+                    </li>
+
+                    <li>
+                        Checkboxes allow users to select more than one area
+                        of interest.
+                    </li>
+
+                    <li>
+                        Radio buttons allow users to select one preferred
+                        contact method.
+                    </li>
+
+                    <li>
+                        The <code>&lt;textarea&gt;</code> element allows the
+                        user to enter a longer message.
+                    </li>
+
+                    <li>
+                        The <code>required</code>,
+                        <code>autocomplete</code> and
+                        <code>maxlength</code> attributes improve validation
+                        and usability.
+                    </li>
+
+                    <li>
+                        Submit and reset buttons allow the user to submit or
+                        clear the form.
+                    </li>
+
+                    <li>
+                        Responsive CSS makes the controls and buttons suitable
+                        for mobile, tablet and desktop screens.
+                    </li>
+                </ul>
+
+                <p>
+                    The form currently demonstrates browser-based form
+                    behaviour only. Because its <code>action</code> attribute
+                    is set to <code>#</code>, the information is not sent to
+                    an email address, server or database. JavaScript could
+                    later be added to display a confirmation message and
+                    provide further validation.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 
+</html>
 </html>
