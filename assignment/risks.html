@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- Scaffold created with AI assistance (Claude, Anthropic). Cite per the
+     assignment brief; extend with your own work. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Register - GRC & AI Governance Control Hub</title>
+  <meta name="description" content="Synthetic risk register with a live CVE and EPSS threat-intelligence lookup.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC & AI Governance Hub</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="controls.html">Control Library</a></li>
+        <li><a href="risks.html" aria-current="page">Risk Register</a></li>
+        <li><a href="ai-register.html">AI Use-Case Register</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-intro">
+      <h1>Risk Register</h1>
+      <p>
+        Synthetic organisational risks, plus a live threat-intelligence lookup
+        that enriches vulnerability data from two independent public APIs.
+      </p>
+    </div>
+
+    <h2>Registered risks</h2>
+    <table class="data-table">
+      <caption>Risk register (synthetic sample data)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Risk ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Category</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Owner role</th>
+          <th scope="col">Treatment</th>
+        </tr>
+      </thead>
+      <tbody id="risk-rows">
+      </tbody>
+    </table>
+
+    <h2>Live threat-intelligence lookup</h2>
+    <p>
+      This is the prototype's genuine third-party API integration. Enter a CVE
+      identifier to fetch its details from the CIRCL CVE Search API, then its
+      exploit-prediction score from the FIRST EPSS API - two endpoints from two
+      independent providers, chained together.
+    </p>
+
+    <form id="cve-lookup">
+      <label for="cve-id">CVE identifier</label>
+      <!-- pattern + required: built-in HTML validation before any JS runs.
+           title text is shown in the browser's validation bubble. -->
+      <input type="text" id="cve-id" name="cve-id" required
+             pattern="CVE-\d{4}-\d{4,}"
+             title="Format: CVE-YYYY-NNNN, e.g. CVE-2021-44228"
+             placeholder="CVE-2021-44228">
+      <p class="form-hint" id="cve-hint">Format: CVE-YYYY-NNNN. Try CVE-2021-44228 (Log4Shell).</p>
+
+      <button type="submit">Look up vulnerability</button>
+    </form>
+
+    <!-- aria-live region: screen readers announce results when JS inserts
+         them (WCAG 4.1.3 Status Messages) -->
+    <div class="results-region" id="cve-results" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Masters-level academic prototype. No real organisational data is stored or displayed.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/risks.js"></script>
+</body>
+</html>

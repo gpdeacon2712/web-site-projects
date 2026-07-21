@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- Scaffold created with AI assistance (Claude, Anthropic). Cite per the
+     assignment brief; extend with your own work. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Use-Case Register - GRC & AI Governance Control Hub</title>
+  <meta name="description" content="Register fictional AI use cases and track governance status, ownership and oversight.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC & AI Governance Hub</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="controls.html">Control Library</a></li>
+        <li><a href="risks.html">Risk Register</a></li>
+        <li><a href="ai-register.html" aria-current="page">AI Use-Case Register</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-intro page-intro--ai">
+      <h1>AI Use-Case Register</h1>
+      <p>
+        Record a fictional AI tool so its purpose, ownership, data category and
+        oversight arrangements stay visible to the governance team. Each entry
+        can be aligned to AI governance frameworks - ISO/IEC 42001:2023 (the AI
+        management system standard) and the NIST AI Risk Management Framework -
+        alongside the security frameworks used elsewhere in the hub. Fields
+        marked * are required.
+      </p>
+    </div>
+
+    <!-- The HTML Forms showcase. Each element type below is deliberately
+         matched to the data it collects - note the reasoning in comments;
+         it becomes your Assessment 3 material. novalidate is NOT set, so
+         built-in validation runs first; add JS validation on top. -->
+    <form id="ai-usecase-form">
+
+      <fieldset>
+        <legend>AI tool details</legend>
+
+        <label for="tool-name">AI tool name *</label>
+        <!-- datalist = free text WITH suggestions. Alternative: <select>,
+             but a closed list can't capture tools we haven't seen yet. -->
+        <input type="text" id="tool-name" name="tool-name" required
+               list="known-tools" autocomplete="off">
+        <datalist id="known-tools">
+          <option value="Document summarisation assistant"></option>
+          <option value="Anomaly detection model"></option>
+          <option value="Chat-based support assistant"></option>
+          <option value="Predictive maintenance model"></option>
+        </datalist>
+
+        <label for="purpose">Intended business purpose *</label>
+        <!-- textarea for free-flowing multi-line prose; maxlength keeps
+             register entries concise. Alternative: input type="text",
+             but single-line is wrong for descriptive content. -->
+        <textarea id="purpose" name="purpose" rows="4" required
+                  maxlength="500"></textarea>
+        <p class="form-hint">Up to 500 characters.</p>
+
+        <label for="supplier">Supplier / vendor</label>
+        <input type="text" id="supplier" name="supplier">
+      </fieldset>
+
+      <fieldset>
+        <legend>Ownership</legend>
+
+        <label for="owner-role">Owner role *</label>
+        <!-- select for a closed organisational set. Alternative: radios,
+             but 6+ options as radios take too much space. -->
+        <select id="owner-role" name="owner-role" required>
+          <option value="">Choose a role..</option>
+          <option value="ciso">CISO</option>
+          <option value="grc-manager">GRC Manager</option>
+          <option value="it-ops">IT Operations Lead</option>
+          <option value="data-protection">Data Protection Officer</option>
+          <option value="business-owner">Business Process Owner</option>
+        </select>
+
+        <label for="owner-email">Owner contact email *</label>
+        <!-- type="email": built-in format validation + email keyboard on
+             mobile. Alternative: type="text" with a pattern - more work,
+             worse UX. -->
+        <input type="email" id="owner-email" name="owner-email" required
+               autocomplete="email" placeholder="name@example.org">
+      </fieldset>
+
+      <fieldset>
+        <legend>Data category *</legend>
+        <!-- Radios inside fieldset/legend: small mutually exclusive set,
+             all options visible at once (unlike a select). The fieldset
+             groups them for screen readers - an accessibility example. -->
+        <div class="radio-option">
+          <input type="radio" id="data-public" name="data-category" value="public" required>
+          <label for="data-public">Public / non-sensitive</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="data-internal" name="data-category" value="internal">
+          <label for="data-internal">Internal business data</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="data-personal" name="data-category" value="personal">
+          <label for="data-personal">Personal data</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="data-special" name="data-category" value="special">
+          <label for="data-special">Special category / high sensitivity</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Risk and oversight</legend>
+
+        <label for="risk-rating">Initial risk rating: <output id="risk-output" for="risk-rating">3</output> / 5</label>
+        <!-- range + output: a bounded scale where relative position matters
+             more than a typed number. Alternative: number input or select. -->
+        <input type="range" id="risk-rating" name="risk-rating"
+               min="1" max="5" step="1" value="3">
+
+        <!-- Checkboxes: multiple oversight arrangements can apply at once
+             (radios/select would wrongly force a single choice). -->
+        <p><strong>Human oversight arrangements</strong> (select all that apply)</p>
+        <div class="checkbox-option">
+          <input type="checkbox" id="oversight-review" name="oversight" value="human-review">
+          <label for="oversight-review">Human review of outputs</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="oversight-approval" name="oversight" value="approval-gate">
+          <label for="oversight-approval">Approval gate before action</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="oversight-audit" name="oversight" value="audit-logging">
+          <label for="oversight-audit">Audit logging enabled</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="oversight-killswitch" name="oversight" value="kill-switch">
+          <label for="oversight-killswitch">Manual override / kill switch</label>
+        </div>
+
+        <label for="framework-alignment">Framework alignment</label>
+        <!-- select multiple: pick several from a longer closed list.
+             Alternative: checkboxes (used above for oversight) - better
+             for short lists as all options stay visible, but they take
+             more space as lists grow. Using BOTH patterns here gives you
+             a genuine compare-and-contrast for Assessment 3.
+             (size shows all options without scrolling; Ctrl/Cmd-click
+             selects multiple - worth noting the discoverability downside
+             in your evaluation.) -->
+        <select id="framework-alignment" name="framework-alignment" multiple size="4">
+          <option value="ISO 42001">ISO/IEC 42001:2023</option>
+          <option value="NIST AI RMF">NIST AI RMF</option>
+          <option value="ISO 27001">ISO/IEC 27001:2022</option>
+          <option value="IEC 62443">IEC 62443</option>
+        </select>
+        <p class="form-hint">Hold Ctrl (Windows) or Cmd (Mac) to select more than one.</p>
+
+        <label for="review-date">Next review date *</label>
+        <!-- type="date": native date picker, consistent format, min blocks
+             past dates. Alternative: text input + JS parsing - error-prone. -->
+        <input type="date" id="review-date" name="review-date" required
+               >
+      </fieldset>
+
+      <button type="submit">Register AI use case</button>
+    </form>
+
+    <div class="results-region" id="register-feedback" aria-live="polite"></div>
+
+    <h2>Registered use cases</h2>
+    <ul id="usecase-list">
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <p>Masters-level academic prototype. No real organisational data is stored or displayed.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/ai-register.js"></script>
+</body>
+</html>

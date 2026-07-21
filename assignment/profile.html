@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- Scaffold created with AI assistance (Claude, Anthropic). Cite per the
+     assignment brief; extend with your own work. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - GRC & AI Governance Control Hub</title>
+  <meta name="description" content="Capture a simple demonstration user profile for the academic prototype.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC &amp; AI Governance Hub</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="controls.html">Control Library</a></li>
+        <li><a href="risks.html">Risk Register</a></li>
+        <li><a href="ai-register.html">AI Use-Case Register</a></li>
+        <li><a href="profile.html" aria-current="page">My Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-intro">
+      <h1>My Profile</h1>
+      <p>
+        A simplified profile capture for demonstration only. Enter fictional,
+        non-sensitive details - nothing is sent to a server or stored beyond
+        this browser session. A production version could instead retrieve
+        business profile data via Microsoft authentication and the Microsoft
+        Graph API.
+      </p>
+    </div>
+
+    <form id="profile-form">
+      <label for="display-name">Display name *</label>
+      <input type="text" id="display-name" name="display-name" required
+             minlength="2" autocomplete="name">
+
+      <label for="role-type">Role type *</label>
+      <select id="role-type" name="role-type" required>
+        <option value="">Choose..</option>
+        <option value="tutor">Module tutor</option>
+        <option value="student">Student</option>
+        <option value="grc">GRC practitioner (demo)</option>
+        <option value="auditor">Auditor (demo)</option>
+      </select>
+
+      <label for="department">Department category *</label>
+      <select id="department" name="department" required>
+        <option value="">Choose..</option>
+        <option value="it-security">IT & Security</option>
+        <option value="operations">Operations</option>
+        <option value="engineering">Engineering</option>
+        <option value="corporate">Corporate functions</option>
+      </select>
+
+      <fieldset>
+        <legend>GRC responsibility *</legend>
+        <div class="radio-option">
+          <input type="radio" id="resp-owner" name="grc-responsibility" value="control-owner" required>
+          <label for="resp-owner">Control owner</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="resp-risk" name="grc-responsibility" value="risk-owner">
+          <label for="resp-risk">Risk owner</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="resp-viewer" name="grc-responsibility" value="viewer">
+          <label for="resp-viewer">Viewer / reviewer</label>
+        </div>
+      </fieldset>
+
+      <button type="submit">Save profile</button>
+    </form>
+
+    <div class="results-region" id="profile-feedback" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Masters-level academic prototype. No real organisational data is stored or displayed.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

