@@ -1,0 +1,450 @@
+/* ==========================================================================
+   GRC & AI Governance Control Hub — styles.css
+   Scaffold created with AI assistance (Claude, Anthropic) as a starting
+   point. Cite in line with the assignment brief and your university's
+   academic integrity policy. Extend and adapt this — the rubric rewards
+   CSS that is demonstrably your own.
+
+   STRUCTURE (mobile-first — base styles target small screens; media
+   queries at the bottom enhance for larger screens):
+     1. Design tokens (CSS custom properties)
+     2. Base / reset
+     3. Prototype banner
+     4. Header and navigation
+     5. Layout helpers
+     6. Cards and dashboard
+     7. Status badges
+     8. Tables
+     9. Forms
+    10. Footer
+    11. Media queries (min-width — the mobile-first paradigm)
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS ---------------------------------------------------------
+   Custom properties keep the colour/typography scheme consistent and easy
+   to change (Assessment 3 talking point: alternatives would be repeating
+   hex values everywhere, or a preprocessor variable like Sass $vars). */
+:root {
+  /* Colour scheme — replace with your own palette if you prefer */
+  --colour-ink: #1b2a41;        /* deep navy: headings, header bar */
+  --colour-body: #33415c;       /* body text */
+  --colour-surface: #f4f6f9;    /* page background */
+  --colour-card: #ffffff;       /* card / panel background */
+  --colour-line: #d8dee9;       /* borders and dividers */
+  --colour-accent: #0f766e;     /* teal: links, buttons, focus */
+  --colour-accent-dark: #115e59;
+
+  /* Status colours (RAG). Chosen for WCAG AA contrast on white.
+     Accessibility note: status is NEVER conveyed by colour alone —
+     badges always include a text label (WCAG 1.4.1 Use of Colour). */
+  --status-green: #067647;
+  --status-amber: #92400e;
+  --status-red: #b42318;
+
+  /* Typography */
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+
+  --radius: 8px;
+}
+
+/* 2. BASE / RESET ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--colour-body);
+  background-color: var(--colour-surface);
+}
+
+h1, h2, h3 {
+  color: var(--colour-ink);
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 { font-size: 1.6rem; font-weight: 700; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+
+a {
+  color: var(--colour-accent);
+}
+
+/* Pseudo-class selectors (rubric: pseudo-classes) */
+a:hover {
+  color: var(--colour-accent-dark);
+}
+
+/* Visible keyboard focus for ALL interactive elements
+   (WCAG 2.4.7 Focus Visible) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--colour-accent);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Respect users who prefer reduced motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 3. PROTOTYPE BANNER -------------------------------------------------------
+   Signature element: a permanent banner making the academic, synthetic
+   nature of the data visible on every page (matches the scope brief). */
+.prototype-banner {
+  background-color: var(--colour-ink);
+  color: #e6ecf5;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: var(--space-1) var(--space-3);
+}
+
+/* 4. HEADER AND NAVIGATION --------------------------------------------------
+   Mobile-first: nav is hidden behind a toggle button on small screens.
+   The desktop media query at the bottom shows it as a horizontal bar. */
+.site-header {
+  background-color: var(--colour-card);
+  border-bottom: 1px solid var(--colour-line);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.site-header .brand {
+  font-weight: 700;
+  color: var(--colour-ink);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.nav-toggle {
+  background: none;
+  border: 2px solid var(--colour-line);
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-2);
+  font: inherit;
+  cursor: pointer;
+  color: var(--colour-ink);
+}
+
+.site-nav {
+  /* Hidden by default on mobile; JS toggles the hidden attribute.
+     TODO (student): animate this open/close for the JS rubric line. */
+  width: 100%;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+}
+
+.site-nav a {
+  display: block;
+  padding: var(--space-2);
+  text-decoration: none;
+  color: var(--colour-ink);
+  border-radius: var(--radius);
+}
+
+.site-nav a:hover {
+  background-color: var(--colour-surface);
+}
+
+/* Attribute selector (rubric: attribute selectors — distinction band).
+   Highlights the current page's nav link, set via aria-current in HTML,
+   which also announces "current page" to screen readers. */
+.site-nav a[aria-current="page"] {
+  background-color: var(--colour-accent);
+  color: #ffffff;
+}
+
+/* 5. LAYOUT HELPERS --------------------------------------------------------- */
+.container {
+  padding: var(--space-3);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.page-intro {
+  margin-bottom: var(--space-4);
+}
+
+/* 6. CARDS AND DASHBOARD ----------------------------------------------------
+   Single column on mobile; the media query switches to CSS Grid. */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.card {
+  background-color: var(--colour-card);
+  border: 1px solid var(--colour-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+.card .metric {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--colour-ink);
+  display: block;
+}
+
+.card .metric-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Monospace treatment for register-style identifiers (control IDs,
+   CVE IDs, use-case refs) — part of the visual signature. */
+.ref-id {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background-color: var(--colour-surface);
+  padding: 0 var(--space-1);
+  border-radius: 4px;
+}
+
+/* 7. STATUS BADGES -----------------------------------------------------------
+   Class selectors with BEM-style modifiers (rubric: classes).
+   Text label + colour, never colour alone (WCAG 1.4.1). */
+.badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+.badge--ok    { color: var(--status-green); }
+.badge--warn  { color: var(--status-amber); }
+.badge--risk  { color: var(--status-red); }
+
+/* 8. TABLES ------------------------------------------------------------------ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--colour-card);
+  border: 1px solid var(--colour-line);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+}
+
+.data-table caption {
+  text-align: left;
+  font-weight: 600;
+  color: var(--colour-ink);
+  padding: var(--space-2) 0;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.data-table th {
+  background-color: var(--colour-surface);
+  color: var(--colour-ink);
+}
+
+/* Structural pseudo-class (rubric: pseudo-classes): zebra striping */
+.data-table tbody tr:nth-child(even) {
+  background-color: #fafbfd;
+}
+
+.data-table tbody tr:hover {
+  background-color: #eef4f3;
+}
+
+/* 9. FORMS --------------------------------------------------------------------
+   Element + attribute selectors together. */
+form {
+  background-color: var(--colour-card);
+  border: 1px solid var(--colour-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+fieldset {
+  border: 1px solid var(--colour-line);
+  border-radius: var(--radius);
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+}
+
+legend {
+  font-weight: 600;
+  color: var(--colour-ink);
+  padding: 0 var(--space-1);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--colour-ink);
+  margin-bottom: var(--space-1);
+}
+
+/* Attribute selectors target inputs by type without extra classes
+   (rubric: attribute selectors) */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  padding: var(--space-2);
+  border: 1.5px solid var(--colour-line);
+  border-radius: var(--radius);
+  background-color: #ffffff;
+  margin-bottom: var(--space-3);
+}
+
+/* UI pseudo-classes give live validation feedback with no JavaScript
+   (Assessment 3 talking point alongside your JS validation).
+   :user-invalid only flags fields after interaction — friendlier than
+   :invalid, which flags empty required fields on page load. */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--status-red);
+}
+
+.radio-option,
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+/* Labels inside radio/checkbox rows sit inline, not as block headings */
+.radio-option label,
+.checkbox-option label {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+button[type="submit"] {
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--colour-accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--colour-accent-dark);
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  margin-top: calc(-1 * var(--space-2));
+  margin-bottom: var(--space-3);
+}
+
+/* Region JS writes API results / form feedback into. aria-live in the
+   HTML means screen readers announce updates (WCAG 4.1.3). */
+.results-region:not(:empty) {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--colour-card);
+  border: 1px solid var(--colour-line);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius);
+}
+
+/* 10. FOOTER ------------------------------------------------------------------ */
+.site-footer {
+  margin-top: var(--space-5);
+  padding: var(--space-3);
+  border-top: 1px solid var(--colour-line);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* 11. MEDIA QUERIES — MOBILE FIRST ---------------------------------------------
+   Everything above styles the small-screen experience. These min-width
+   queries progressively enhance for larger screens (never max-width
+   overrides — that would be desktop-first). */
+@media (min-width: 40em) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 60em) {
+  h1 { font-size: 2rem; }
+
+  /* Nav becomes a persistent horizontal bar; toggle button hides */
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    width: auto;
+  }
+
+  /* Overrides the hidden attribute JS uses on mobile */
+  .site-nav[hidden] {
+    display: block;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: var(--space-1);
+    margin: 0;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .container {
+    padding: var(--space-4);
+  }
+}
