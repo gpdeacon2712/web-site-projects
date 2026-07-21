@@ -1,64 +1,493 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 
 <head>
-    <title>Graham Deacon - Personal Web Page</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Personal profile of Graham Deacon demonstrating responsive HTML, CSS, forms, JavaScript, DOM manipulation and API calls.">
+
+    <title>Graham Deacon - Interactive Web Page with API</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
             background-color: #f4f4f4;
-            margin: 20px;
             color: #333333;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .container {
-            background-color: white;
-            padding: 20px;
+            width: min(100%, 900px);
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
             border-radius: 10px;
         }
 
         h1 {
-            text-align: center;
+            margin-top: 0;
             color: darkblue;
+            font-size: clamp(2rem, 6vw, 3rem);
+            line-height: 1.2;
+            text-align: center;
         }
 
         h2 {
+            margin-top: 2rem;
             color: darkgreen;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            line-height: 1.3;
         }
 
-        img {
-            border-radius: 10px;
-            max-width: 600px;
+        h3 {
+            line-height: 1.3;
+        }
+
+        .introductory-text {
+            text-align: center;
+        }
+
+        .interests-heading {
+            color: darkred;
         }
 
         .highlight {
+            padding: 15px;
             background-color: #ffffcc;
-            padding: 10px;
+            border-left: 5px solid #665c00;
             border-radius: 5px;
         }
-    </style>
 
+        .dom-status {
+            margin: 1rem 0 2rem;
+            text-align: center;
+        }
+
+        .learning-summary {
+            color: darkblue;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 1rem auto 0;
+            border-radius: 10px;
+        }
+
+        a {
+            color: #0046a8;
+            text-decoration-thickness: 0.12em;
+            text-underline-offset: 0.15em;
+        }
+
+        a:hover {
+            text-decoration-thickness: 0.2em;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 4px;
+        }
+
+        form {
+            margin-top: 1rem;
+        }
+
+        fieldset {
+            margin: 0 0 1.5rem;
+            padding: 1.25rem;
+            border: 1px solid #767676;
+            border-radius: 8px;
+        }
+
+        legend {
+            padding: 0 0.5rem;
+            color: darkblue;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            color: #333333;
+            background-color: #ffffff;
+            border: 1px solid #767676;
+            border-radius: 5px;
+            font: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        .option-group input {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
+        button {
+            min-height: 44px;
+            padding: 0.75rem 1.25rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003f7f;
+        }
+
+        button:disabled {
+            background-color: #767676;
+            border-color: #767676;
+            cursor: wait;
+        }
+
+        .secondary-button {
+            color: darkblue;
+            background-color: #ffffff;
+        }
+
+        .secondary-button:hover {
+            color: #ffffff;
+            background-color: darkblue;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-note {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.95rem;
+        }
+
+        .form-progress {
+            margin: 1.5rem 0;
+        }
+
+        .form-progress label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: bold;
+        }
+
+        progress {
+            width: 100%;
+            height: 1.25rem;
+        }
+
+        #progress-text {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.95rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-confirmation {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #e6f4ea;
+            color: #174d28;
+            border-left: 5px solid #237a3b;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .form-error {
+            background-color: #fdecec;
+            color: #7a1c1c;
+            border-left-color: #a61b1b;
+        }
+
+        .submission-summary {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background-color: #eef5ff;
+            border-left: 5px solid darkblue;
+            border-radius: 6px;
+        }
+
+        .submission-summary h3 {
+            margin-top: 0;
+            color: darkblue;
+        }
+
+        .remove-summary-button {
+            margin-top: 0.75rem;
+        }
+
+        .dog-api-section {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #f4f7fa;
+            border-left: 5px solid darkblue;
+            border-radius: 6px;
+        }
+
+        .dog-api-section h2 {
+            margin-top: 0;
+        }
+
+        .api-status {
+            min-height: 1.6rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .api-error {
+            color: #8b0000;
+        }
+
+        .dog-image-container {
+            margin-top: 1rem;
+        }
+
+        #dog-image {
+            width: 100%;
+            max-width: 500px;
+            max-height: 500px;
+            height: auto;
+            object-fit: contain;
+            margin: 1rem auto 0;
+            border: 1px solid #c9d2dc;
+            border-radius: 10px;
+        }
+
+        .api-notes {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #eef5ff;
+            border-radius: 6px;
+        }
+
+        .api-notes h3 {
+            margin-top: 0;
+            color: darkblue;
+        }
+
+        .form-notes {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #f4f7fa;
+            border-left: 5px solid darkblue;
+            border-radius: 6px;
+        }
+
+        .form-notes h3 {
+            margin-top: 0;
+            color: darkblue;
+            font-size: 1.2rem;
+        }
+
+        .form-notes code,
+        .dom-notes code,
+        .api-notes code {
+            padding: 0.1rem 0.3rem;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, monospace;
+        }
+
+        .javascript-notes {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #fff8e6;
+            border-left: 5px solid #9a6700;
+            border-radius: 6px;
+        }
+
+        .javascript-notes h3 {
+            margin-top: 0;
+            color: #6b4700;
+        }
+
+        .dom-notes {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #f1ecff;
+            border-left: 5px solid #563d7c;
+            border-radius: 6px;
+        }
+
+        .dom-notes h3 {
+            margin-top: 0;
+            color: #563d7c;
+        }
+
+
+
+        .jquery-section {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background-color: #eef8f1;
+            border-left: 5px solid darkgreen;
+            border-radius: 6px;
+        }
+
+        .jquery-section h2 {
+            margin-top: 0;
+        }
+
+        .jquery-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .jquery-panel {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #9aa7a0;
+            border-radius: 6px;
+        }
+
+        .jquery-note-form {
+            margin-top: 1.25rem;
+        }
+
+        .jquery-note-list {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .jquery-note-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .jquery-status {
+            min-height: 1.6rem;
+            margin-top: 0.75rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 6px;
+            }
+
+            .introductory-text {
+                text-align: left;
+            }
+
+            h2 {
+                margin-top: 1.5rem;
+            }
+
+            ul {
+                padding-left: 1.4rem;
+            }
+
+            fieldset {
+                padding: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .dog-api-section {
+                padding: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
         <h1>Graham Deacon</h1>
 
-        <p style="text-align: center;">
-            <em>MSc Computing and Cyber Security Student | IT Professional | GRC and AI Governance</em>
+        <p class="introductory-text">
+            <em>
+                MSc Computing and Cyber Security Student |
+                IT Professional | GRC and AI Governance
+            </em>
         </p>
 
         <h2>About Me</h2>
 
         <p>
-            Welcome to my first web page. My name is
-            <strong>Graham Deacon</strong> and I work in Information Technology
-            within the industrial automation sector. I have extensive experience
-            in IT Operations, programme delivery, governance and technology
-            improvement initiatives.
+            Welcome to my interactive personal web page. My name is
+            <strong>Graham Deacon</strong>, and I work in information
+            technology within the industrial automation sector. I have
+            extensive experience in IT operations, programme delivery,
+            governance and technology improvement initiatives.
         </p>
 
         <p>
@@ -66,7 +495,7 @@
             <strong>Rockwell Automation</strong> within the
             <mark>Governance, Risk and Compliance (GRC)</mark>
             domain, supporting projects focused on
-            <strong>AI Risk Governance</strong>.
+            <strong>AI risk governance</strong>.
         </p>
 
         <p>
@@ -79,7 +508,8 @@
         <h2>Professional Qualifications and Profile</h2>
 
         <p>
-            I hold a number of professional certifications including:
+            I hold a number of professional qualifications and
+            certifications, including:
         </p>
 
         <ul>
@@ -92,20 +522,22 @@
             <li>CISM</li>
             <li>CRISC</li>
             <li>CISA</li>
-           
         </ul>
 
         <p>
             These qualifications reflect my experience across engineering,
-            project delivery, governance, risk management, information security
-            and audit disciplines.
+            project delivery, governance, risk management, information
+            security and audit disciplines.
         </p>
 
         <p>
             You can learn more about my professional background,
             qualifications and experience on my
-            <a href="https://www.linkedin.com/in/gpdeacon/" target="_blank">
-                LinkedIn Profile
+            <a
+                href="https://www.linkedin.com/in/gpdeacon/"
+                target="_blank"
+                rel="noopener noreferrer">
+                LinkedIn profile (opens in a new tab)
             </a>.
         </p>
 
@@ -114,7 +546,7 @@
         <p>
             I am married to my wife, <strong>Fiona</strong>, and together we
             have two daughters and a son. Family life keeps me busy outside
-            of work and university, and we enjoy spending time together.
+            work and university, and we enjoy spending time together.
         </p>
 
         <p>
@@ -122,7 +554,169 @@
             long walks and is very much part of the family.
         </p>
 
-        <h2 style="color: darkred;">My Interests</h2>
+        <section
+            class="dog-api-section"
+            aria-labelledby="dog-api-heading">
+
+            <h2 id="dog-api-heading">
+                Random Cocker Spaniel Image
+            </h2>
+
+            <p>
+                Select the button to retrieve a random Cocker Spaniel image
+                from the Dog CEO API.
+            </p>
+
+            <button
+                type="button"
+                id="load-dog-button">
+                Show a random Cocker Spaniel
+            </button>
+
+            <p
+                id="dog-api-status"
+                class="api-status"
+                role="status"
+                aria-live="polite">
+            </p>
+
+            <div
+                id="dog-image-container"
+                class="dog-image-container hidden">
+
+                <img
+                    id="dog-image"
+                    src=""
+                    alt="">
+            </div>
+
+            <div class="api-notes">
+                <h3>API Feature Added</h3>
+
+                <p>
+                    This feature uses JavaScript to send a request to an
+                    external web API and display the returned image.
+                </p>
+
+                <ul>
+                    <li>
+                        <code>fetch()</code> sends a request to the API.
+                    </li>
+
+                    <li>
+                        <code>async</code> and <code>await</code> manage the
+                        asynchronous request.
+                    </li>
+
+                    <li>
+                        <code>response.json()</code> converts the API response
+                        into a JavaScript object.
+                    </li>
+
+                    <li>
+                        The returned image URL is read from the
+                        <code>message</code> property.
+                    </li>
+
+                    <li>
+                        The DOM is updated to display the returned image and
+                        status message.
+                    </li>
+
+                    <li>
+                        Error handling displays a helpful message if the
+                        request is unsuccessful.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+
+        <section
+            class="jquery-section"
+            aria-labelledby="jquery-heading">
+
+            <h2 id="jquery-heading">jQuery Interactive Features</h2>
+
+            <p>
+                This section demonstrates jQuery selectors, events, effects
+                and methods for getting, setting, adding and removing content.
+            </p>
+
+            <div class="jquery-controls">
+                <button type="button" id="toggle-profile-button">
+                    Hide profile summary
+                </button>
+
+                <button type="button" id="fade-dog-button">
+                    Fade dog feature
+                </button>
+
+                <button type="button" id="slide-api-notes-button">
+                    Slide API notes
+                </button>
+            </div>
+
+            <div id="jquery-profile-panel" class="jquery-panel">
+                <h3>Profile Summary</h3>
+                <p id="jquery-profile-text">
+                    Graham is an MSc Computing and Cyber Security student and
+                    an IT professional working in governance, risk and
+                    compliance.
+                </p>
+            </div>
+
+            <div class="jquery-note-form">
+                <label for="jquery-note"><strong>Add a learning note</strong></label>
+
+                <input
+                    type="text"
+                    id="jquery-note"
+                    maxlength="100"
+                    placeholder="Enter a short note">
+
+                <div class="jquery-controls">
+                    <button type="button" id="add-note-button">
+                        Add note
+                    </button>
+
+                    <button
+                        type="button"
+                        id="remove-notes-button"
+                        class="secondary-button">
+                        Remove all notes
+                    </button>
+                </div>
+
+                <ul id="jquery-note-list" class="jquery-note-list"></ul>
+
+                <p
+                    id="jquery-status"
+                    class="jquery-status"
+                    role="status"
+                    aria-live="polite">
+                </p>
+            </div>
+
+            <div class="api-notes">
+                <h3>jQuery Methods Demonstrated</h3>
+
+                <ul>
+                    <li><code>$(document).ready()</code> waits for the page.</li>
+                    <li><code>.on()</code> attaches click and keyboard events.</li>
+                    <li><code>.hide()</code> and <code>.show()</code> control visibility.</li>
+                    <li><code>.fadeToggle()</code> fades the dog feature.</li>
+                    <li><code>.slideToggle()</code> opens and closes the API notes.</li>
+                    <li><code>.text()</code> gets and sets visible text.</li>
+                    <li><code>.val()</code> gets and clears the note input.</li>
+                    <li><code>.append()</code> adds a new list item.</li>
+                    <li><code>.remove()</code> deletes the generated notes.</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="interests-heading">My Interests</h2>
 
         <ul>
             <li>Reading, especially fiction novels</li>
@@ -142,56 +736,1000 @@
             the season and following the club's progress.
         </p>
 
-       <img
+        <img
             src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
-            alt="Oxford United Football Club"
-            width="600">
-
+            alt="Oxford United football players during a match"
+            width="600"
+            height="400">
 
         <h2>Why I Am Studying Computing and Cyber Security</h2>
 
         <p>
-            Technology continues to evolve rapidly and I believe lifelong
+            Technology continues to evolve rapidly, and I believe lifelong
             learning is essential. My MSc studies are helping me develop
             deeper knowledge of software development, cyber security,
             data management and artificial intelligence, complementing my
             professional experience.
         </p>
 
-        <p style="color: darkblue;">
-            This webpage has helped me better understand HTML elements,
-            attributes, formatting, styling and the importance of testing
-            webpages before publishing them.
+        <p class="learning-summary">
+            Developing this page has helped me understand how HTML provides
+            structure, CSS controls presentation, JavaScript adds interaction,
+            DOM methods dynamically change content, and APIs provide data from
+            external services.
         </p>
 
-        <h2>Styling Techniques Used</h2>
+        <h2>Responsive Styling Techniques Used</h2>
 
         <p>
-            To improve the appearance of this webpage, I applied several HTML
-            styling techniques and basic CSS.
+            I extended the original styling so that the content adapts more
+            effectively to desktop, tablet and mobile screen sizes.
         </p>
 
         <ul>
-            <li>Applied colours to headings using the <strong>color</strong> property.</li>
-            <li>Used a light grey <strong>background colour</strong> for the page.</li>
-            <li>Applied the <strong>Arial</strong> font across the webpage.</li>
-            <li>Centred the main page heading using <strong>text-align</strong>.</li>
-            <li>Used <strong>padding</strong> and <strong>border-radius</strong> to improve layout and appearance.</li>
-            <li>Applied emphasis using the <strong> strong </strong> and <strong> em </strong> formatting tags.</li>
-            <li>Created a reusable CSS class called <strong>highlight</strong>.</li>
-            <li>Rounded the corners of the image using CSS.</li>
-            <li>Used hyperlinks to connect the page to external resources such as LinkedIn.</li>
+            <li>
+                Added the viewport meta tag so mobile browsers use the
+                physical width of the device.
+            </li>
+
+            <li>
+                Used a responsive container with a maximum width to prevent
+                text lines becoming too long.
+            </li>
+
+            <li>
+                Used relative sizing and the CSS
+                <strong>clamp()</strong> function for responsive headings.
+            </li>
+
+            <li>
+                Made images responsive using
+                <strong>width: 100%</strong> and
+                <strong>height: auto</strong>.
+            </li>
+
+            <li>
+                Added a media query for screens below 600 pixels.
+            </li>
+
+            <li>
+                Added visible keyboard focus indicators.
+            </li>
+
+            <li>
+                Used mobile-friendly buttons with a minimum height of
+                44 pixels.
+            </li>
         </ul>
 
+        <h2>Responsive Design Reflection</h2>
+
         <p>
-            These styling enhancements improved the readability and
-            presentation of the page while helping me understand the
-            difference between content structure (HTML) and visual
-            presentation (CSS).
+            The original page remained functional on mobile devices, but it
+            was designed mainly for a desktop-sized screen. Fixed image sizes,
+            larger margins and wider layouts could make the content appear
+            cramped on smaller displays.
         </p>
 
-    </div>
+        <p>
+            The revised page uses responsive CSS so that the same HTML content
+            can be presented appropriately across mobile, tablet and desktop
+            screens. Images reduce in size when required, text remains readable
+            and the content adjusts without introducing horizontal scrolling.
+        </p>
+
+        <section aria-labelledby="contact-heading">
+
+            <h2 id="contact-heading">Contact and Interests Form</h2>
+
+            <p>
+                This form demonstrates HTML form controls, JavaScript
+                interaction and HTML DOM manipulation. Required fields are
+                marked with an asterisk.
+            </p>
+
+            <form id="contact-form" action="#" method="post">
+
+                <fieldset>
+                    <legend>Your Details</legend>
+
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Your role</label>
+
+                        <select id="role" name="role">
+                            <option value="">Please select</option>
+                            <option value="student">Student</option>
+                            <option value="it-professional">
+                                IT professional
+                            </option>
+                            <option value="engineer">Engineer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div
+                        class="form-group hidden"
+                        id="other-role-group">
+
+                        <label for="other-role">
+                            Please describe your role *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="other-role"
+                            name="other-role">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Areas of Interest</legend>
+
+                    <p>Select all that apply:</p>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="cyber-security"
+                            name="interests"
+                            value="cyber-security">
+
+                        <label for="cyber-security">
+                            Cyber security
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="ai-governance"
+                            name="interests"
+                            value="ai-governance">
+
+                        <label for="ai-governance">
+                            AI governance
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="checkbox"
+                            id="web-development"
+                            name="interests"
+                            value="web-development">
+
+                        <label for="web-development">
+                            Web development
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferred Contact Method</legend>
+
+                    <div class="option-group">
+                        <input
+                            type="radio"
+                            id="contact-email"
+                            name="contact-method"
+                            value="email"
+                            checked>
+
+                        <label for="contact-email">
+                            Email
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <input
+                            type="radio"
+                            id="contact-linkedin"
+                            name="contact-method"
+                            value="linkedin">
+
+                        <label for="contact-linkedin">
+                            LinkedIn
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        maxlength="500"
+                        placeholder="Enter your message here"></textarea>
+
+                    <small class="form-note">
+                        <span id="character-count">0</span>
+                        of 500 characters used.
+                    </small>
+                </div>
+
+                <div class="form-progress">
+                    <label for="form-progress">
+                        Form completion
+                    </label>
+
+                    <progress
+                        id="form-progress"
+                        value="0"
+                        max="4">
+                        0%
+                    </progress>
+
+                    <span id="progress-text">
+                        0% complete
+                    </span>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">
+                        Submit form
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="secondary-button">
+                        Clear form
+                    </button>
+                </div>
+
+            </form>
+
+            <div
+                id="form-confirmation"
+                class="form-confirmation hidden"
+                role="status"
+                aria-live="polite">
+            </div>
+
+            <div
+                id="submission-summary"
+                class="submission-summary hidden"
+                aria-live="polite">
+            </div>
+
+            <div class="form-notes">
+
+                <h3>HTML Form Elements Added</h3>
+
+                <p>
+                    The form demonstrates several commonly used HTML form
+                    elements and attributes.
+                </p>
+
+                <ul>
+                    <li>
+                        The <code>&lt;form&gt;</code> element groups the
+                        controls.
+                    </li>
+
+                    <li>
+                        <code>&lt;fieldset&gt;</code> and
+                        <code>&lt;legend&gt;</code> organise related controls.
+                    </li>
+
+                    <li>
+                        Labels are connected to inputs using matching
+                        <code>for</code> and <code>id</code> values.
+                    </li>
+
+                    <li>
+                        Text and email inputs collect basic user details.
+                    </li>
+
+                    <li>
+                        A drop-down list allows the user to choose a role.
+                    </li>
+
+                    <li>
+                        Checkboxes support multiple selections.
+                    </li>
+
+                    <li>
+                        Radio buttons allow one preferred contact method.
+                    </li>
+
+                    <li>
+                        A textarea accepts longer messages.
+                    </li>
+
+                    <li>
+                        The <code>required</code>,
+                        <code>autocomplete</code> and
+                        <code>maxlength</code> attributes improve usability.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="javascript-notes">
+
+                <h3>JavaScript Features Added</h3>
+
+                <ul>
+                    <li>
+                        A live character counter updates as the message is
+                        entered.
+                    </li>
+
+                    <li>
+                        Selecting “Other” displays an additional role field.
+                    </li>
+
+                    <li>
+                        The additional role field becomes required only when
+                        it is displayed.
+                    </li>
+
+                    <li>
+                        The form displays an accessible confirmation message
+                        after successful validation.
+                    </li>
+
+                    <li>
+                        The reset button clears the form and all
+                        JavaScript-generated content.
+                    </li>
+                </ul>
+
+                <p>
+                    The form is still a demonstration and does not send or
+                    store information. JavaScript prevents the page from
+                    reloading and displays feedback locally in the browser.
+                </p>
+            </div>
+
+            <div class="dom-notes">
+
+                <h3>HTML DOM Methods Added</h3>
+
+                <p>
+                    The page uses JavaScript DOM methods to select, create,
+                    update, insert and remove elements while the webpage is
+                    running.
+                </p>
+
+                <ul>
+                    <li>
+                        <code>getElementById()</code> selects individual
+                        elements using their unique IDs.
+                    </li>
+
+                    <li>
+                        <code>querySelector()</code> selects the chosen
+                        contact-method radio button.
+                    </li>
+
+                    <li>
+                        <code>querySelectorAll()</code> retrieves all selected
+                        interest checkboxes.
+                    </li>
+
+                    <li>
+                        <code>createElement()</code> creates the submission
+                        summary heading, paragraph, list items and button.
+                    </li>
+
+                    <li>
+                        <code>appendChild()</code> inserts newly created
+                        elements into the summary.
+                    </li>
+
+                    <li>
+                        <code>replaceChildren()</code> clears previously
+                        generated summary content.
+                    </li>
+
+                    <li>
+                        <code>classList.add()</code>,
+                        <code>classList.remove()</code> and
+                        <code>classList.toggle()</code> change the appearance
+                        and visibility of elements.
+                    </li>
+
+                    <li>
+                        <code>setAttribute()</code> adds an accessible label
+                        to the dynamically created removal button.
+                    </li>
+
+                    <li>
+                        <code>textContent</code> safely changes displayed text.
+                    </li>
+
+                    <li>
+                        <code>insertAdjacentElement()</code> inserts a DOM
+                        status message beneath the main heading.
+                    </li>
+                </ul>
+
+                <p>
+                    These methods allow the webpage to react dynamically
+                    without requiring the browser to load a new page.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
+    <script>
+        const form =
+            document.getElementById("contact-form");
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const roleSelect =
+            document.getElementById("role");
+
+        const otherRoleGroup =
+            document.getElementById("other-role-group");
+
+        const otherRoleInput =
+            document.getElementById("other-role");
+
+        const messageBox =
+            document.getElementById("message");
+
+        const characterCount =
+            document.getElementById("character-count");
+
+        const confirmation =
+            document.getElementById("form-confirmation");
+
+        const summaryContainer =
+            document.getElementById("submission-summary");
+
+        const progressBar =
+            document.getElementById("form-progress");
+
+        const progressText =
+            document.getElementById("progress-text");
+
+        const loadDogButton =
+            document.getElementById("load-dog-button");
+
+        const dogApiStatus =
+            document.getElementById("dog-api-status");
+
+        const dogImageContainer =
+            document.getElementById("dog-image-container");
+
+        const dogImage =
+            document.getElementById("dog-image");
+
+        function updateProgress() {
+            let completedFields = 0;
+
+            if (nameInput.value.trim() !== "") {
+                completedFields++;
+            }
+
+            if (
+                emailInput.value.trim() !== "" &&
+                emailInput.validity.valid
+            ) {
+                completedFields++;
+            }
+
+            if (roleSelect.value !== "") {
+                completedFields++;
+            }
+
+            if (messageBox.value.trim() !== "") {
+                completedFields++;
+            }
+
+            progressBar.value = completedFields;
+
+            const percentage =
+                Math.round((completedFields / 4) * 100);
+
+            progressText.textContent =
+                `${percentage}% complete`;
+        }
+
+        roleSelect.addEventListener(
+            "change",
+            function () {
+                const otherSelected =
+                    roleSelect.value === "other";
+
+                otherRoleGroup.classList.toggle(
+                    "hidden",
+                    !otherSelected
+                );
+
+                otherRoleInput.required =
+                    otherSelected;
+
+                if (!otherSelected) {
+                    otherRoleInput.value = "";
+                }
+
+                updateProgress();
+            }
+        );
+
+        messageBox.addEventListener(
+            "input",
+            function () {
+                characterCount.textContent =
+                    messageBox.value.length;
+
+                updateProgress();
+            }
+        );
+
+        nameInput.addEventListener(
+            "input",
+            updateProgress
+        );
+
+        emailInput.addEventListener(
+            "input",
+            updateProgress
+        );
+
+        function createSubmissionSummary(name) {
+            summaryContainer.replaceChildren();
+
+            const heading =
+                document.createElement("h3");
+
+            heading.textContent =
+                "Submission Summary";
+
+            const introduction =
+                document.createElement("p");
+
+            introduction.textContent =
+                `Thank you, ${name}. You entered the following details:`;
+
+            const summaryList =
+                document.createElement("ul");
+
+            const emailItem =
+                document.createElement("li");
+
+            emailItem.textContent =
+                `Email: ${emailInput.value}`;
+
+            const roleItem =
+                document.createElement("li");
+
+            const selectedRole =
+                roleSelect.options[
+                    roleSelect.selectedIndex
+                ].text;
+
+            roleItem.textContent =
+                roleSelect.value === "other"
+                    ? `Role: ${otherRoleInput.value}`
+                    : `Role: ${selectedRole}`;
+
+            const contactMethod =
+                document.querySelector(
+                    'input[name="contact-method"]:checked'
+                );
+
+            const contactItem =
+                document.createElement("li");
+
+            contactItem.textContent =
+                `Preferred contact: ${contactMethod.value}`;
+
+            const checkedInterests =
+                document.querySelectorAll(
+                    'input[name="interests"]:checked'
+                );
+
+            const interestsItem =
+                document.createElement("li");
+
+            if (checkedInterests.length > 0) {
+                const interests =
+                    Array.from(
+                        checkedInterests
+                    ).map(function (checkbox) {
+                        const label =
+                            document.querySelector(
+                                `label[for="${checkbox.id}"]`
+                            );
+
+                        return label.textContent.trim();
+                    });
+
+                interestsItem.textContent =
+                    `Interests: ${interests.join(", ")}`;
+            } else {
+                interestsItem.textContent =
+                    "Interests: None selected";
+            }
+
+            const messageItem =
+                document.createElement("li");
+
+            messageItem.textContent =
+                messageBox.value.trim() === ""
+                    ? "Message: No message entered"
+                    : `Message: ${messageBox.value.trim()}`;
+
+            summaryList.appendChild(emailItem);
+            summaryList.appendChild(roleItem);
+            summaryList.appendChild(contactItem);
+            summaryList.appendChild(interestsItem);
+            summaryList.appendChild(messageItem);
+
+            const removeButton =
+                document.createElement("button");
+
+            removeButton.type = "button";
+
+            removeButton.textContent =
+                "Remove summary";
+
+            removeButton.classList.add(
+                "secondary-button",
+                "remove-summary-button"
+            );
+
+            removeButton.setAttribute(
+                "aria-label",
+                "Remove the generated submission summary"
+            );
+
+            removeButton.addEventListener(
+                "click",
+                function () {
+                    summaryContainer.replaceChildren();
+
+                    summaryContainer.classList.add(
+                        "hidden"
+                    );
+                }
+            );
+
+            summaryContainer.appendChild(heading);
+            summaryContainer.appendChild(introduction);
+            summaryContainer.appendChild(summaryList);
+            summaryContainer.appendChild(removeButton);
+
+            summaryContainer.classList.remove(
+                "hidden"
+            );
+        }
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+                    confirmation.textContent =
+                        "Please complete the required fields before submitting.";
+
+                    confirmation.classList.remove(
+                        "hidden"
+                    );
+
+                    confirmation.classList.add(
+                        "form-error"
+                    );
+
+                    form.reportValidity();
+                    return;
+                }
+
+                const name =
+                    nameInput.value.trim();
+
+                confirmation.textContent =
+                    `Thank you, ${name}. Your form has been completed ` +
+                    "successfully. This demonstration does not send or " +
+                    "store your information.";
+
+                confirmation.classList.remove(
+                    "hidden",
+                    "form-error"
+                );
+
+                createSubmissionSummary(name);
+
+                summaryContainer.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }
+        );
+
+        form.addEventListener(
+            "reset",
+            function () {
+                window.setTimeout(
+                    function () {
+                        characterCount.textContent =
+                            "0";
+
+                        otherRoleGroup.classList.add(
+                            "hidden"
+                        );
+
+                        otherRoleInput.required =
+                            false;
+
+                        otherRoleInput.value =
+                            "";
+
+                        confirmation.classList.add(
+                            "hidden"
+                        );
+
+                        confirmation.classList.remove(
+                            "form-error"
+                        );
+
+                        confirmation.textContent =
+                            "";
+
+                        summaryContainer.replaceChildren();
+
+                        summaryContainer.classList.add(
+                            "hidden"
+                        );
+
+                        progressBar.value = 0;
+
+                        progressText.textContent =
+                            "0% complete";
+                    },
+                    0
+                );
+            }
+        );
+
+        async function loadRandomDogImage() {
+            const apiUrl =
+                "https://dog.ceo/api/breed/spaniel/cocker/images/random";
+
+            dogApiStatus.textContent =
+                "Loading a random Cocker Spaniel image...";
+
+            dogApiStatus.classList.remove(
+                "api-error"
+            );
+
+            dogImageContainer.classList.add(
+                "hidden"
+            );
+
+            loadDogButton.disabled = true;
+
+            try {
+                const response =
+                    await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(
+                        `The API returned status ${response.status}.`
+                    );
+                }
+
+                const data =
+                    await response.json();
+
+                if (
+                    data.status !== "success" ||
+                    !data.message
+                ) {
+                    throw new Error(
+                        "The API response did not contain an image."
+                    );
+                }
+
+                dogImage.src =
+                    data.message;
+
+                dogImage.alt =
+                    "A randomly selected Cocker Spaniel";
+
+                dogImage.addEventListener(
+                    "load",
+                    function handleImageLoad() {
+                        dogImageContainer.classList.remove(
+                            "hidden"
+                        );
+
+                        dogApiStatus.textContent =
+                            "A new Cocker Spaniel image has been loaded.";
+
+                        dogImage.removeEventListener(
+                            "load",
+                            handleImageLoad
+                        );
+                    }
+                );
+            } catch (error) {
+                dogImage.removeAttribute("src");
+
+                dogImageContainer.classList.add(
+                    "hidden"
+                );
+
+                dogApiStatus.textContent =
+                    "The image could not be loaded. Please try again.";
+
+                dogApiStatus.classList.add(
+                    "api-error"
+                );
+
+                console.error(
+                    "Dog API request failed:",
+                    error
+                );
+            } finally {
+                loadDogButton.disabled = false;
+            }
+        }
+
+        loadDogButton.addEventListener(
+            "click",
+            loadRandomDogImage
+        );
+
+        const welcomeMessage =
+            document.createElement("p");
+
+        welcomeMessage.textContent =
+            "JavaScript DOM methods and API features are active on this page.";
+
+        welcomeMessage.classList.add(
+            "highlight",
+            "dom-status"
+        );
+
+        welcomeMessage.setAttribute(
+            "role",
+            "status"
+        );
+
+        const mainHeading =
+            document.querySelector("h1");
+
+        mainHeading.insertAdjacentElement(
+            "afterend",
+            welcomeMessage
+        );
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            const effectDuration = reducedMotion ? 0 : 400;
+
+            $("#toggle-profile-button").on("click", function () {
+                const $panel = $("#jquery-profile-panel");
+
+                if ($panel.is(":visible")) {
+                    $panel.hide(effectDuration);
+                    $(this).text("Show profile summary");
+                    $("#jquery-status").text(
+                        "The profile summary has been hidden using jQuery."
+                    );
+                } else {
+                    $panel.show(effectDuration);
+                    $(this).text("Hide profile summary");
+                    $("#jquery-status").text(
+                        "The profile summary has been shown using jQuery."
+                    );
+                }
+            });
+
+            $("#fade-dog-button").on("click", function () {
+                $(".dog-api-section").fadeToggle(effectDuration);
+
+                const currentText = $(this).text();
+                $(this).text(
+                    currentText.includes("Fade")
+                        ? "Restore dog feature"
+                        : "Fade dog feature"
+                );
+
+                $("#jquery-status").text(
+                    "The dog API section was faded using jQuery."
+                );
+            });
+
+            $("#slide-api-notes-button").on("click", function () {
+                $(".dog-api-section .api-notes").slideToggle(effectDuration);
+                $("#jquery-status").text(
+                    "The API explanation was opened or closed with slideToggle()."
+                );
+            });
+
+            function addLearningNote() {
+                const noteText = $("#jquery-note").val().trim();
+
+                if (noteText === "") {
+                    $("#jquery-status").text(
+                        "Enter a short note before selecting Add note."
+                    );
+                    $("#jquery-note").trigger("focus");
+                    return;
+                }
+
+                const $newItem = $("<li>").text(noteText);
+                $("#jquery-note-list").append($newItem);
+                $("#jquery-note").val("");
+                $("#jquery-status").text(
+                    "The note was added using the jQuery append() method."
+                );
+            }
+
+            $("#add-note-button").on("click", addLearningNote);
+
+            $("#jquery-note").on("keydown", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    addLearningNote();
+                }
+            });
+
+            $("#remove-notes-button").on("click", function () {
+                const noteCount = $("#jquery-note-list li").length;
+
+                if (noteCount === 0) {
+                    $("#jquery-status").text("There are no notes to remove.");
+                    return;
+                }
+
+                $("#jquery-note-list li").remove();
+                $("#jquery-status").text(
+                    "All generated notes were removed using jQuery remove()."
+                );
+            });
+
+            const originalProfileText = $("#jquery-profile-text").text().trim();
+            $("#jquery-profile-text").text(originalProfileText);
+        });
+    </script>
 
 </body>
 
+</html>
 </html>
