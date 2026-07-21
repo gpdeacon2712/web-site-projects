@@ -1,50 +1,28 @@
-[
-  {
-    "id": "RSK-001",
-    "title": "Unpatched internet-facing services",
-    "category": "Technical",
-    "rating": "High",
-    "owner": "IT Operations Lead",
-    "treatment": "Mitigate — accelerate patching cadence"
-  },
-  {
-    "id": "RSK-002",
-    "title": "Phishing leading to credential compromise",
-    "category": "People",
-    "rating": "High",
-    "owner": "CISO",
-    "treatment": "Mitigate — MFA rollout and awareness training"
-  },
-  {
-    "id": "RSK-003",
-    "title": "Flat OT/IT network enabling lateral movement",
-    "category": "Technical",
-    "rating": "Medium",
-    "owner": "OT Security Engineer",
-    "treatment": "Mitigate — segmentation programme (CTL-004)"
-  },
-  {
-    "id": "RSK-004",
-    "title": "Unapproved AI tool use with internal data",
-    "category": "Compliance",
-    "rating": "Medium",
-    "owner": "Data Protection Officer",
-    "treatment": "Mitigate — AI register and approval workflow"
-  },
-  {
-    "id": "RSK-005",
-    "title": "Untested disaster recovery procedures",
-    "category": "Process",
-    "rating": "Medium",
-    "owner": "IT Operations Lead",
-    "treatment": "Mitigate — schedule DR test (CTL-008)"
-  },
-  {
-    "id": "RSK-006",
-    "title": "Key supplier without security assurance",
-    "category": "Third party",
-    "rating": "Low",
-    "owner": "GRC Manager",
-    "treatment": "Accept — reassess at contract renewal"
-  }
-]
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMid slice">
+  <!-- Decorative hero background alternative: circuit-trace motif for a
+       more industrial/OT feel. Same rules as the mesh: transparent base,
+       low-opacity white, layered under CSS so heading contrast holds. -->
+  <g stroke="#ffffff" stroke-opacity="0.12" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M600 55 H480 V115 H380"/>
+    <path d="M600 140 H520 V95"/>
+    <path d="M600 205 H455 V255 H360"/>
+    <path d="M540 300 V240 H470"/>
+    <path d="M420 300 V190 H330 V150"/>
+    <path d="M480 55 V20"/>
+    <path d="M380 115 H310 V65"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2">
+    <circle cx="380" cy="115" r="6"/>
+    <circle cx="520" cy="95" r="5"/>
+    <circle cx="360" cy="255" r="6"/>
+    <circle cx="470" cy="240" r="5"/>
+    <circle cx="330" cy="150" r="5"/>
+    <circle cx="310" cy="65" r="4"/>
+    <circle cx="480" cy="20" r="4"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.18">
+    <circle cx="380" cy="115" r="2"/>
+    <circle cx="360" cy="255" r="2"/>
+    <circle cx="330" cy="150" r="1.8"/>
+  </g>
+</svg>

@@ -1,98 +1,54 @@
-/* controls.js — control library table on controls.html.
+/* main.js — shared behaviour on every page.
    Scaffold created with AI assistance (Claude, Anthropic). Cite per the
-   assignment brief; extend with your own work.
-
-   Rendering is provided so the page works out of the box.
-   FILTERING is yours to build — it is a core "user interaction" mark. */
+   assignment brief; extend with your own work. */
 
 "use strict";
 
-// Map data statuses to badge classes. Note text label + colour together —
-// never colour alone (WCAG 1.4.1).
-const STATUS_BADGE = {
-  "Implemented": "badge--ok",
-  "In progress": "badge--warn",
-  "Not implemented": "badge--risk",
-};
+/* ---------------------------------------------------------------------------
+   Mobile navigation toggle.
+   The nav starts with the `hidden` attribute (so it works sensibly even if
+   JS fails to load — progressive enhancement). Clicking the button flips
+   `hidden` and keeps aria-expanded in sync for screen readers.
 
-let allControls = []; // kept in memory so filtering never re-fetches
+   JavaScript progressively enhances this into an animated menu by toggling
+   CSS classes while keeping aria-expanded synchronised.
+--------------------------------------------------------------------------- */
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.getElementById("site-nav");
 
-function renderControlRows(controls) {
-  const tbody = document.getElementById("control-rows");
-  tbody.replaceChildren();
+if (navToggle && siteNav) {
+  // Once JavaScript is available, CSS controls the collapsed/open states so
+  // the menu can animate. Without JavaScript, the original hidden attribute
+  // remains a safe fallback.
+  siteNav.hidden = false;
+  siteNav.classList.add("site-nav--enhanced");
 
-  for (const control of controls) {
-    const row = document.createElement("tr");
-
-    const idCell = document.createElement("td");
-    const idRef = document.createElement("span");
-    idRef.className = "ref-id";
-    idRef.textContent = control.id;
-    idCell.append(idRef);
-
-    const nameCell = document.createElement("td");
-    nameCell.textContent = control.name;
-
-    const frameworkCell = document.createElement("td");
-    frameworkCell.textContent = control.frameworks.join(", ");
-
-    const ownerCell = document.createElement("td");
-    ownerCell.textContent = control.owner;
-
-    const statusCell = document.createElement("td");
-    const badge = document.createElement("span");
-    badge.className = "badge " + (STATUS_BADGE[control.status] || "");
-    badge.textContent = control.status;
-    statusCell.append(badge);
-
-    row.append(idCell, nameCell, frameworkCell, ownerCell, statusCell);
-    tbody.append(row);
-  }
-
-  // aria-live element in the HTML announces this to screen readers
-  const count = document.getElementById("control-count");
-  count.textContent = `${controls.length} control${controls.length === 1 ? "" : "s"} shown.`;
-}
-
-function applyFilters() {
-  const text = document.getElementById("filter-text").value.trim().toLowerCase();
-  const framework = document.getElementById("filter-framework").value;
-  const status = document.getElementById("filter-status").value;
-
-  const filtered = allControls.filter(control => {
-    const searchableText = `${control.id} ${control.name} ${control.owner}`.toLowerCase();
-    const matchesText = !text || searchableText.includes(text);
-    const matchesFramework = !framework || control.frameworks.includes(framework);
-    const matchesStatus = !status || control.status === status;
-    return matchesText && matchesFramework && matchesStatus;
+  navToggle.addEventListener("click", () => {
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", String(!isOpen));
+    siteNav.classList.toggle("site-nav--open", !isOpen);
   });
 
-  renderControlRows(filtered);
-
-  if (filtered.length === 0) {
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
-    cell.colSpan = 5;
-    cell.className = "empty-state";
-    cell.textContent = "No controls match the selected filters.";
-    row.append(cell);
-    document.getElementById("control-rows").append(row);
-  }
+  siteNav.addEventListener("click", event => {
+    if (event.target.closest("a") && window.matchMedia("(max-width: 47.99rem)").matches) {
+      navToggle.setAttribute("aria-expanded", "false");
+      siteNav.classList.remove("site-nav--open");
+    }
+  });
 }
 
-document.getElementById("filter-text").addEventListener("input", applyFilters);
-document.getElementById("filter-framework").addEventListener("change", applyFilters);
-document.getElementById("filter-status").addEventListener("change", applyFilters);
+/* ---------------------------------------------------------------------------
+   loadJSON(path) — fetch one of the prototype's synthetic datasets.
+   These local JSON files stand in for enterprise APIs (Graph, ServiceNow,
+   CMDB…) per the scope brief. Reused by dashboard.js, controls.js, etc.
 
-async function initControls() {
-  try {
-    allControls = await loadJSON("data/controls.json");
-    renderControlRows(allControls);
-  } catch (error) {
-    document.getElementById("control-count").textContent =
-      "Controls could not be loaded — serve the site over http (see README). (" +
-      error.message + ")";
+   NOTE: fetch() cannot read local files over file:// — serve the site
+   over http while developing (see README).
+--------------------------------------------------------------------------- */
+async function loadJSON(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Could not load ${path} (HTTP ${response.status})`);
   }
+  return response.json();
 }
-
-initControls();
