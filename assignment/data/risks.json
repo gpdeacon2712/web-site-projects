@@ -1,0 +1,50 @@
+[
+  {
+    "id": "RSK-001",
+    "title": "Unpatched internet-facing services",
+    "category": "Technical",
+    "rating": "High",
+    "owner": "IT Operations Lead",
+    "treatment": "Mitigate — accelerate patching cadence"
+  },
+  {
+    "id": "RSK-002",
+    "title": "Phishing leading to credential compromise",
+    "category": "People",
+    "rating": "High",
+    "owner": "CISO",
+    "treatment": "Mitigate — MFA rollout and awareness training"
+  },
+  {
+    "id": "RSK-003",
+    "title": "Flat OT/IT network enabling lateral movement",
+    "category": "Technical",
+    "rating": "Medium",
+    "owner": "OT Security Engineer",
+    "treatment": "Mitigate — segmentation programme (CTL-004)"
+  },
+  {
+    "id": "RSK-004",
+    "title": "Unapproved AI tool use with internal data",
+    "category": "Compliance",
+    "rating": "Medium",
+    "owner": "Data Protection Officer",
+    "treatment": "Mitigate — AI register and approval workflow"
+  },
+  {
+    "id": "RSK-005",
+    "title": "Untested disaster recovery procedures",
+    "category": "Process",
+    "rating": "Medium",
+    "owner": "IT Operations Lead",
+    "treatment": "Mitigate — schedule DR test (CTL-008)"
+  },
+  {
+    "id": "RSK-006",
+    "title": "Key supplier without security assurance",
+    "category": "Third party",
+    "rating": "Low",
+    "owner": "GRC Manager",
+    "treatment": "Accept — reassess at contract renewal"
+  }
+]
