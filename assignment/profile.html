@@ -5,17 +5,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile — GRC &amp; AI Governance Control Hub</title>
+  <title>My Profile - GRC & AI Governance Control Hub</title>
   <meta name="description" content="Capture a simple demonstration user profile for the academic prototype.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <p class="prototype-banner">Academic prototype — all data is fictional / synthetic</p>
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
 
   <header class="site-header">
-    <a class="brand" href="index.html">GRC &amp; AI Governance Hub</a>
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC &amp; AI Governance Hub</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
       <ul>
@@ -33,7 +34,7 @@
       <h1>My Profile</h1>
       <p>
         A simplified profile capture for demonstration only. Enter fictional,
-        non-sensitive details — nothing is sent to a server or stored beyond
+        non-sensitive details - nothing is sent to a server or stored beyond
         this browser session. A production version could instead retrieve
         business profile data via Microsoft authentication and the Microsoft
         Graph API.
@@ -47,7 +48,7 @@
 
       <label for="role-type">Role type *</label>
       <select id="role-type" name="role-type" required>
-        <option value="">Choose…</option>
+        <option value="">Choose..</option>
         <option value="tutor">Module tutor</option>
         <option value="student">Student</option>
         <option value="grc">GRC practitioner (demo)</option>
@@ -56,8 +57,8 @@
 
       <label for="department">Department category *</label>
       <select id="department" name="department" required>
-        <option value="">Choose…</option>
-        <option value="it-security">IT &amp; Security</option>
+        <option value="">Choose..</option>
+        <option value="it-security">IT & Security</option>
         <option value="operations">Operations</option>
         <option value="engineering">Engineering</option>
         <option value="corporate">Corporate functions</option>
@@ -82,9 +83,6 @@
       <button type="submit">Save profile</button>
     </form>
 
-    <!-- TODO (student, add js/profile.js):
-         On submit, preventDefault, validate, then greet the user by name
-         in this region and (stretch) reflect their name in the header. -->
     <div class="results-region" id="profile-feedback" aria-live="polite"></div>
   </main>
 
@@ -93,5 +91,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
 </body>
 </html>

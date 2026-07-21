@@ -5,7 +5,7 @@ fictional/synthetic; no confidential organisational information is used.
 
 > Scaffold created with AI assistance (Claude, Anthropic): file structure,
 > page skeletons, starter stylesheet, sample datasets and the dashboard
-> render example. All subsequent development by [YOUR NAME]. Cite this in
+> render example. Subsequent extension and completion by Graham Deacon, with AI-assisted coding support documented below. Cite this in
 > line with the assignment brief and SHU academic integrity policy.
 
 ## Run locally
@@ -25,29 +25,38 @@ Then open http://localhost:8000
 2. Repo → Settings → Pages → Source: "Deploy from a branch" → `main`, `/ (root)`.
 3. Your public URL appears within a couple of minutes:
    `https://<username>.github.io/<repo>/`
-4. Commit and push as you work — the live site updates automatically, and
+4. Commit and push as you work - the live site updates automatically, and
    the repo history is useful evidence that the work is yours.
 
-## What's done vs. what's yours
+## Project status and action list
 
-Working now:
-- All five pages, semantic structure, navigation (with mobile toggle)
-- Mobile-first stylesheet (`css/styles.css`)
-- Synthetic datasets (`data/*.json`)
-- Dashboard metric cards — the worked fetch/render example (`js/dashboard.js`)
-- Control library table render (`js/controls.js`)
+Completed in this revision:
+- [x] All five pages, semantic structure and responsive navigation
+- [x] Animated mobile menu with `aria-expanded` synchronisation and reduced-motion support
+- [x] Mobile-first stylesheet and supplied SVG brand/logo assets
+- [x] Synthetic JSON datasets and dashboard metric rendering
+- [x] Control library rendering, combined text/framework/status filtering and no-results state
+- [x] Risk register rendering with accessible text-labelled rating badges
+- [x] Chained CIRCL CVE and FIRST EPSS lookup, error handling and combined meaningful output
+- [x] AI register slider synchronisation, JSON pre-population, domain validation, duplicate check and add-to-list workflow
+- [x] Profile form submit handling and session-only confirmation
+- [x] Dynamic minimum review date rather than a hard-coded date
 
-TODO (yours — each is marked `TODO (student)` in the code):
-- [ ] Control library filtering (`js/controls.js`)
-- [ ] Risk register table render (`js/risks.js`, Part 1)
-- [ ] CVE + EPSS chained API lookup (`js/risks.js`, Part 2) ← biggest marks
-- [ ] AI form: slider `<output>` sync, custom validation, add-to-list (`js/ai-register.js`)
-- [ ] Profile form submit handling (create `js/profile.js`)
-- [ ] Animate the mobile menu (`js/main.js` + CSS)
-- [ ] A logo (e.g. looka.com) in the header
-- [ ] Accessibility audit (WAVE / Lighthouse) — screenshot the results as evidence
-- [ ] Test the CIRCL and EPSS APIs from the deployed site EARLY; fall back to
-      the module's freetestapi if blocked
+Still to complete manually before submission:
+- [ ] Deploy to GitHub Pages and confirm every page and local JSON request works
+- [ ] Test CIRCL and FIRST EPSS from the deployed HTTPS origin; document any CORS/service limitations
+- [ ] Run WAVE and Lighthouse accessibility checks, fix material findings and capture screenshots as evidence
+- [ ] Validate all HTML and CSS using W3C validators and retain evidence
+- [ ] Test keyboard-only operation, mobile widths and at least two browsers
+- [ ] Complete the citations/development log with the exact AI contribution and any external sources used
+- [ ] Capture version-control evidence and representative screenshots for the assessment report
+- [ ] Review code comments and rewrite any explanation you cannot personally defend in the presentation/evaluation
+
+Optional enhancements, not required for a complete working prototype:
+- [ ] Sortable control-library columns
+- [ ] Add a looked-up CVE directly to the in-memory risk register
+- [ ] Persist session entries with `sessionStorage` or `localStorage` (explain privacy implications)
+- [ ] Add framework maturity visualisations to the dashboard
 
 ## Rubric map (Assessment 2)
 
@@ -91,14 +100,14 @@ in one portal — controls CTL-010–012 and each AI use case's
 frameworkAlignment field demonstrate this.
 
 ### Accessibility examples (pick 5, cite WCAG 2.1/2.2)
-1. Landmarks + heading order — WCAG 1.3.1
-2. Status never colour-alone (badges) — WCAG 1.4.1
-3. Visible focus (`:focus-visible`) — WCAG 2.4.7
-4. `aria-live` result regions — WCAG 4.1.3
-5. Labels/fieldsets on all inputs — WCAG 1.3.1 / 3.3.2
-6. `prefers-reduced-motion` — WCAG 2.3.3
-7. `aria-expanded`/`aria-current` on nav — WCAG 4.1.2
+1. Landmarks + heading order - WCAG 1.3.1
+2. Status never colour-alone (badges) - WCAG 1.4.1
+3. Visible focus (`:focus-visible`) - WCAG 2.4.7
+4. `aria-live` result regions - WCAG 4.1.3
+5. Labels/fieldsets on all inputs - WCAG 1.3.1 / 3.3.2
+6. `prefers-reduced-motion` - WCAG 2.3.3
+7. `aria-expanded`/`aria-current` on nav - WCAG 4.1.2
 
 ### Citations log
-Record every snippet/idea taken from Stack Overflow, MDN, blogs, or AI —
+Record every snippet/idea taken from Stack Overflow, MDN, blogs, or AI -
 add a comment at the point of use AND list it here.

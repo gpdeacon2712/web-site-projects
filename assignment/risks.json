@@ -1,0 +1,73 @@
+[
+  {
+    "id": "AI-001",
+    "toolName": "Document summarisation assistant",
+    "purpose": "Summarise internal policy documents for faster review",
+    "ownerRole": "GRC Manager",
+    "dataCategory": "internal",
+    "riskRating": 2,
+    "approvalStatus": "Approved",
+    "oversight": [
+      "human-review",
+      "audit-logging"
+    ],
+    "reviewDate": "2026-11-01",
+    "frameworkAlignment": [
+      "ISO 42001"
+    ]
+  },
+  {
+    "id": "AI-002",
+    "toolName": "Anomaly detection model",
+    "purpose": "Flag unusual network traffic patterns for analyst triage",
+    "ownerRole": "CISO",
+    "dataCategory": "internal",
+    "riskRating": 3,
+    "approvalStatus": "Approved",
+    "oversight": [
+      "human-review",
+      "approval-gate",
+      "audit-logging"
+    ],
+    "reviewDate": "2026-09-15",
+    "frameworkAlignment": [
+      "ISO 42001",
+      "NIST AI RMF"
+    ]
+  },
+  {
+    "id": "AI-003",
+    "toolName": "Chat-based support assistant",
+    "purpose": "Answer employee IT questions from a curated knowledge base",
+    "ownerRole": "IT Operations Lead",
+    "dataCategory": "public",
+    "riskRating": 2,
+    "approvalStatus": "Pending review",
+    "oversight": [
+      "human-review"
+    ],
+    "reviewDate": "2026-08-10",
+    "frameworkAlignment": [
+      "ISO 42001"
+    ]
+  },
+  {
+    "id": "AI-004",
+    "toolName": "Predictive maintenance model",
+    "purpose": "Predict equipment failure from sensor telemetry",
+    "ownerRole": "Business Process Owner",
+    "dataCategory": "internal",
+    "riskRating": 4,
+    "approvalStatus": "Pending review",
+    "oversight": [
+      "approval-gate",
+      "kill-switch"
+    ],
+    "reviewDate": "2026-08-01",
+    "frameworkAlignment": [
+      "ISO 42001",
+      "NIST AI RMF",
+      "IEC 62443"
+    ]
+  }
+]

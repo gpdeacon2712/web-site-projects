@@ -5,17 +5,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Use-Case Register — GRC &amp; AI Governance Control Hub</title>
+  <title>AI Use-Case Register - GRC & AI Governance Control Hub</title>
   <meta name="description" content="Register fictional AI use cases and track governance status, ownership and oversight.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <p class="prototype-banner">Academic prototype — all data is fictional / synthetic</p>
+  <p class="prototype-banner">Academic prototype - all data is fictional / synthetic</p>
 
   <header class="site-header">
-    <a class="brand" href="index.html">GRC &amp; AI Governance Hub</a>
+    <a class="brand" href="index.html"><img src="images/logo-mark.svg" alt="" width="34" height="34"> GRC & AI Governance Hub</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
       <ul>
@@ -29,20 +30,20 @@
   </header>
 
   <main class="container">
-    <div class="page-intro">
+    <div class="page-intro page-intro--ai">
       <h1>AI Use-Case Register</h1>
       <p>
         Record a fictional AI tool so its purpose, ownership, data category and
         oversight arrangements stay visible to the governance team. Each entry
-        can be aligned to AI governance frameworks — ISO/IEC 42001:2023 (the AI
-        management system standard) and the NIST AI Risk Management Framework —
+        can be aligned to AI governance frameworks - ISO/IEC 42001:2023 (the AI
+        management system standard) and the NIST AI Risk Management Framework -
         alongside the security frameworks used elsewhere in the hub. Fields
         marked * are required.
       </p>
     </div>
 
     <!-- The HTML Forms showcase. Each element type below is deliberately
-         matched to the data it collects — note the reasoning in comments;
+         matched to the data it collects - note the reasoning in comments;
          it becomes your Assessment 3 material. novalidate is NOT set, so
          built-in validation runs first; add JS validation on top. -->
     <form id="ai-usecase-form">
@@ -81,7 +82,7 @@
         <!-- select for a closed organisational set. Alternative: radios,
              but 6+ options as radios take too much space. -->
         <select id="owner-role" name="owner-role" required>
-          <option value="">Choose a role…</option>
+          <option value="">Choose a role..</option>
           <option value="ciso">CISO</option>
           <option value="grc-manager">GRC Manager</option>
           <option value="it-ops">IT Operations Lead</option>
@@ -91,7 +92,7 @@
 
         <label for="owner-email">Owner contact email *</label>
         <!-- type="email": built-in format validation + email keyboard on
-             mobile. Alternative: type="text" with a pattern — more work,
+             mobile. Alternative: type="text" with a pattern - more work,
              worse UX. -->
         <input type="email" id="owner-email" name="owner-email" required
                autocomplete="email" placeholder="name@example.org">
@@ -101,7 +102,7 @@
         <legend>Data category *</legend>
         <!-- Radios inside fieldset/legend: small mutually exclusive set,
              all options visible at once (unlike a select). The fieldset
-             groups them for screen readers — an accessibility example. -->
+             groups them for screen readers - an accessibility example. -->
         <div class="radio-option">
           <input type="radio" id="data-public" name="data-category" value="public" required>
           <label for="data-public">Public / non-sensitive</label>
@@ -151,12 +152,12 @@
 
         <label for="framework-alignment">Framework alignment</label>
         <!-- select multiple: pick several from a longer closed list.
-             Alternative: checkboxes (used above for oversight) — better
+             Alternative: checkboxes (used above for oversight) - better
              for short lists as all options stay visible, but they take
              more space as lists grow. Using BOTH patterns here gives you
              a genuine compare-and-contrast for Assessment 3.
              (size shows all options without scrolling; Ctrl/Cmd-click
-             selects multiple — worth noting the discoverability downside
+             selects multiple - worth noting the discoverability downside
              in your evaluation.) -->
         <select id="framework-alignment" name="framework-alignment" multiple size="4">
           <option value="ISO 42001">ISO/IEC 42001:2023</option>
@@ -168,25 +169,18 @@
 
         <label for="review-date">Next review date *</label>
         <!-- type="date": native date picker, consistent format, min blocks
-             past dates. Alternative: text input + JS parsing — error-prone. -->
+             past dates. Alternative: text input + JS parsing - error-prone. -->
         <input type="date" id="review-date" name="review-date" required
-               min="2026-07-04">
+               >
       </fieldset>
 
       <button type="submit">Register AI use case</button>
     </form>
 
-    <!-- TODO (student, js/ai-register.js):
-         1. Keep the <output> in sync with the range slider ('input' event).
-         2. On submit: preventDefault, run your own validation with helpful
-            messages, then add the entry to the list below (in-memory array).
-         3. Announce success via this aria-live region. -->
     <div class="results-region" id="register-feedback" aria-live="polite"></div>
 
     <h2>Registered use cases</h2>
     <ul id="usecase-list">
-      <!-- TODO (student): pre-populate from data/ai-usecases.json, then
-           append new registrations here. -->
     </ul>
   </main>
 
