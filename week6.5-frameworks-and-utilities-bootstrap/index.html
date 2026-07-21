@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <meta
+        name="description"
+        content="Bootstrap 5 personal web application demonstrating responsive design, HTML forms, JavaScript, API integration and accessibility.">
+
+    <title>
+        Graham Deacon | Bootstrap Web Application
+    </title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+    <style>
+        /*
+         * Bootstrap provides most of the layout, spacing, forms,
+         * buttons, cards and responsive behaviour.
+         *
+         * This small custom stylesheet adds personal branding and
+         * features not provided directly by Bootstrap.
+         */
+
+        :root {
+            --personal-dark-blue: #003b70;
+            --personal-light-blue: #eaf4ff;
+            --personal-dark-green: #14532d;
+        }
+
+        html {
+            scroll-behaviour: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #212529;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 1rem;
+            z-index: 2000;
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            background-color: #000000;
+            border-radius: 0.375rem;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+        }
+
+        .hero-section {
+            padding: 5rem 0;
+            color: #ffffff;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--personal-dark-blue),
+                    #0d6efd
+                );
+        }
+
+        .hero-section h1 {
+            max-width: 800px;
+        }
+
+        .hero-summary {
+            max-width: 720px;
+        }
+
+        .section-heading {
+            color: var(--personal-dark-blue);
+        }
+
+        .profile-card,
+        .feature-card {
+            height: 100%;
+            border: 0;
+            box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+        }
+
+        .qualification-badge {
+            margin: 0.2rem;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .oxford-image,
+        #dog-image {
+            display: block;
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .api-image-container {
+            min-height: 100px;
+        }
+
+        #dog-image {
+            max-width: 520px;
+            margin: 0 auto;
+            border-radius: 0.5rem;
+        }
+
+        .status-space {
+            min-height: 2rem;
+        }
+
+        .progress {
+            height: 1.4rem;
+        }
+
+        .comparison-icon {
+            width: 3rem;
+            height: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: var(--personal-dark-blue);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .required-marker {
+            color: #b02a37;
+        }
+
+        .form-help {
+            font-size: 0.9rem;
+        }
+
+        .submission-summary {
+            border-left: 0.35rem solid var(--personal-dark-blue);
+        }
+
+        .footer-link {
+            color: #ffffff;
+        }
+
+        .footer-link:focus-visible,
+        .navbar a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-section {
+                padding: 3rem 0;
+            }
+
+            .hero-section .btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behaviour: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behaviour: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a
+        class="skip-link"
+        href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- Responsive Bootstrap navigation -->
+    <nav
+        class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"
+        aria-label="Main navigation">
+
+        <div class="container">
+
+            <a
+                class="navbar-brand"
+                href="#top">
+                Graham Deacon
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#main-navigation"
+                aria-controls="main-navigation"
+                aria-expanded="false"
+                aria-label="Open or close navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="main-navigation">
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#interests">
+                            Interests
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#dog-api">
+                            Dog API
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#contact">
+                            Contact form
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#comparison">
+                            Comparison
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header
+        class="hero-section"
+        id="top">
+
+        <div class="container">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-8">
+
+                    <p class="text-uppercase fw-semibold mb-2">
+                        Bootstrap 5 framework application
+                    </p>
+
+                    <h1 class="display-4 fw-bold">
+                        Computing, cyber security and technology governance
+                    </h1>
+
+                    <p class="lead hero-summary mt-3">
+                        A responsive web application recreating my original
+                        project with Bootstrap components, HTML forms,
+                        JavaScript interaction, external API integration and
+                        accessibility features.
+                    </p>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+
+                        <a
+                            class="btn btn-light btn-lg"
+                            href="#contact">
+                            Try the form
+                        </a>
+
+                        <a
+                            class="btn btn-outline-light btn-lg"
+                            href="#dog-api">
+                            Try the API
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="card border-0 shadow">
+
+                        <div class="card-body text-dark p-4">
+
+                            <h2 class="h4 card-title">
+                                Application features
+                            </h2>
+
+                            <ul class="mb-0">
+                                <li>Responsive Bootstrap grid</li>
+                                <li>Accessible navigation</li>
+                                <li>Interactive HTML form</li>
+                                <li>Live form progress</li>
+                                <li>External API request</li>
+                                <li>Loading and error feedback</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- About and profile section -->
+        <section
+            class="py-5"
+            id="about"
+            aria-labelledby="about-heading">
+
+            <div class="container">
+
+                <h2
+                    class="section-heading fw-bold mb-4"
+                    id="about-heading">
+                    About me
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-lg-8">
+
+                        <article class="card profile-card">
+
+                            <div class="card-body p-4">
+
+                                <h3 class="card-title h4">
+                                    Professional profile
+                                </h3>
+
+                                <p>
+                                    My name is
+                                    <strong>Graham Deacon</strong>.
+                                    I work in information technology within
+                                    the industrial automation sector and have
+                                    experience in IT operations, programme
+                                    delivery, governance and technology
+                                    improvement.
+                                </p>
+
+                                <p>
+                                    I am transitioning into a Governance, Risk
+                                    and Compliance role at
+                                    <strong>Rockwell Automation</strong>,
+                                    supporting work involving AI risk
+                                    governance.
+                                </p>
+
+                                <p>
+                                    I am also studying for an MSc in Computing
+                                    and Cyber Security at Sheffield Hallam
+                                    University.
+                                </p>
+
+                                <a
+                                    class="btn btn-primary"
+                                    href="https://www.linkedin.com/in/gpdeacon/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    View my LinkedIn profile
+                                    <span class="visually-hidden">
+                                        opens in a new tab
+                                    </span>
+                                </a>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <aside class="col-lg-4">
+
+                        <div class="card profile-card">
+
+                            <div class="card-body p-4">
+
+                                <h3 class="card-title h4">
+                                    Qualifications
+                                </h3>
+
+                                <div
+                                    aria-label="Professional qualifications">
+
+                                    <span
+                                        class="badge text-bg-primary qualification-badge">
+                                        CEng
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-primary qualification-badge">
+                                        MIET
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-success qualification-badge">
+                                        PMP
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-success qualification-badge">
+                                        PMI-RMP
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-success qualification-badge">
+                                        PMI-ACP
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-dark qualification-badge">
+                                        CISM
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-dark qualification-badge">
+                                        CRISC
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-dark qualification-badge">
+                                        CISA
+                                    </span>
+
+                                    <span
+                                        class="badge text-bg-warning qualification-badge">
+                                        AAISM
+                                    </span>
+
+                                </div>
+
+                                <p class="mt-3 mb-0">
+                                    These qualifications cover engineering,
+                                    project delivery, risk, security,
+                                    governance and audit.
+                                </p>
+
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Interests -->
+        <section
+            class="py-5 bg-white"
+            id="interests"
+            aria-labelledby="interests-heading">
+
+            <div class="container">
+
+                <h2
+                    class="section-heading fw-bold mb-4"
+                    id="interests-heading">
+                    Interests and family life
+                </h2>
+
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                    <div class="col">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body">
+
+                                <h3 class="h5 card-title">
+                                    Family
+                                </h3>
+
+                                <p class="card-text">
+                                    I am married to Fiona and we have two
+                                    daughters and a son. Our working Cocker
+                                    Spaniel is also very much part of the
+                                    family.
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body">
+
+                                <h3 class="h5 card-title">
+                                    Creative interests
+                                </h3>
+
+                                <ul class="mb-0">
+                                    <li>Reading fiction</li>
+                                    <li>Listening to music</li>
+                                    <li>Learning the banjo</li>
+                                    <li>Figure painting</li>
+                                    <li>Miniature modelling</li>
+                                </ul>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body">
+
+                                <h3 class="h5 card-title">
+                                    Oxford United
+                                </h3>
+
+                                <p class="card-text">
+                                    I am a lifelong Oxford United supporter
+                                    and enjoy attending matches throughout
+                                    the season.
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <figure class="mt-4 mb-0">
+
+                    <img
+                        class="img-fluid rounded shadow-sm oxford-image"
+                        src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
+                        alt="Oxford United football players during a match"
+                        width="900"
+                        height="500">
+
+                    <figcaption class="text-body-secondary mt-2">
+                        Oxford United football players during a match.
+                    </figcaption>
+
+                </figure>
+
+            </div>
+        </section>
+
+        <!-- Dog API feature -->
+        <section
+            class="py-5"
+            id="dog-api"
+            aria-labelledby="dog-api-heading">
+
+            <div class="container">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-xl-9">
+
+                        <div class="card border-primary shadow-sm">
+
+                            <div class="card-header bg-primary text-white">
+
+                                <h2
+                                    class="h3 mb-0"
+                                    id="dog-api-heading">
+                                    Random Cocker Spaniel image
+                                </h2>
+
+                            </div>
+
+                            <div class="card-body p-4">
+
+                                <p>
+                                    This feature retrieves a random Cocker
+                                    Spaniel image from the Dog CEO API.
+                                </p>
+
+                                <button
+                                    class="btn btn-primary btn-lg"
+                                    type="button"
+                                    id="load-dog-button">
+                                    Load a random Cocker Spaniel
+                                </button>
+
+                                <div
+                                    class="status-space mt-3"
+                                    id="dog-api-status"
+                                    role="status"
+                                    aria-live="polite">
+                                </div>
+
+                                <div
+                                    class="api-image-container mt-3 d-none"
+                                    id="dog-image-container">
+
+                                    <img
+                                        class="img-fluid shadow-sm"
+                                        id="dog-image"
+                                        src=""
+                                        alt="">
+
+                                </div>
+
+                                <div
+                                    class="accordion mt-4"
+                                    id="api-information-accordion">
+
+                                    <div class="accordion-item">
+
+                                        <h3
+                                            class="accordion-header"
+                                            id="api-information-heading">
+
+                                            <button
+                                                class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#api-information"
+                                                aria-expanded="false"
+                                                aria-controls="api-information">
+                                                How the API feature works
+                                            </button>
+
+                                        </h3>
+
+                                        <div
+                                            class="accordion-collapse collapse"
+                                            id="api-information"
+                                            aria-labelledby="api-information-heading"
+                                            data-bs-parent="#api-information-accordion">
+
+                                            <div class="accordion-body">
+
+                                                <ol class="mb-0">
+                                                    <li>
+                                                        JavaScript sends a
+                                                        request using
+                                                        <code>fetch()</code>.
+                                                    </li>
+
+                                                    <li>
+                                                        The response is
+                                                        converted from JSON.
+                                                    </li>
+
+                                                    <li>
+                                                        The image address is
+                                                        read from the
+                                                        <code>message</code>
+                                                        property.
+                                                    </li>
+
+                                                    <li>
+                                                        The page displays the
+                                                        returned image.
+                                                    </li>
+
+                                                    <li>
+                                                        An alert reports
+                                                        loading, success or
+                                                        failure.
+                                                    </li>
+                                                </ol>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact form -->
+        <section
+            class="py-5 bg-white"
+            id="contact"
+            aria-labelledby="contact-heading">
+
+            <div class="container">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-xl-10">
+
+                        <h2
+                            class="section-heading fw-bold"
+                            id="contact-heading">
+                            Contact and interests form
+                        </h2>
+
+                        <p class="lead">
+                            This demonstration form uses Bootstrap controls,
+                            responsive grid classes, validation and
+                            JavaScript-generated feedback.
+                        </p>
+
+                        <p>
+                            Fields marked with
+                            <span
+                                class="required-marker"
+                                aria-hidden="true">
+                                *
+                            </span>
+                            are required.
+                        </p>
+
+                        <form
+                            class="needs-validation"
+                            id="contact-form"
+                            novalidate>
+
+                            <fieldset class="border rounded p-3 p-md-4 mb-4">
+
+                                <legend class="float-none w-auto px-2 h5">
+                                    Your details
+                                </legend>
+
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+
+                                        <label
+                                            class="form-label"
+                                            for="name">
+                                            Name
+                                            <span
+                                                class="required-marker"
+                                                aria-hidden="true">
+                                                *
+                                            </span>
+                                        </label>
+
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            autocomplete="name"
+                                            required>
+
+                                        <div class="invalid-feedback">
+                                            Please enter your name.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <label
+                                            class="form-label"
+                                            for="email">
+                                            Email address
+                                            <span
+                                                class="required-marker"
+                                                aria-hidden="true">
+                                                *
+                                            </span>
+                                        </label>
+
+                                        <input
+                                            class="form-control"
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            autocomplete="email"
+                                            required>
+
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email
+                                            address.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <label
+                                            class="form-label"
+                                            for="role">
+                                            Your role
+                                        </label>
+
+                                        <select
+                                            class="form-select"
+                                            id="role"
+                                            name="role">
+
+                                            <option value="">
+                                                Please select
+                                            </option>
+
+                                            <option value="student">
+                                                Student
+                                            </option>
+
+                                            <option value="it-professional">
+                                                IT professional
+                                            </option>
+
+                                            <option value="engineer">
+                                                Engineer
+                                            </option>
+
+                                            <option value="other">
+                                                Other
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                    <div
+                                        class="col-md-6 d-none"
+                                        id="other-role-group">
+
+                                        <label
+                                            class="form-label"
+                                            for="other-role">
+                                            Please describe your role
+                                            <span
+                                                class="required-marker"
+                                                aria-hidden="true">
+                                                *
+                                            </span>
+                                        </label>
+
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            id="other-role"
+                                            name="other-role">
+
+                                        <div class="invalid-feedback">
+                                            Please describe your role.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="border rounded p-3 p-md-4 mb-4">
+
+                                <legend class="float-none w-auto px-2 h5">
+                                    Areas of interest
+                                </legend>
+
+                                <p>
+                                    Select all that apply.
+                                </p>
+
+                                <div class="row g-3">
+
+                                    <div class="col-sm-6 col-lg-4">
+
+                                        <div class="form-check">
+
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="cyber-security"
+                                                name="interests"
+                                                value="Cyber security">
+
+                                            <label
+                                                class="form-check-label"
+                                                for="cyber-security">
+                                                Cyber security
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-lg-4">
+
+                                        <div class="form-check">
+
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="ai-governance"
+                                                name="interests"
+                                                value="AI governance">
+
+                                            <label
+                                                class="form-check-label"
+                                                for="ai-governance">
+                                                AI governance
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-lg-4">
+
+                                        <div class="form-check">
+
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="web-development"
+                                                name="interests"
+                                                value="Web development">
+
+                                            <label
+                                                class="form-check-label"
+                                                for="web-development">
+                                                Web development
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="border rounded p-3 p-md-4 mb-4">
+
+                                <legend class="float-none w-auto px-2 h5">
+                                    Preferred contact method
+                                </legend>
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="contact-email"
+                                        name="contact-method"
+                                        value="Email"
+                                        checked>
+
+                                    <label
+                                        class="form-check-label"
+                                        for="contact-email">
+                                        Email
+                                    </label>
+
+                                </div>
+
+                                <div class="form-check mt-2">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="contact-linkedin"
+                                        name="contact-method"
+                                        value="LinkedIn">
+
+                                    <label
+                                        class="form-check-label"
+                                        for="contact-linkedin">
+                                        LinkedIn
+                                    </label>
+
+                                </div>
+                            </fieldset>
+
+                            <div class="mb-4">
+
+                                <label
+                                    class="form-label"
+                                    for="message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    maxlength="500"
+                                    placeholder="Enter your message here"></textarea>
+
+                                <div
+                                    class="form-text form-help"
+                                    id="message-help">
+                                    <span id="character-count">0</span>
+                                    of 500 characters used.
+                                </div>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <label
+                                        class="form-label fw-semibold"
+                                        for="form-progress">
+                                        Form completion
+                                    </label>
+
+                                    <span
+                                        id="progress-text"
+                                        aria-live="polite">
+                                        0% complete
+                                    </span>
+
+                                </div>
+
+                                <div
+                                    class="progress"
+                                    id="form-progress"
+                                    role="progressbar"
+                                    aria-label="Form completion"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow="0">
+
+                                    <div
+                                        class="progress-bar"
+                                        id="form-progress-bar"
+                                        style="width: 0%">
+                                        0%
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="d-grid d-sm-flex gap-3">
+
+                                <button
+                                    class="btn btn-primary btn-lg"
+                                    type="submit">
+                                    Submit form
+                                </button>
+
+                                <button
+                                    class="btn btn-outline-secondary btn-lg"
+                                    type="reset">
+                                    Clear form
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                        <div
+                            class="mt-4"
+                            id="form-feedback"
+                            role="status"
+                            aria-live="polite">
+                        </div>
+
+                        <section
+                            class="card submission-summary mt-4 d-none"
+                            id="submission-summary"
+                            aria-labelledby="summary-heading">
+
+                            <div class="card-body">
+
+                                <h3
+                                    class="h4"
+                                    id="summary-heading">
+                                    Submission summary
+                                </h3>
+
+                                <p>
+                                    The information below is displayed only
+                                    in your browser and is not sent or stored.
+                                </p>
+
+                                <dl
+                                    class="row mb-3"
+                                    id="summary-details">
+                                </dl>
+
+                                <button
+                                    class="btn btn-outline-danger"
+                                    type="button"
+                                    id="remove-summary-button">
+                                    Remove summary
+                                </button>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison section -->
+        <section
+            class="py-5"
+            id="comparison"
+            aria-labelledby="comparison-heading">
+
+            <div class="container">
+
+                <h2
+                    class="section-heading fw-bold mb-4"
+                    id="comparison-heading">
+                    Bootstrap and original application comparison
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body p-4">
+
+                                <span
+                                    class="comparison-icon"
+                                    aria-hidden="true">
+                                    1
+                                </span>
+
+                                <h3 class="h4 mt-3">
+                                    Speed of development
+                                </h3>
+
+                                <p>
+                                    Bootstrap reduced the amount of custom CSS
+                                    needed for the grid, navigation, cards,
+                                    form controls, buttons, spacing and
+                                    feedback messages.
+                                </p>
+
+                                <p class="mb-0">
+                                    Some initial time was still required to
+                                    learn the framework’s class names and
+                                    component structure.
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body p-4">
+
+                                <span
+                                    class="comparison-icon"
+                                    aria-hidden="true">
+                                    2
+                                </span>
+
+                                <h3 class="h4 mt-3">
+                                    Responsiveness
+                                </h3>
+
+                                <p>
+                                    Bootstrap’s mobile-first grid allowed the
+                                    same content to stack on narrow screens
+                                    and form multiple columns at wider
+                                    breakpoints.
+                                </p>
+
+                                <p class="mb-0">
+                                    The original application provided more
+                                    detailed control, but required manually
+                                    written media queries and layout rules.
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <article class="card feature-card">
+
+                            <div class="card-body p-4">
+
+                                <span
+                                    class="comparison-icon"
+                                    aria-hidden="true">
+                                    3
+                                </span>
+
+                                <h3 class="h4 mt-3">
+                                    Usability
+                                </h3>
+
+                                <p>
+                                    Bootstrap supplied familiar and
+                                    consistently styled navigation, cards,
+                                    controls, validation feedback, buttons
+                                    and alerts.
+                                </p>
+
+                                <p class="mb-0">
+                                    Accessibility still required semantic
+                                    HTML, accurate labels, keyboard support,
+                                    meaningful alternative text and live
+                                    status messages.
+                                </p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <div class="alert alert-info mt-4" role="note">
+
+                    <h3 class="h5 alert-heading">
+                        Overall evaluation
+                    </h3>
+
+                    <p class="mb-0">
+                        Bootstrap accelerated development and produced a
+                        consistent responsive interface. The original
+                        application offered greater styling freedom and
+                        avoided a framework dependency, but required more
+                        custom CSS and manual testing.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+
+        <div
+            class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+
+            <p class="mb-0">
+                Bootstrap framework web application
+            </p>
+
+            <a
+                class="footer-link"
+                href="#top">
+                Return to the top
+            </a>
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JavaScript bundle -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
+
+    <script>
+        "use strict";
+
+        /*
+         * FORM ELEMENT REFERENCES
+         */
+
+        const form =
+            document.getElementById("contact-form");
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const roleSelect =
+            document.getElementById("role");
+
+        const otherRoleGroup =
+            document.getElementById("other-role-group");
+
+        const otherRoleInput =
+            document.getElementById("other-role");
+
+        const messageInput =
+            document.getElementById("message");
+
+        const characterCount =
+            document.getElementById("character-count");
+
+        const progressContainer =
+            document.getElementById("form-progress");
+
+        const progressBar =
+            document.getElementById("form-progress-bar");
+
+        const progressText =
+            document.getElementById("progress-text");
+
+        const formFeedback =
+            document.getElementById("form-feedback");
+
+        const submissionSummary =
+            document.getElementById("submission-summary");
+
+        const summaryDetails =
+            document.getElementById("summary-details");
+
+        const removeSummaryButton =
+            document.getElementById("remove-summary-button");
+
+        /*
+         * API ELEMENT REFERENCES
+         */
+
+        const loadDogButton =
+            document.getElementById("load-dog-button");
+
+        const dogApiStatus =
+            document.getElementById("dog-api-status");
+
+        const dogImageContainer =
+            document.getElementById("dog-image-container");
+
+        const dogImage =
+            document.getElementById("dog-image");
+
+        /*
+         * HELPER FUNCTIONS
+         */
+
+        function escapeText(value) {
+            return String(value).trim();
+        }
+
+        function setFormFeedback(message, type) {
+            formFeedback.replaceChildren();
+
+            const alert =
+                document.createElement("div");
+
+            alert.className =
+                `alert alert-${type}`;
+
+            alert.textContent =
+                message;
+
+            formFeedback.appendChild(alert);
+        }
+
+        function clearFormFeedback() {
+            formFeedback.replaceChildren();
+        }
+
+        function updateCharacterCounter() {
+            characterCount.textContent =
+                String(messageInput.value.length);
+        }
+
+        function updateOtherRoleField() {
+            const otherSelected =
+                roleSelect.value === "other";
+
+            otherRoleGroup.classList.toggle(
+                "d-none",
+                !otherSelected
+            );
+
+            otherRoleInput.required =
+                otherSelected;
+
+            if (!otherSelected) {
+                otherRoleInput.value = "";
+                otherRoleInput.classList.remove(
+                    "is-valid",
+                    "is-invalid"
+                );
+            }
+        }
+
+        function updateProgress() {
+            let completedFields = 0;
+            const totalFields = 4;
+
+            if (nameInput.value.trim() !== "") {
+                completedFields++;
+            }
+
+            if (
+                emailInput.value.trim() !== "" &&
+                emailInput.validity.valid
+            ) {
+                completedFields++;
+            }
+
+            if (roleSelect.value !== "") {
+                completedFields++;
+            }
+
+            if (messageInput.value.trim() !== "") {
+                completedFields++;
+            }
+
+            const percentage =
+                Math.round(
+                    (completedFields / totalFields) * 100
+                );
+
+            progressBar.style.width =
+                `${percentage}%`;
+
+            progressBar.textContent =
+                `${percentage}%`;
+
+            progressText.textContent =
+                `${percentage}% complete`;
+
+            progressContainer.setAttribute(
+                "aria-valuenow",
+                String(percentage)
+            );
+        }
+
+        function getSelectedInterests() {
+            const selected =
+                document.querySelectorAll(
+                    'input[name="interests"]:checked'
+                );
+
+            return Array.from(selected).map(
+                function (checkbox) {
+                    return checkbox.value;
+                }
+            );
+        }
+
+        function getSelectedContactMethod() {
+            const selected =
+                document.querySelector(
+                    'input[name="contact-method"]:checked'
+                );
+
+            return selected
+                ? selected.value
+                : "Not selected";
+        }
+
+        function getRoleText() {
+            if (roleSelect.value === "other") {
+                return escapeText(
+                    otherRoleInput.value
+                );
+            }
+
+            if (roleSelect.selectedIndex > 0) {
+                return roleSelect.options[
+                    roleSelect.selectedIndex
+                ].text;
+            }
+
+            return "Not selected";
+        }
+
+        function addSummaryItem(term, description) {
+            const termElement =
+                document.createElement("dt");
+
+            termElement.className =
+                "col-sm-4";
+
+            termElement.textContent =
+                term;
+
+            const descriptionElement =
+                document.createElement("dd");
+
+            descriptionElement.className =
+                "col-sm-8";
+
+            descriptionElement.textContent =
+                description;
+
+            summaryDetails.appendChild(
+                termElement
+            );
+
+            summaryDetails.appendChild(
+                descriptionElement
+            );
+        }
+
+        function createSubmissionSummary() {
+            summaryDetails.replaceChildren();
+
+            const interests =
+                getSelectedInterests();
+
+            addSummaryItem(
+                "Name",
+                escapeText(nameInput.value)
+            );
+
+            addSummaryItem(
+                "Email",
+                escapeText(emailInput.value)
+            );
+
+            addSummaryItem(
+                "Role",
+                getRoleText()
+            );
+
+            addSummaryItem(
+                "Interests",
+                interests.length > 0
+                    ? interests.join(", ")
+                    : "None selected"
+            );
+
+            addSummaryItem(
+                "Preferred contact",
+                getSelectedContactMethod()
+            );
+
+            addSummaryItem(
+                "Message",
+                messageInput.value.trim() !== ""
+                    ? escapeText(messageInput.value)
+                    : "No message entered"
+            );
+
+            submissionSummary.classList.remove(
+                "d-none"
+            );
+        }
+
+        function clearSubmissionSummary() {
+            summaryDetails.replaceChildren();
+
+            submissionSummary.classList.add(
+                "d-none"
+            );
+        }
+
+        /*
+         * FORM EVENTS
+         */
+
+        roleSelect.addEventListener(
+            "change",
+            function () {
+                updateOtherRoleField();
+                updateProgress();
+            }
+        );
+
+        nameInput.addEventListener(
+            "input",
+            updateProgress
+        );
+
+        emailInput.addEventListener(
+            "input",
+            updateProgress
+        );
+
+        messageInput.addEventListener(
+            "input",
+            function () {
+                updateCharacterCounter();
+                updateProgress();
+            }
+        );
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                updateOtherRoleField();
+
+                if (!form.checkValidity()) {
+                    form.classList.add(
+                        "was-validated"
+                    );
+
+                    setFormFeedback(
+                        "Please correct the highlighted fields before submitting.",
+                        "danger"
+                    );
+
+                    const firstInvalid =
+                        form.querySelector(":invalid");
+
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+
+                    return;
+                }
+
+                form.classList.add(
+                    "was-validated"
+                );
+
+                createSubmissionSummary();
+
+                setFormFeedback(
+                    "The form has been completed successfully. This demonstration does not send or store your information.",
+                    "success"
+                );
+
+                submissionSummary.scrollIntoView({
+                    behaviour: "smooth",
+                    block: "center"
+                });
+            }
+        );
+
+        form.addEventListener(
+            "reset",
+            function () {
+                window.setTimeout(
+                    function () {
+                        form.classList.remove(
+                            "was-validated"
+                        );
+
+                        updateOtherRoleField();
+
+                        updateCharacterCounter();
+
+                        updateProgress();
+
+                        clearFormFeedback();
+
+                        clearSubmissionSummary();
+                    },
+                    0
+                );
+            }
+        );
+
+        removeSummaryButton.addEventListener(
+            "click",
+            function () {
+                clearSubmissionSummary();
+
+                setFormFeedback(
+                    "The submission summary has been removed.",
+                    "secondary"
+                );
+
+                formFeedback.scrollIntoView({
+                    behaviour: "smooth",
+                    block: "center"
+                });
+            }
+        );
+
+        /*
+         * DOG CEO API
+         */
+
+        function setDogStatus(
+            message,
+            alertType
+        ) {
+            dogApiStatus.replaceChildren();
+
+            const alert =
+                document.createElement("div");
+
+            alert.className =
+                `alert alert-${alertType} mb-0`;
+
+            alert.textContent =
+                message;
+
+            dogApiStatus.appendChild(alert);
+        }
+
+        function waitForImage(imageElement) {
+            return new Promise(
+                function (resolve, reject) {
+                    imageElement.onload =
+                        function () {
+                            resolve();
+                        };
+
+                    imageElement.onerror =
+                        function () {
+                            reject(
+                                new Error(
+                                    "The returned image could not be displayed."
+                                )
+                            );
+                        };
+                }
+            );
+        }
+
+        async function loadRandomDogImage() {
+            const apiUrl =
+                "https://dog.ceo/api/breed/spaniel/cocker/images/random";
+
+            loadDogButton.disabled =
+                true;
+
+            loadDogButton.textContent =
+                "Loading image...";
+
+            dogImageContainer.classList.add(
+                "d-none"
+            );
+
+            setDogStatus(
+                "Requesting a random Cocker Spaniel image.",
+                "info"
+            );
+
+            try {
+                const response =
+                    await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(
+                        `The API returned HTTP status ${response.status}.`
+                    );
+                }
+
+                const data =
+                    await response.json();
+
+                if (
+                    data.status !== "success" ||
+                    typeof data.message !== "string"
+                ) {
+                    throw new Error(
+                        "The API response did not contain the expected image information."
+                    );
+                }
+
+                const imageLoading =
+                    waitForImage(dogImage);
+
+                dogImage.src =
+                    data.message;
+
+                dogImage.alt =
+                    "A randomly selected Cocker Spaniel";
+
+                await imageLoading;
+
+                dogImageContainer.classList.remove(
+                    "d-none"
+                );
+
+                setDogStatus(
+                    "A new Cocker Spaniel image has loaded successfully.",
+                    "success"
+                );
+            } catch (error) {
+                dogImage.removeAttribute(
+                    "src"
+                );
+
+                dogImage.alt =
+                    "";
+
+                dogImageContainer.classList.add(
+                    "d-none"
+                );
+
+                setDogStatus(
+                    "The image could not be loaded. Please check your connection and try again.",
+                    "danger"
+                );
+
+                console.error(
+                    "Dog API request failed:",
+                    error
+                );
+            } finally {
+                loadDogButton.disabled =
+                    false;
+
+                loadDogButton.textContent =
+                    "Load another Cocker Spaniel";
+            }
+        }
+
+        loadDogButton.addEventListener(
+            "click",
+            loadRandomDogImage
+        );
+
+        /*
+         * INITIAL PAGE STATE
+         */
+
+        updateCharacterCounter();
+        updateOtherRoleField();
+        updateProgress();
+    </script>
+
+</body>
+
+</html>
