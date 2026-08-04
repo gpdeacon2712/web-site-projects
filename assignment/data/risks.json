@@ -5,7 +5,14 @@
     "category": "Technical",
     "rating": "High",
     "owner": "IT Operations Lead",
-    "treatment": "Mitigate — accelerate patching cadence"
+    "treatment": "Mitigate \u2014 accelerate patching cadence",
+    "likelihood": 4,
+    "impact": 4,
+    "controlIds": [
+      "CTL-005",
+      "CTL-013",
+      "CTL-015"
+    ]
   },
   {
     "id": "RSK-002",
@@ -13,7 +20,14 @@
     "category": "People",
     "rating": "High",
     "owner": "CISO",
-    "treatment": "Mitigate — MFA rollout and awareness training"
+    "treatment": "Mitigate \u2014 MFA rollout and awareness training",
+    "likelihood": 5,
+    "impact": 3,
+    "controlIds": [
+      "CTL-003",
+      "CTL-006",
+      "CTL-013"
+    ]
   },
   {
     "id": "RSK-003",
@@ -21,7 +35,14 @@
     "category": "Technical",
     "rating": "Medium",
     "owner": "OT Security Engineer",
-    "treatment": "Mitigate — segmentation programme (CTL-004)"
+    "treatment": "Mitigate \u2014 segmentation programme (CTL-004)",
+    "likelihood": 3,
+    "impact": 4,
+    "controlIds": [
+      "CTL-004",
+      "CTL-013",
+      "CTL-016"
+    ]
   },
   {
     "id": "RSK-004",
@@ -29,7 +50,14 @@
     "category": "Compliance",
     "rating": "Medium",
     "owner": "Data Protection Officer",
-    "treatment": "Mitigate — AI register and approval workflow"
+    "treatment": "Mitigate \u2014 AI register and approval workflow",
+    "likelihood": 4,
+    "impact": 3,
+    "controlIds": [
+      "CTL-010",
+      "CTL-011",
+      "CTL-017"
+    ]
   },
   {
     "id": "RSK-005",
@@ -37,7 +65,13 @@
     "category": "Process",
     "rating": "Medium",
     "owner": "IT Operations Lead",
-    "treatment": "Mitigate — schedule DR test (CTL-008)"
+    "treatment": "Mitigate \u2014 schedule DR test (CTL-008)",
+    "likelihood": 2,
+    "impact": 5,
+    "controlIds": [
+      "CTL-007",
+      "CTL-008"
+    ]
   },
   {
     "id": "RSK-006",
@@ -45,6 +79,166 @@
     "category": "Third party",
     "rating": "Low",
     "owner": "GRC Manager",
-    "treatment": "Accept — reassess at contract renewal"
+    "treatment": "Accept \u2014 reassess at contract renewal",
+    "likelihood": 2,
+    "impact": 2,
+    "controlIds": [
+      "CTL-009"
+    ]
+  },
+  {
+    "id": "RSK-007",
+    "title": "Ransomware disrupting OT production",
+    "category": "Technical",
+    "rating": "High",
+    "owner": "OT Security Engineer",
+    "treatment": "Mitigate \u2014 segmentation and offline backups (CTL-004, CTL-008)",
+    "likelihood": 3,
+    "impact": 5,
+    "controlIds": [
+      "CTL-004",
+      "CTL-007",
+      "CTL-008",
+      "CTL-013"
+    ]
+  },
+  {
+    "id": "RSK-008",
+    "title": "Insider misuse of privileged access",
+    "category": "People",
+    "rating": "Medium",
+    "owner": "CISO",
+    "treatment": "Mitigate \u2014 least privilege and SIEM monitoring (CTL-002, CTL-013)",
+    "likelihood": 2,
+    "impact": 4,
+    "controlIds": [
+      "CTL-002",
+      "CTL-013"
+    ]
+  },
+  {
+    "id": "RSK-009",
+    "title": "Inaccurate AI output actioned without review",
+    "category": "Compliance",
+    "rating": "Medium",
+    "owner": "Business Process Owner",
+    "treatment": "Mitigate \u2014 human oversight of AI decisions (CTL-012)",
+    "likelihood": 3,
+    "impact": 3,
+    "controlIds": [
+      "CTL-010",
+      "CTL-012",
+      "CTL-019"
+    ]
+  },
+  {
+    "id": "RSK-010",
+    "title": "Legacy OT devices without vendor support",
+    "category": "Technical",
+    "rating": "Medium",
+    "owner": "OT Security Engineer",
+    "treatment": "Mitigate \u2014 network isolation and compensating controls (CTL-004)",
+    "likelihood": 3,
+    "impact": 4,
+    "controlIds": [
+      "CTL-001",
+      "CTL-004",
+      "CTL-015"
+    ]
+  },
+  {
+    "id": "RSK-011",
+    "title": "Cloud service misconfiguration exposing data",
+    "category": "Technical",
+    "rating": "Low",
+    "owner": "IT Operations Lead",
+    "treatment": "Mitigate \u2014 secure configuration baselines (CTL-015)",
+    "likelihood": 2,
+    "impact": 3,
+    "controlIds": [
+      "CTL-013",
+      "CTL-015",
+      "CTL-017"
+    ]
+  },
+  {
+    "id": "RSK-012",
+    "title": "AI processing exposes confidential or personal data",
+    "category": "AI governance",
+    "rating": "High",
+    "owner": "Data Protection Officer",
+    "treatment": "Mitigate \u2014 data classification, minimisation, access controls and approved AI services",
+    "likelihood": 4,
+    "impact": 4,
+    "controlIds": [
+      "CTL-010",
+      "CTL-011",
+      "CTL-013",
+      "CTL-017",
+      "CTL-018"
+    ]
+  },
+  {
+    "id": "RSK-013",
+    "title": "Biased AI outputs create unfair or discriminatory outcomes",
+    "category": "AI governance",
+    "rating": "High",
+    "owner": "Business Process Owner",
+    "treatment": "Mitigate \u2014 representative data, bias testing, human review and outcome monitoring",
+    "likelihood": 3,
+    "impact": 5,
+    "controlIds": [
+      "CTL-011",
+      "CTL-012",
+      "CTL-018",
+      "CTL-019"
+    ]
+  },
+  {
+    "id": "RSK-014",
+    "title": "Hallucinated or inaccurate AI output informs a business decision",
+    "category": "AI governance",
+    "rating": "Medium",
+    "owner": "Business Process Owner",
+    "treatment": "Mitigate \u2014 human verification, confidence thresholds and performance monitoring",
+    "likelihood": 4,
+    "impact": 3,
+    "controlIds": [
+      "CTL-010",
+      "CTL-012",
+      "CTL-019"
+    ]
+  },
+  {
+    "id": "RSK-015",
+    "title": "AI model drift reduces accuracy or reliability over time",
+    "category": "AI governance",
+    "rating": "Medium",
+    "owner": "Business Process Owner",
+    "treatment": "Mitigate \u2014 scheduled validation, drift thresholds and controlled retraining",
+    "likelihood": 3,
+    "impact": 4,
+    "controlIds": [
+      "CTL-011",
+      "CTL-012",
+      "CTL-018",
+      "CTL-019"
+    ]
+  },
+  {
+    "id": "RSK-016",
+    "title": "Over-reliance on automated recommendations weakens human accountability",
+    "category": "AI governance",
+    "rating": "Medium",
+    "owner": "GRC Manager",
+    "treatment": "Mitigate \u2014 accountable owner, approval gates, override capability and audit logging",
+    "likelihood": 3,
+    "impact": 3,
+    "controlIds": [
+      "CTL-010",
+      "CTL-012",
+      "CTL-013",
+      "CTL-019"
+    ]
   }
 ]
