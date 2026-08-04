@@ -52,3 +52,155 @@ async function loadJSON(path) {
   }
   return response.json();
 }
+
+/* ---------------------------------------------------------------------------
+   localStorage helpers — persistence for user-added register entries.
+   PRIVACY NOTE (also in the README): localStorage lives only in this
+   browser profile on this device; nothing is transmitted to any server.
+   It persists until cleared, so anyone sharing the browser profile can
+   see the entries — hence each page offers a "clear" button, and the
+   profile page deliberately remains session-only. Both operations are
+   wrapped in try/catch because localStorage can be unavailable or full
+   (e.g. some private-browsing modes); the app then degrades gracefully
+   to session-only behaviour.
+--------------------------------------------------------------------------- */
+function loadStoredList(key) {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) ?? "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveStoredList(key, list) {
+  try {
+    localStorage.setItem(key, JSON.stringify(list));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function clearStoredList(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    /* nothing to clear or storage unavailable — either way, done */
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   CSV download. rows is an array of arrays (first row = headers).
+   Fields containing commas, quotes or newlines are quoted with internal
+   quotes doubled (RFC 4180); the UTF-8 byte-order mark makes Excel open
+   the file with correct character decoding.
+--------------------------------------------------------------------------- */
+function downloadCSV(filename, rows) {
+  const escapeCell = value => {
+    const text = String(value ?? "");
+    return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+  };
+  const csv = rows.map(row => row.map(escapeCell).join(",")).join("\r\n");
+  const blob = new Blob(["\uFEFF" + csv], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Version 17: highlight records opened through cross-register relationship links.
+function highlightLinkedRecord() {
+  const id = decodeURIComponent(window.location.hash.slice(1));
+  if (!id) return;
+  window.setTimeout(() => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.classList.add("linked-target");
+    target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center"});
+    if (target.matches("tr")) target.querySelector("a, button")?.focus({preventScroll: true});
+  }, 250);
+}
+window.addEventListener("hashchange", highlightLinkedRecord);
+window.addEventListener("DOMContentLoaded", highlightLinkedRecord);
+
+/* Version 23: Bootstrap supplies responsive navigation and standard UI
+   components. Existing shared helpers remain framework-independent so the
+   domain logic can still be tested and maintained separately. */
+document.documentElement.dataset.appVersion = "21";
+
+
+/* ---------------------------------------------------------------------------
+   Version 23 accessible inline validation.
+   Native HTML validation remains the source of truth. This progressive
+   enhancement adds a visible, programmatically associated message for any
+   required, patterned or typed control that becomes invalid. The helper
+   preserves existing aria-describedby references and removes aria-invalid
+   as soon as the value becomes valid.
+--------------------------------------------------------------------------- */
+function validationMessageFor(control) {
+  if (control.validity.valueMissing) return "This field is required.";
+  if (control.validity.typeMismatch && control.type === "email") return "Enter a valid email address.";
+  if (control.validity.patternMismatch) return control.title || "Enter a value in the requested format.";
+  if (control.validity.tooShort) return `Enter at least ${control.minLength} characters.`;
+  if (control.validity.tooLong) return `Enter no more than ${control.maxLength} characters.`;
+  if (control.validity.rangeUnderflow) return `Enter a value of at least ${control.min}.`;
+  if (control.validity.rangeOverflow) return `Enter a value no greater than ${control.max}.`;
+  return control.validationMessage || "Check this field and try again.";
+}
+
+function ensureInlineError(control) {
+  if (!control.id) return null;
+  const errorId = `${control.id}-error`;
+  let error = document.getElementById(errorId);
+  if (!error) {
+    error = document.createElement("p");
+    error.id = errorId;
+    error.className = "form-hint error-message validation-error";
+    error.hidden = true;
+    control.insertAdjacentElement("afterend", error);
+  }
+  const describedBy = new Set((control.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+  describedBy.add(errorId);
+  control.setAttribute("aria-describedby", [...describedBy].join(" "));
+  return error;
+}
+
+function showInlineError(control) {
+  const error = ensureInlineError(control);
+  if (!error) return;
+  error.textContent = validationMessageFor(control);
+  error.hidden = false;
+  control.setAttribute("aria-invalid", "true");
+}
+
+function clearInlineError(control) {
+  if (!control.id) return;
+  const error = document.getElementById(`${control.id}-error`);
+  if (error) error.hidden = true;
+  control.removeAttribute("aria-invalid");
+}
+
+document.addEventListener("invalid", event => {
+  if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) {
+    showInlineError(event.target);
+  }
+}, true);
+
+document.addEventListener("input", event => {
+  const control = event.target;
+  if ((control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement) && control.validity.valid) {
+    clearInlineError(control);
+  }
+});
+
+document.addEventListener("change", event => {
+  const control = event.target;
+  if ((control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement) && control.validity.valid) {
+    clearInlineError(control);
+  }
+});
