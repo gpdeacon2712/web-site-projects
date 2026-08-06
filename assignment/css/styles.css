@@ -515,10 +515,22 @@ button[type="submit"]:hover {
 .heat--medium { background-color: var(--status-amber); }
 .heat--high { background-color: var(--status-red); }
 .heatmap-table td.heat:not(.heat--occupied) {
-  /* Empty cells: keep the band colour but recede, so occupied cells with
-     risk IDs stand out */
-  opacity: 0.35;
+  /* Empty cells still show a calculated score (see js/risks.js), so this is
+     real information, not decoration (WCAG 1.4.3). The previous opacity-based
+     fade blended both the band colour and the white score text toward the
+     card background at once, which visually receded the cell as intended but
+     also dropped the effective text contrast to roughly 1.7–1.9:1 (confirmed
+     by Axe DevTools, Section 7.4). Unoccupied cells now use a light tint of
+     the band colour with dark ink text instead, which keeps them visually
+     receded next to the bold, fully-saturated occupied cells while staying
+     comfortably above the 4.5:1 AA minimum (all three bands measure at least
+     8.8:1 with var(--colour-ink) text). */
+  color: var(--colour-ink);
+  font-weight: 400;
 }
+.heat--low:not(.heat--occupied) { background-color: #b9d9cb; }
+.heat--medium:not(.heat--occupied) { background-color: #e0cabc; }
+.heat--high:not(.heat--occupied) { background-color: #eac1be; }
 .heatmap-table td.heat--occupied {
   font-family: var(--font-mono);
   font-weight: 600;
