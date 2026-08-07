@@ -1,292 +1,456 @@
-## Version 23.3
-
-- Strengthened the three Governance Support contact cards with page-relevant SVG artwork, clearer icons, bolder headings and visually separated response targets.
-- Added spacing below the contact-card grid so the fictional-content note is no longer obscured.
-- Reduced the white header fade across all six pages to make the circuit, neural and mesh artwork more visible while retaining readable text contrast.
-
 # GRC & AI Governance Control Hub — Version 23.3
 
-## Version 23.3 visible feature-artwork refinement
+Masters-level academic prototype for module **55-709700 Web Technologies**.
 
-Version 23.3 builds on the Version 21 API, accessibility and print enhancements. It retains the compact operational headers introduced in Version 20 while subtly reusing the earlier SVG banner artwork: circuit graphics support the Dashboard and Risk Register, neural artwork supports the AI Register, and mesh artwork supports Controls, Support and Profile. Layered translucent gradients preserve text contrast and information density without restoring the oversized hero banners. All Version 21 CVE, validation, print and CVE-to-risk functionality remains intact.
- Version 23.3 strengthens the selected dashboard and CVE-panel artwork by adding a coloured base layer, reducing the white fade on the right side and increasing the artwork footprint. The Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight and CVE lookup panels now show the circuit, neural or mesh graphics clearly while retaining a light reading area on the left.
+All application data is fictional or synthetic. No confidential organisational information is used.
 
+## Project overview
 
-### Run locally
+GRC Hub is a responsive, client-side Governance, Risk, Compliance and AI Governance prototype. It integrates six principal application areas:
 
-Serve the folder over HTTP rather than opening files directly, for example with VS Code Live Server or `python -m http.server`. The JSON datasets are loaded with `fetch()`.
+- Governance Dashboard
+- Risk Register
+- Control Library
+- AI Use-Case Register
+- Governance Support
+- My Profile
 
----
+The application demonstrates semantic HTML5, Bootstrap 5, targeted custom CSS, JavaScript, browser-based persistence, responsive design, accessibility techniques and external API integration.
 
-# GRC & AI Governance Control Hub
+The governance model links risks, controls and AI use cases through common identifiers. Dashboard widgets aggregate information from these datasets to provide Relationship Health, Framework Coverage, upcoming AI reviews and other governance metrics.
 
-## Revision v18 — relationship health and upcoming reviews
+The Risk Register also integrates external cyber-threat intelligence from the **CIRCL CVE API** and **FIRST EPSS API**, allowing vulnerability information to be enriched and converted into browser-persisted risk records.
 
-- [x] Added a live Relationship Health widget linking AI use cases, identified risks, governance controls and risk-control coverage.
-- [x] Made each relationship node link to its corresponding register.
-- [x] Added an Upcoming AI Reviews widget using review dates already held in the AI register.
-- [x] Sorted review entries chronologically and identified overdue, due-today and forthcoming reviews.
-- [x] Linked each upcoming review directly to its AI use-case record.
-- [x] Retained the existing live Framework Coverage widget from Version 17.
-- [x] Added responsive layouts so both widgets remain readable on smaller screens.
-- [x] Kept all widget totals data-driven; no governance totals are hard-coded.
+## AI assistance
 
-# GRC & AI Governance Control Hub — academic prototype
+AI assistance was used during the **initial shaping of the project**, helping to establish a framework skeleton for the application, including an initial folder structure, page skeletons, starter styling and example data structures.
 
-Masters-level prototype for module 55-709700 (Web Technologies). All data is
-fictional/synthetic; no confidential organisational information is used.
+The subsequent development, extension, testing, evaluation, refinement and final implementation were undertaken and verified by the author. All outputs used within the project were reviewed, understood and adapted before inclusion.
 
-> Scaffold created with AI assistance (Claude, Anthropic): file structure,
-> page skeletons, starter stylesheet, sample datasets and the dashboard
-> render example. Subsequent extension and completion by Graham Deacon, with AI-assisted coding support documented below. Cite this in
-> line with the assignment brief and SHU academic integrity policy.
+## Final submitted build
 
-## Version 17 — AI-specific risks, framework coverage and clickable relationships
+The final submitted application is **Version 23.3**.
 
-- [x] Added five explicit AI-governance risks covering data leakage, bias, inaccurate output, model drift and over-reliance on automation.
-- [x] Added `riskIds` to every baseline AI use case, creating an AI use case → risk → control chain.
-- [x] Added automatic AI-risk recommendations for newly registered browser-local use cases.
-- [x] Updated reciprocal control-to-risk mappings for the new AI risks.
-- [x] Displayed AI-specific risks on each AI use-case card.
-- [x] Added a live framework coverage widget to the dashboard showing mapped and implemented controls per framework.
-- [x] Made risk-control and AI-risk/control relationships clickable across registers.
-- [x] Added hash-based scrolling and temporary visual highlighting of the selected record.
-- [x] Extended AI register CSV export with AI-specific risk IDs.
+Version 23.3 retains the substantive functionality introduced through the earlier development stages, including the Version 21 API, validation, accessibility and print enhancements, while refining the visual presentation through selective use of the project's SVG artwork.
 
-The clickable relationship change is intentionally lightweight: it reuses the existing IDs and linked datasets rather than introducing a modal or side-drawer component. This keeps the implementation explainable and avoids unnecessary interaction complexity.
+Key Version 23.3 refinements include:
 
+- compact image-backed page headers across the six principal pages;
+- selective reuse of circuit, neural and mesh SVG artwork;
+- stronger visual treatment of the Dashboard, Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight and CVE lookup areas;
+- reduced white header fade while maintaining readable foreground content;
+- improved Governance Support contact cards and response-target presentation;
+- additional spacing beneath the Governance Support contact-card grid;
+- correction and redeployment of the Risk Register heat-map contrast styling;
+- correction of the Governance Insight artwork/contrast regression identified during manual accessibility review.
+
+The final presentation deliberately retains a compact operational layout rather than returning to the large decorative hero banners used in earlier iterations.
+
+## Application architecture
+
+The application uses a multi-page client-side architecture.
+
+```text
+Dashboard
+├── Risk Register
+├── Control Library
+├── AI Use-Case Register
+├── Governance Support
+└── My Profile
+
+Risk Register
+├── CIRCL CVE API
+├── FIRST EPSS API
+└── CVE-to-risk workflow
+
+Governance relationships
+Risk (controlIds) >---< Control (riskIds)
+AI use case (riskIds / controlIds) ---> related risks and controls
+```
+
+Browser-based storage is used for user-generated records while baseline synthetic data remains in local JSON files.
+
+This keeps the prototype compatible with GitHub Pages while demonstrating interconnected governance workflows without requiring server-side infrastructure.
 
 ## Run locally
 
-`fetch()` cannot read local JSON over `file://`, so serve the folder:
+Serve the project folder over HTTP rather than opening the HTML files directly, because the JSON datasets are loaded using `fetch()`.
 
-```
+For example:
+
+```bash
 cd grc-hub
-python3 -m http.server 8000      # or: npx serve
+python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000
+or use VS Code Live Server.
 
-## Deploy to GitHub Pages (do this in hour one)
-
-1. Create a public GitHub repo and push this folder's contents to its root.
-2. Repo → Settings → Pages → Source: "Deploy from a branch" → `main`, `/ (root)`.
-3. Your public URL appears within a couple of minutes:
-   `https://<username>.github.io/<repo>/`
-4. Commit and push as you work - the live site updates automatically, and
-   the repo history is useful evidence that the work is yours.
-
-
-
-
-## Revision v16 — scrollable registers and sticky headings
-
-- [x] Added bounded, internally scrollable panels for the Risk Register and Control Library on larger screens.
-- [x] Added a bounded scrolling panel for registered AI use cases.
-- [x] Kept the overall page on natural document scrolling rather than fixing the whole page height.
-- [x] Added sticky table headings so column labels remain visible while risk and control rows are reviewed.
-- [x] Preserved horizontal scrolling for wide register tables without compressing their content into unreadable columns.
-- [x] Added keyboard-focusable regions, visible focus styling and short instructions for assistive-technology and keyboard users.
-- [x] Removed fixed vertical limits on narrow screens to avoid nested-scroll and touch-navigation problems.
-- [x] Kept filtering, CSV export, local persistence and dynamic rendering unchanged.
-
-## Revision v15 — icons, dashboard accents and rotating insight banner
-
-- [x] Added Bootstrap Icons as one consistent icon system across every navigation menu.
-- [x] Added icons to all live dashboard metric cards and labelled the metrics area as Dashboard Analytics.
-- [x] Replaced the plain dashboard starting links with five responsive module cards.
-- [x] Added subtle module accents: red for risks, green for controls, purple for AI, blue for CVE lookup and teal for Governance Support.
-- [x] Added an accessible rotating GRC Insight banner using live dataset values rather than hard-coded totals.
-- [x] Added previous, next and pause/resume controls to the banner.
-- [x] Disabled automatic rotation when the user prefers reduced motion.
-- [x] Kept icon meaning supplementary: navigation and controls retain visible text or accessible labels.
-
-## Revision v14 — Governance Support Centre
-
-Completed in revision v14 (AI-assisted — record in the citations log):
-
-- [x] Added a Governance Support Centre page and included it in the shared navigation on every page.
-- [x] Added a governance request form covering risk reporting, control review, AI governance, vulnerability, compliance, training, technical and feedback requests.
-- [x] Added requester, department, priority, related-record, subject and message fields with native HTML validation.
-- [x] Added a required confirmation that only fictional or non-sensitive information has been entered.
-- [x] Added a live message character counter and accessible status feedback.
-- [x] Added browser-local request persistence using `localStorage`, with graceful fallback if storage is unavailable.
-- [x] Added sequential support identifiers (`SUP-001`, `SUP-002`, etc.).
-- [x] Added a saved-request view, CSV export and a confirmation-protected clear function.
-- [x] Added contextual query-string prepopulation so other modules can open a relevant support request type and subject.
-- [x] Added support links from the Control Library, Risk Register and AI Use-Case Register.
-- [x] Added fictional governance contact cards and response targets.
-- [x] Added an accessible FAQ section using native `<details>` and `<summary>` elements.
-- [x] Added explicit privacy wording confirming that requests are not emailed or transmitted to a central help desk.
-- [x] Added responsive styling for notices, support records, contact cards, FAQs and contextual support panels.
-- [x] Updated the Dashboard's “Where to start” guidance to include Governance Support.
-
-Important limitation:
-
-- Support requests are stored only in the user's browser. A production service would require authenticated server-side submission, access control, retention rules, encryption and an auditable case-management workflow.
-
-
-
-### Version 15.1 correction
-
-- Replaced CDN-dependent navigation and dashboard icons with locally rendered Unicode icons so they appear even when the project is offline.
-- Added page-title icons across all six pages.
-- Restyled the GRC Insight area as a prominent blue/teal dashboard banner.
-- Initialised banner rotation before JSON data loads, so the banner works even when the site is accidentally opened without the local HTTP server.
-- Updated the live dashboard messages after metrics load without attaching duplicate event handlers.
-
-## Project status and action list
-
-Completed in this revision (v12, AI-assisted — record in the citations log):
-- [x] localStorage persistence for user additions: CVE-imported risks and registered AI use cases now survive refresh; entries are kept in separate storage keys from the baseline JSON so the synthetic dataset is never modified
-- [x] "Clear my saved risks / use cases" buttons (shown only when saved entries exist) remove only the user's additions
-- [x] Honest storage feedback: success messages say whether the entry was saved to localStorage or is session-only (storage can be unavailable in some private-browsing modes; all storage access is wrapped in try/catch)
-- [x] Privacy implications documented (per the enhancement brief): localStorage is per-browser-profile, never transmitted, but visible to anyone sharing the profile — hence the clear buttons; the profile page deliberately remains session-only as a contrast
-- [x] CSV downloads: filtered control library (export respects the active filters), full risk register (including Source CVE column), and full AI register — RFC 4180 quoting, UTF-8 BOM for Excel, Blob + createObjectURL, no dependencies
-
-Completed in revision v11 (AI-assisted — record in the citations log):
-- [x] Heat map / bubble chart view toggle: buttons whose `aria-pressed` state is both the accessibility announcement AND the CSS styling hook (attribute selector), so the two can never drift apart
-- [x] CVE lookup now relates API scores to the register: EPSS (an exploitation probability) maps to the likelihood axis (≥50% → 5, ≥10% → 4, ≥1% → 3, ≥0.1% → 2, else 1); CVSS base severity maps to the impact axis via the standard CVSS v3 bands (Critical → 5, High → 4, Medium → 3, Low → 2); missing scores default to 3 and the default is stated, never silent
-- [x] "Add to risk register" button on each lookup result: creates an in-memory risk with the suggested placement; the register table, heat map and bubble chart all re-render live; duplicate lookups show "Already on the register as RSK-nnn"
-- [x] Every suggestion carries a stated caveat: EPSS does not know whether the asset is exposed, and CVSS measures technical severity, not business impact in context — the mapping is a decision aid, not a decision
-
-Completed in revision v10 (AI-assisted — record in the citations log):
-- [x] Risks extended with 1–5 likelihood and impact scores (score = likelihood × impact; bands: 15+ high, 8–12 medium, ≤6 low — products of two 1–5 integers never fall between bands); register table now shows both columns
-- [x] Risk heat map: 5×5 matrix built as a real `<table>` (caption, scoped row/column headers) — semantically correct for a matrix and accessible by default; occupied cells list risk IDs, band colour is always duplicated by text/position (WCAG 1.4.1)
-- [x] Risk bubble chart: dependency-free SVG generated by JS; bubble position = likelihood/impact, bubble area (not radius) scales with risk count; hover tooltips list the risks; SVG is aria-hidden with the heat-map table as its accessible equivalent — a strong Assessment 3 talking point (alternatives rejected: chart library = heavyweight dependency; div-grid heat map = loses table semantics)
-
-Completed in revision v9 (AI-assisted):
-- [x] Documented the actual CIRCL rate-limit policy (from https://cve.circl.lu/.well-known/api-policy.json): 20 anonymous requests/minute, keyed by IP address — on a shared campus/office IP the budget is shared by everyone behind it, which explains 429s after very few personal lookups
-- [x] Per-provider, per-session lookup cache: a retry after a 429 only re-calls the provider that failed; repeat lookups of the same CVE make no network requests
-- [x] 3-second cooldown on the lookup button to prevent rapid repeat submissions burning the shared rate-limit budget
-- [x] 429 messages now include the service's Retry-After value when the browser is allowed to read it (CORS-dependent)
-
-Completed in revision v8 (AI-assisted):
-- [x] CVE lookup switched from `Promise.all` to `Promise.allSettled`: the two providers are independent, so a CIRCL failure no longer discards a successful EPSS response (and vice versa) — a partial result card renders with per-provider caveats
-- [x] Status-specific error advice: HTTP 429 now explains CIRCL/FIRST rate limiting and advises waiting before retrying, instead of a generic failure message
-- [x] Observed during deployed testing: CIRCL's free API rate-limits repeated lookups (HTTP 429) — documented here as a known service limitation
-
-Completed in revision v7 (AI-assisted review pass):
-- [x] CVE input pattern made case-insensitive (`cve-…` no longer blocked by built-in validation before JS normalises it)
-- [x] `aria-describedby` links the CVE format hint to its input (WCAG 3.3.2)
-- [x] EPSS parsing hardened: non-numeric scores now read "Unavailable"/"Not available" instead of "Low"/"NaN%"
-- [x] Profile session indicator changed from a `title` tooltip (invisible to keyboard/touch users) to visible header text
-- [x] Datasets extended: 19 controls, 11 risks, 7 AI use cases — including a Rejected use case so all three approval badges render, and cross-references from risk treatments to control IDs
-
-Completed in earlier revisions:
-- [x] All five pages, semantic structure and responsive navigation
-- [x] Animated mobile menu with `aria-expanded` synchronisation and reduced-motion support
-- [x] Mobile-first stylesheet and supplied SVG brand/logo assets
-- [x] Synthetic JSON datasets and dashboard metric rendering
-- [x] Control library rendering, combined text/framework/status filtering and no-results state
-- [x] Risk register rendering with accessible text-labelled rating badges
-- [x] Chained CIRCL CVE and FIRST EPSS lookup, error handling and combined meaningful output
-- [x] AI register slider synchronisation, JSON pre-population, domain validation, duplicate check and add-to-list workflow
-- [x] Profile form submit handling and session-only confirmation
-- [x] Dynamic minimum review date rather than a hard-coded date
-
-Still to complete manually before submission:
-- [ ] Deploy to GitHub Pages and confirm every page and local JSON request works
-- [ ] Test CIRCL and FIRST EPSS from the deployed HTTPS origin; document any CORS/service limitations
-- [ ] Run WAVE and Lighthouse accessibility checks, fix material findings and capture screenshots as evidence
-- [ ] Validate all HTML and CSS using W3C validators and retain evidence
-- [ ] Test keyboard-only operation, mobile widths and at least two browsers
-- [ ] Complete the citations/development log with the exact AI contribution and any external sources used
-- [ ] Capture version-control evidence and representative screenshots for the assessment report
-- [ ] Review code comments and rewrite any explanation you cannot personally defend in the presentation/evaluation
-
-Optional enhancements, not required for a complete working prototype:
-- [ ] Sortable control-library columns
-- [x] Add a looked-up CVE directly to the browser-persisted risk register (done in v11/v12)
-- [x] Persist session entries with `sessionStorage` or `localStorage` (explain privacy implications) — done in v12
-- [ ] Add framework maturity visualisations to the dashboard (risk heat map + bubble chart now done on the risks page)
-
-## Rubric map (Assessment 2)
-
-| Criterion | Where it lives |
-|---|---|
-| HTML quality (20%) | Semantic landmarks, tables with caption/scope, links/lists on every page |
-| CSS quality (20%) | External mobile-first stylesheet; element/class/ID/pseudo-class/attribute selectors (all labelled in comments) |
-| HTML Forms (15%) | ai-register.html (8+ element types), my-profile.html, filter + lookup forms |
-| JavaScript (15%) | External files; menu, filtering, validation, fetch/render |
-| API (15%) | CVE Search + EPSS chained (two providers), driven by form input; JSON files simulate enterprise APIs |
-| UI/UX/Accessibility (15%) | Focus styles, aria-current/live, fieldset/legend, contrast, reduced motion, audit evidence |
-
-## Assessment 3 notes — fill in AS YOU BUILD
-
-For each item record: what, why, the alternative you rejected, and where
-it is in the code. This file becomes your evaluation's raw material.
-
-### CSS elements (pick 5)
-1. Custom properties (`:root` tokens) — alternative: repeated hex values / Sass —
-2. Mobile-first media queries — alternative: desktop-first max-width —
-3. Attribute selector `a[aria-current="page"]` — alternative: a `.active` class —
-4. `:nth-child` zebra striping — alternative: hard-coded row classes —
-5. Grid `card-grid` — alternative: flexbox / floats —
-6. `:user-invalid` — alternative: `:invalid` (fires too early) / JS-only —
-
-### Form elements (pick 5)
-1. `<datalist>` (tool name) — alternative: `<select>` —
-2. `type="email"` + required — alternative: text + pattern —
-3. Radios in `<fieldset>`/`<legend>` (data category) — alternative: select —
-4. Checkboxes (oversight) — alternative: multi-select —
-5. `type="date"` + min — alternative: text + JS parsing —
-6. `range` + `<output>` (risk rating) — alternative: number input —
-7. `<select multiple>` (framework alignment) — alternative: checkboxes
-   (compare directly with the oversight checkboxes above: visibility vs
-   space vs discoverability of Ctrl/Cmd-click) —
-
-### Overview talking point
-The hub maps security frameworks (ISO 27001, NIST CSF, NIST SP 800-82,
-IEC 62443) AND AI governance frameworks (ISO/IEC 42001:2023, NIST AI RMF)
-in one portal — controls CTL-010–012 and each AI use case's
-frameworkAlignment field demonstrate this.
-
-### Accessibility examples (pick 5, cite WCAG 2.1/2.2)
-1. Landmarks + heading order - WCAG 1.3.1
-2. Status never colour-alone (badges) - WCAG 1.4.1
-3. Visible focus (`:focus-visible`) - WCAG 2.4.7
-4. `aria-live` result regions - WCAG 4.1.3
-5. Labels/fieldsets on all inputs - WCAG 1.3.1 / 3.3.2
-6. `prefers-reduced-motion` - WCAG 2.3.3
-7. `aria-expanded`/`aria-current` on nav - WCAG 4.1.2
-
-### Citations log
-Record every snippet/idea taken from Stack Overflow, MDN, blogs, or AI -
-add a comment at the point of use AND list it here.
-
-
-## Revision v13 — integrated risk, control and AI governance relationships
-
-Completed in revision v13 (AI-assisted — record in the citations log):
-- [x] Added explicit many-to-many risk-to-control mappings using `controlIds` in `data/risks.json` and reciprocal `riskIds` in `data/controls.json`.
-- [x] Mapped every baseline risk to one or more credible mitigating controls; mappings now reflect each risk's treatment and governance context.
-- [x] Extended the Risk Register with a **Mitigating controls** column showing control ID, name and current implementation status.
-- [x] Extended the Control Library with a **Risks mitigated** column showing the related risk IDs and titles.
-- [x] Extended Control Library text search so a user can find a control by a linked risk ID or risk title.
-- [x] Added `controlIds` to every baseline AI use case and display applicable controls on each use-case card.
-- [x] Added rules that automatically recommend controls for newly registered AI use cases based on data category, risk rating, oversight selections and framework alignment.
-- [x] Added default vulnerability-management, incident-response and monitoring controls to risks imported from the CVE/EPSS lookup.
-- [x] Added linked control IDs to Risk Register, Control Library and AI Register CSV exports.
-- [x] Expanded dashboard metrics with mapped-control coverage, unmapped risks, risks with an implemented control and high risks lacking an implemented control.
-- [x] Dashboard now includes locally stored user risks and AI use cases when calculating live totals.
-- [x] Added concise responsive styling for linked references and control mappings.
-- [x] Updated README wording to describe the CVE risk register as browser-persisted rather than only in-memory and corrected revision-heading punctuation.
-
-Relationship model:
+Then open:
 
 ```text
-Risk (controlIds)  >---<  Control (riskIds)
-AI use case (controlIds)  --->  applicable Control(s)
+http://localhost:8000
 ```
 
-The mappings represent intended mitigation and governance coverage. A mapped control does not prove that risk is fully treated: its implementation status and operating effectiveness still require assessment. The prototype therefore reports coverage and status but deliberately does not calculate residual risk automatically.
+## Project links
 
+- **GitHub repository:** https://github.com/gpdeacon2712/web-site-projects
+- **Assignment source folder:** https://github.com/gpdeacon2712/web-site-projects/tree/main/assignment
+- **Module weekly coursework and assignments:** https://gpdeacon2712.github.io/web-site-projects/
+- **Direct GRC Hub assignment:** https://gpdeacon2712.github.io/web-site-projects/assignment/index.html
 
-## Version 23.3 compact image-backed page headers
+## GitHub Pages deployment
 
-Version 23.3 retains the compact, task-focused Bootstrap card headers and reintroduces the earlier SVG artwork as a restrained background layer. Each header combines a smaller contextual icon, concise purpose statement, status badges and relevant actions, while a translucent gradient protects readability. The artwork is removed on very small screens to preserve clarity and performance. This approach reuses the project assets without returning to the large decorative banners used in earlier versions.
+The application is deployed using GitHub Pages.
 
-## Version 23.3 routing correction
+**Module site:** https://gpdeacon2712.github.io/web-site-projects/
 
-The canonical Governance Support and Profile pages are now `governance-support.html` and `my-profile.html`. The original `support.html` and `profile.html` files are retained as compatibility copies so earlier bookmarks and links continue to work. Upload all HTML files from the package to the same GitHub Pages assignment folder.
+**Direct assignment:** https://gpdeacon2712.github.io/web-site-projects/assignment/index.html
+
+**Assignment source:** https://github.com/gpdeacon2712/web-site-projects/tree/main/assignment
+
+The canonical pages are:
+
+- `index.html`
+- `risks.html`
+- `controls.html`
+- `ai-register.html`
+- `governance-support.html`
+- `my-profile.html`
+
+The Governance Support and Profile routes use `governance-support.html` and `my-profile.html` as their canonical filenames.
+
+## Core functionality
+
+### Governance Dashboard
+
+- Data-driven governance metrics.
+- Relationship Health linking AI use cases, risks, controls and risk-control coverage.
+- Framework Coverage generated from Control Library mappings.
+- Upcoming AI Reviews sorted chronologically.
+- Governance Insight banner using live dataset values.
+- Direct navigation from relationship and review widgets into relevant registers.
+
+### Risk Register
+
+- Risk ID, description, ownership, likelihood, impact and overall rating.
+- 5×5 accessible risk heat map.
+- Alternative SVG bubble visualisation.
+- Search, filtering and CSV export.
+- Linked mitigating controls.
+- Browser-persisted user-created risk records.
+- CIRCL CVE and FIRST EPSS integration.
+- CVSS-to-impact and EPSS-to-likelihood decision-aid mapping.
+- Direct CVE-to-risk creation.
+- Partial API-result handling and provider-specific failure messages.
+- Per-provider session caching and HTTP 429 guidance.
+
+### Control Library
+
+- Governance control catalogue.
+- Framework and implementation-status filtering.
+- Search by control or linked risk information.
+- Reciprocal risk-to-control relationships.
+- Framework mappings.
+- CSV export.
+- Responsive, scrollable register presentation on larger screens.
+
+### AI Use-Case Register
+
+- Registration of AI use cases.
+- Data-category and governance-assessment controls.
+- Risk-rating range input with live feedback.
+- AI-specific risks and recommended controls.
+- Framework-alignment selection.
+- Review dates and ownership.
+- Browser-persisted user-created use cases.
+- CSV export.
+
+### Governance Support
+
+- Structured governance request form.
+- Request category, priority, requester, department, related record, subject and message fields.
+- Required confirmation that only fictional or non-sensitive data is entered.
+- Browser-local request persistence.
+- Sequential support identifiers.
+- Saved-request view and CSV export.
+- Contextual pre-population from other modules.
+- Governance contact cards and response targets.
+- Accessible FAQ using native `<details>` and `<summary>` elements.
+
+### My Profile
+
+- Profile and departmental information.
+- Governance responsibility information.
+- Session-based interaction.
+- Accessible labelled controls and grouped options.
+
+## Accessibility
+
+Accessibility was considered throughout development rather than added only at the end.
+
+Implemented techniques include:
+
+- semantic landmarks and logical heading structure;
+- skip links;
+- explicit labels for form controls;
+- `<fieldset>` and `<legend>` grouping;
+- `aria-describedby` for hints and validation feedback;
+- `aria-invalid` for invalid controls;
+- `aria-current` for current navigation state;
+- `aria-live` regions for dynamic status information;
+- visible keyboard focus using `:focus-visible`;
+- keyboard-operable navigation and forms;
+- reduced-motion support using `prefers-reduced-motion`;
+- responsive removal of problematic nested scrolling on smaller screens;
+- text or position in addition to colour for risk/status communication.
+
+### Accessibility testing
+
+Testing included:
+
+- WAVE;
+- Axe DevTools;
+- Lighthouse;
+- keyboard-only navigation;
+- structured manual accessibility review;
+- responsive viewport testing.
+
+The Risk Register heat map initially exposed a contrast problem when an opacity-based treatment reduced the effective contrast of unoccupied cells. The correction replaced the opacity treatment with fixed light tints and dark text. After the corrected stylesheet was redeployed, WAVE reported **0 errors and 0 contrast errors**, and the Risk Register desktop Lighthouse Accessibility score improved from **97 to 100**.
+
+A separate Governance Insight contrast regression caused by layered feature artwork was identified during manual review and corrected before final submission.
+
+The Control Library retains a minor future-refinement opportunity around linked-reference touch-target spacing.
+
+## Lighthouse testing
+
+Lighthouse 13.4.1 testing was completed against all six principal pages in desktop mode on the deployed GitHub Pages application. An additional mobile assessment was completed for the Risk Register.
+
+### Desktop scores
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|---|---:|---:|---:|---:|
+| Governance Dashboard | 93 | 100 | 100 | 100 |
+| Control Library | 86 | 97 | 100 | 100 |
+| Risk Register | 83 | 100 | 100 | 100 |
+| AI Use-Case Register | 100 | 100 | 100 | 100 |
+| Governance Support | 100 | 100 | 100 | 100 |
+| My Profile | 99 | 100 | 100 | 100 |
+
+The Risk Register score shown above reflects the final desktop accessibility retest after redeployment of the corrected heat-map stylesheet.
+
+### Desktop performance metrics
+
+| Page | FCP | LCP | Total Blocking Time | CLS |
+|---|---:|---:|---:|---:|
+| Governance Dashboard | 0.6 s | 0.6 s | 0 ms | 0.154 |
+| Control Library | 0.7 s | 0.7 s | 0 ms | 0.273 |
+| Risk Register | 0.7 s | 0.7 s | 0 ms | 0.348 |
+| AI Use-Case Register | 0.6 s | 0.6 s | 0 ms | 0.001 |
+| Governance Support | 0.7 s | 0.7 s | 0 ms | 0.017 |
+| My Profile | 0.7 s | 0.7 s | 0 ms | 0.001 |
+
+The principal performance limitation is layout stability on dynamically rendered pages rather than blocking JavaScript. The Risk Register CVE panel and Control Library register panel account for the highest CLS values.
+
+### Additional mobile Risk Register assessment
+
+| Metric | Result |
+|---|---:|
+| Performance | 90 |
+| Accessibility | 96 |
+| Best Practices | 100 |
+| SEO | 100 |
+| First Contentful Paint | 2.6 s |
+| Largest Contentful Paint | 2.7 s |
+| Speed Index | 4.3 s |
+| Total Blocking Time | 0 ms |
+| Cumulative Layout Shift | 0.000 |
+
+The mobile assessment predates the final redeployment of the heat-map contrast correction and has not been separately rerun.
+
+## Standards and functional testing
+
+Completed testing includes:
+
+- deployment to GitHub Pages;
+- CIRCL and FIRST EPSS testing from the deployed HTTPS origin;
+- WAVE accessibility testing;
+- Axe DevTools testing;
+- Lighthouse testing;
+- keyboard-only operation;
+- responsive testing across desktop, tablet and mobile layouts;
+- functional testing of navigation, search, filtering, forms, validation and interactive components.
+
+HTML validation was also completed across the application. The final report records one minor semantic point on the AI Use-Case Register associated with the `<output>` element as requiring final validator confirmation.
+
+## Key technical design decisions
+
+### Native HTML before custom scripting
+
+Native form controls and semantic HTML were preferred where possible because they provide built-in browser behaviour, keyboard support and assistive-technology semantics.
+
+Examples include:
+
+- `<fieldset>` / `<legend>`;
+- `type="email"`;
+- `<datalist>`;
+- `<select multiple>`;
+- `type="range"` with `<output>`;
+- `<details>` / `<summary>`.
+
+### Bootstrap plus targeted custom CSS
+
+Bootstrap 5 provides the common page shell, responsive grid, navigation, cards, forms, tables and spacing utilities.
+
+Custom CSS is retained for GRC-specific components such as:
+
+- risk visualisations;
+- linked-record highlighting;
+- status accents;
+- operational feature artwork;
+- print-specific register presentation.
+
+This hybrid approach reduces handwritten layout CSS while preserving the domain-specific visual identity.
+
+### Resilient API handling
+
+The CIRCL CVE and FIRST EPSS providers are independent. The lookup therefore uses `Promise.allSettled()` so a successful result from one provider is not discarded if the other fails.
+
+The application also provides:
+
+- provider-specific error messages;
+- HTTP 429 rate-limit guidance;
+- per-provider caching;
+- duplicate-request protection;
+- visible loading state;
+- `aria-busy` status;
+- partial-result rendering.
+
+### Browser-local persistence
+
+User-generated risks, AI use cases and Governance Support requests can be retained locally in the browser.
+
+This is suitable for the academic prototype but is not intended as a production persistence model. A production GRC system would require authenticated server-side storage, role-based access control, encryption, retention rules and auditable workflows.
+
+## Development history
+
+### Initial prototype
+
+- Semantic multi-page structure.
+- Responsive navigation.
+- Starter CSS.
+- Synthetic JSON datasets.
+- Basic Risk, Control and AI views.
+
+### Versions 7–9 — API robustness
+
+- Made CVE validation case-insensitive.
+- Linked CVE format guidance using `aria-describedby`.
+- Hardened EPSS parsing.
+- Replaced `Promise.all()` with `Promise.allSettled()`.
+- Added status-specific API failure guidance.
+- Documented observed CIRCL rate limiting.
+- Added per-provider caching, cooldown behaviour and `Retry-After` guidance.
+
+### Versions 10–13 — risk visualisation and governance integration
+
+- Added 1–5 likelihood and impact scoring.
+- Added accessible 5×5 risk heat map.
+- Added dependency-free SVG bubble visualisation.
+- Added CVE-to-risk workflow.
+- Added browser-local persistence and CSV export.
+- Added reciprocal risk-to-control mappings.
+- Added AI use-case-to-risk and AI use-case-to-control relationships.
+- Added governance coverage metrics to the dashboard.
+
+### Version 14 — Governance Support
+
+- Added Governance Support as the sixth principal page.
+- Added structured browser-local governance request workflow.
+- Added contextual links from Risks, Controls and AI.
+- Added saved requests, CSV export and accessible FAQ content.
+
+### Versions 15–18 — dashboard evolution
+
+- Added module icons and visual accents.
+- Added data-driven Governance Insight.
+- Added Framework Coverage.
+- Added Relationship Health.
+- Added Upcoming AI Reviews.
+- Added direct relationship links between dashboard information and registers.
+- Retained responsive and reduced-motion behaviour.
+
+### Version 19 — Bootstrap hybrid architecture
+
+- Introduced Bootstrap 5 for the shared page shell and standard components.
+- Reduced duplicated custom layout styling.
+- Retained custom CSS for specialist GRC components and visualisations.
+
+### Version 20 — compact operational headers
+
+- Introduced compact, task-focused page headers.
+- Improved page actions and anchor navigation.
+- Reduced oversized decorative banner treatment.
+
+### Version 21 — API, accessibility and print enhancements
+
+- Added recent-CVE datalist suggestions.
+- Added accessible API busy states.
+- Prevented duplicate submissions during active requests.
+- Added progressive inline validation using `aria-describedby` and `aria-invalid`.
+- Refined CVE-to-risk workflow behaviour.
+- Added print-specific Risk Register and Control Library presentation.
+
+### Version 23.3 — final visual and accessibility refinement
+
+- Reused SVG artwork as a restrained background layer.
+- Strengthened artwork visibility while preserving readable text areas.
+- Refined the Dashboard, relationship widgets and CVE panel presentation.
+- Improved Governance Support contact-card presentation.
+- Corrected the Governance Insight contrast regression.
+- Redeployed the corrected Risk Register heat-map styling and confirmed the desktop accessibility improvement.
+
+## Known limitations and future development
+
+The application is intentionally a client-side prototype and does not include:
+
+- authentication;
+- central server-side persistence;
+- multi-user collaboration;
+- role-based access control;
+- workflow approvals;
+- enterprise audit logging;
+- managed API service agreements.
+
+Future production refinement could include:
+
+- PostgreSQL or another server-side database;
+- secure REST API;
+- Microsoft Entra ID or OAuth-based authentication;
+- role-based access control;
+- workflow approvals and audit trails;
+- Power BI or similar analytics integration;
+- enhanced AI governance lifecycle evidence;
+- reserved loading space or skeletons to reduce CLS;
+- larger Control Library linked-reference touch targets;
+- customised or purged Bootstrap assets;
+- CSS and JavaScript minification;
+- improved caching and production security headers.
+
+## Assessment evidence map
+
+| Assessment area | Representative evidence |
+|---|---|
+| HTML | Semantic landmarks, accessible tables, links, headings and structured page content |
+| CSS | Mobile-first responsive design, custom properties, advanced selectors, print styles and reduced motion |
+| HTML Forms | Fieldsets/legends, email input, datalist, multiple select, range/output and validation |
+| JavaScript | Dynamic rendering, filtering, form handling, persistence, validation and visualisation |
+| API integration | CIRCL CVE + FIRST EPSS, partial-result handling, caching and CVE-to-risk workflow |
+| Accessibility / UI | Semantic HTML, explicit labels, keyboard focus, ARIA live regions, responsive behaviour and automated/manual testing |
+
+## Academic integrity and project ownership
+
+This repository documents an academic prototype and its iterative development history.
+
+AI assistance was limited to initial project shaping and framework scaffolding. The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
+
+External technical references and standards used in the accompanying report are cited there in accordance with the required academic referencing approach.
