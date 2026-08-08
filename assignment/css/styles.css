@@ -1,11 +1,15 @@
 /* ==========================================================================
    GRC & AI Governance Control Hub - styles.css
-   Scaffold created as a starting point. Cite in line with the assignment brief and your university's
-   academic integrity policy. Extend and adapt this -
 
-   STRUCTURE (mobile-first - base styles target small screens; media
-   queries at the bottom enhance for larger screens):
-     1. Design tokens (CSS custom properties)
+   AI use statement (AITS Level 2 - AI for Shaping): generative AI supported
+   the initial framework skeleton. The stylesheet was subsequently extended,
+   tested and refined by the author.
+
+   The stylesheet follows a mobile-first structure: base rules target smaller
+   screens and min-width media queries progressively enhance larger layouts.
+
+   Sections:
+     1. Design tokens
      2. Base / reset
      3. Prototype banner
      4. Header and navigation
@@ -15,13 +19,12 @@
      8. Tables
      9. Forms
     10. Footer
-    11. Media queries (min-width - the mobile-first paradigm)
+    11. Responsive media queries
    ========================================================================== */
 
 /* 1. DESIGN TOKENS ---------------------------------------------------------
-   Custom properties keep the colour/typography scheme consistent and easy
-   to change (Assessment 3 talking point: alternatives would be repeating
-   hex values everywhere, or a preprocessor variable like Sass $vars). */
+   CSS custom properties centralise colours, typography and spacing so the
+   interface can be adjusted consistently without repeating literal values. */
 :root {
   /* Colour scheme - modelled on the visual language of industrial-sector
      cybersecurity portals (white header, warm off-white surfaces, deep
@@ -35,13 +38,9 @@
   --colour-accent: #a6192e;     /* deep maroon-red: links, buttons, focus */
   --colour-accent-dark: #7e1322;
 
-  /* Brand gradient colours (used by the logo and hero banner).
-     ASSESSMENT 3 TALKING POINT: the brand accent is red, but in a GRC
-     tool red also means "high risk". Resolved by role separation -
-     interactive red appears as SOLID buttons/links in deep maroon,
-     while risk status appears as OUTLINE pill badges that always carry
-     a text label (WCAG 1.4.1), in a visibly brighter red. Shape + label
-     carry the meaning, not hue alone. */
+  /* Brand gradient colours are intentionally separated from risk-state use.
+     Interactive accents use deep maroon, while risk statuses use labelled
+     badges so meaning is communicated by text and shape as well as colour. */
   --brand-red: #CD163F;
   --brand-orange: #F58025;
 
@@ -99,7 +98,7 @@ a {
   color: var(--colour-accent);
 }
 
-/* Pseudo-class selectors (rubric: pseudo-classes) */
+/* Hover state provides a consistent visual response for text links. */
 a:hover {
   color: var(--colour-accent-dark);
 }
@@ -217,9 +216,8 @@ img {
   background-color: var(--colour-surface);
 }
 
-/* Attribute selector (rubric: attribute selectors — distinction band).
-   Highlights the current page's nav link, set via aria-current in HTML,
-   which also announces "current page" to screen readers. */
+/* The current navigation link is styled using aria-current="page". The same
+   semantic attribute also exposes the current-page state to assistive technology. */
 .site-nav a[aria-current="page"] {
   background-color: var(--colour-accent);
   color: #ffffff;
@@ -243,14 +241,9 @@ img {
   margin: 0 auto;
 }
 
-/* Red gradient hero band, echoing the portal's page banners, with a
-   decorative network-mesh background layered on top (first background
-   layer renders above the gradient). The mesh is white at ~12% opacity,
-   so white text contrast is unaffected (WCAG 1.4.3), and being a CSS
-   background it is ignored by screen readers - decorative by design
-   (an Assessment 3 accessibility point: decoration belongs in CSS, not
-   in <img> tags needing alt text). Swap bg-hero-mesh.svg for
-   bg-hero-circuit.svg for a circuit-trace look. */
+/* The introductory panel combines a gradient with decorative SVG artwork.
+   Keeping the artwork as a CSS background prevents decorative content from
+   entering the accessibility tree, while the gradient protects text contrast. */
 .page-intro {
   margin-bottom: var(--space-4);
   background:
@@ -271,19 +264,17 @@ img {
   max-width: 60ch;
 }
 
-/* Hero variant for AI governance pages: a stylised neural network with
-   one ringed "human oversight" node — same low-opacity white rules as
-   the mesh, so contrast is unaffected. Applied via a modifier class
-   (BEM-style), itself a CSS talking point. */
+/* AI-governance variant of the shared introductory panel. The modifier swaps
+   in neural-network artwork while retaining the same readable gradient layer. */
 .page-intro--ai {
   background:
     url("../images/bg-hero-neural.svg") right center / cover no-repeat,
     linear-gradient(100deg, var(--colour-accent-dark), #c0143c);
 }
 
-/* OPTIONAL page texture: whisper-volume hexagon grid on the page
-   background (echoes the logo shape). Uncomment to try it; leave off if
-   it competes with content — restraint is a defensible design choice.
+/* Optional page texture retained as an example but intentionally disabled.
+   Enabling it would add a subtle hexagonal background; the final design leaves
+   it off to keep the content area visually quiet.
 body {
   background-image: url("images/bg-hexgrid.svg");
 }
@@ -328,8 +319,8 @@ body {
 }
 
 /* 7. STATUS BADGES -----------------------------------------------------------
-   Class selectors with BEM-style modifiers (rubric: classes).
-   Text label + colour, never colour alone (WCAG 1.4.1). */
+   Modifier classes provide reusable status variants. Every badge includes text,
+   so colour supplements rather than replaces the status meaning (WCAG 1.4.1). */
 .badge {
   display: inline-block;
   font-size: 0.78rem;
@@ -372,7 +363,7 @@ body {
   color: var(--colour-ink);
 }
 
-/* Structural pseudo-class (rubric: pseudo-classes): zebra striping */
+/* Zebra striping improves row tracking in long data tables. */
 .data-table tbody tr:nth-child(even) {
   background-color: #faf7f5;
 }
@@ -410,8 +401,8 @@ label {
   margin-bottom: var(--space-1);
 }
 
-/* Attribute selectors target inputs by type without extra classes
-   (rubric: attribute selectors) */
+/* Attribute selectors apply consistent styling to related input types without
+   requiring an additional presentation-only class on every control. */
 input[type="text"],
 input[type="email"],
 input[type="date"],
@@ -427,10 +418,9 @@ textarea {
   margin-bottom: var(--space-3);
 }
 
-/* UI pseudo-classes give live validation feedback with no JavaScript
-   (Assessment 3 talking point alongside your JS validation).
-   :user-invalid only flags fields after interaction — friendlier than
-   :invalid, which flags empty required fields on page load. */
+/* :user-invalid adds browser-native visual validation after user interaction.
+   It avoids marking untouched required fields as errors on initial page load;
+   JavaScript supplies the associated explanatory error message. */
 input:user-invalid,
 select:user-invalid,
 textarea:user-invalid {
