@@ -1,4 +1,6 @@
-/* profile.js — session-only demonstration profile. */
+/* profile.js — session-only demonstration profile behaviour.
+   Profile data is intentionally not persisted, illustrating a different storage
+   choice from the browser-persisted governance registers. */
 "use strict";
 
 const profileForm = document.getElementById("profile-form");
@@ -14,11 +16,9 @@ profileForm.addEventListener("submit", event => {
   profileFeedback.className = "results-region success-message";
   profileFeedback.textContent = `Profile saved for this session. Welcome, ${name}. Role: ${role}; department: ${department}.`;
 
-  // Visible session indicator in the header. An earlier version set a
-  // title attribute on the brand link, but title tooltips are invisible
-  // to keyboard and touch users — visible text is the accessible choice
-  // (WCAG 1.3.1 / general perceivability). Created once, updated on
-  // subsequent saves.
+  // Show the saved profile name as visible header text. A title tooltip would
+  // not be reliably available to keyboard or touch users, so visible content is
+  // the more accessible way to communicate the session state.
   let indicator = document.getElementById("session-indicator");
   if (!indicator) {
     indicator = document.createElement("p");

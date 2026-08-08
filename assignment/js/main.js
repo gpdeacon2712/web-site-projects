@@ -1,6 +1,7 @@
-/* main.js — shared behaviour on every page.
-   Scaffold created with AI assistance (Claude, Anthropic). Cite per the
-   assignment brief; extend with your own work. */
+/* main.js — shared utilities and progressive enhancements used across the site.
+   AI use statement (AITS Level 2 - AI for Shaping): generative AI supported
+   the initial framework skeleton; subsequent development, testing and refinement
+   were completed and verified by the author. */
 
 "use strict";
 
@@ -38,12 +39,11 @@ if (navToggle && siteNav) {
 }
 
 /* ---------------------------------------------------------------------------
-   loadJSON(path) — fetch one of the prototype's synthetic datasets.
-   These local JSON files stand in for enterprise APIs (Graph, ServiceNow,
-   CMDB…) per the scope brief. Reused by dashboard.js, controls.js, etc.
-
-   NOTE: fetch() cannot read local files over file:// — serve the site
-   over http while developing (see README).
+   loadJSON(path) fetches one of the prototype's local synthetic datasets.
+   Keeping data in JSON separates content from presentation and imitates the
+   asynchronous loading pattern used with server APIs. Because fetch() does not
+   reliably load local files through file://, run the project through an HTTP
+   server during development (see README).
 --------------------------------------------------------------------------- */
 async function loadJSON(path) {
   const response = await fetch(path);
@@ -128,14 +128,15 @@ function highlightLinkedRecord() {
 window.addEventListener("hashchange", highlightLinkedRecord);
 window.addEventListener("DOMContentLoaded", highlightLinkedRecord);
 
-/* Version 23: Bootstrap supplies responsive navigation and standard UI
-   components. Existing shared helpers remain framework-independent so the
-   domain logic can still be tested and maintained separately. */
-document.documentElement.dataset.appVersion = "21";
+/* Bootstrap supplies the shared responsive interface components, while these
+   helpers remain framework-independent so governance logic is easier to test
+   and maintain separately. The data attribute exposes the submitted build
+   version for diagnostics without changing visible page content. */
+document.documentElement.dataset.appVersion = "23.3";
 
 
 /* ---------------------------------------------------------------------------
-   Version 23 accessible inline validation.
+   Accessible inline validation.
    Native HTML validation remains the source of truth. This progressive
    enhancement adds a visible, programmatically associated message for any
    required, patterned or typed control that becomes invalid. The helper

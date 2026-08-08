@@ -1,8 +1,12 @@
-/* dashboard.js — live governance metrics and rotating insight banner. */
+/* dashboard.js — data-driven dashboard metrics, relationship views and insights.
+   Values are calculated from the current Risk, Control and AI datasets rather than
+   hard-coded, so locally added records are reflected in the overview. */
 "use strict";
 
 const dashboardState = { metrics: null, messageIndex: 0, timer: null, paused: false, handlersAttached: false };
 
+// Load the three governance datasets, merge browser-added records, and calculate
+// the headline dashboard metrics before rendering each analytical widget.
 async function renderDashboard() {
   const section = document.getElementById("metric-cards");
   try {
@@ -66,6 +70,8 @@ async function renderDashboard() {
   }
 }
 
+// Show the governance chain as linked summary nodes so users can move directly
+// from the overview to the related register.
 function renderRelationshipHealth({risks, controls, useCases, coverage}) {
   const container = document.getElementById("relationship-health");
   if (!container) return;
@@ -104,6 +110,7 @@ function renderRelationshipHealth({risks, controls, useCases, coverage}) {
   });
 }
 
+// Select the four nearest valid AI review dates and label overdue or imminent items.
 function renderUpcomingReviews(useCases) {
   const container = document.getElementById("upcoming-reviews");
   if (!container) return;
@@ -158,6 +165,8 @@ function renderUpcomingReviews(useCases) {
   });
 }
 
+// Calculate framework coverage from the Control Library rather than storing
+// duplicate dashboard totals that could become inconsistent.
 function renderFrameworkCoverage(controls) {
   const container = document.getElementById("framework-coverage");
   if (!container) return;
@@ -187,6 +196,8 @@ function renderFrameworkCoverage(controls) {
   });
 }
 
+// Rotate short governance messages while respecting the reduced-motion preference.
+// Event handlers are attached once so repeated data loads do not create duplicates.
 function initialiseRotatingMessages() {
   const output = document.getElementById("rotating-message");
   const previous = document.getElementById("previous-message");

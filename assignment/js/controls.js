@@ -1,13 +1,18 @@
-/* controls.js — filterable control library with linked risk coverage. */
+/* controls.js — filterable Control Library with framework and linked-risk coverage.
+   Controls are loaded from the synthetic dataset and rendered into an accessible
+   table with live filtering and cross-register links. */
 "use strict";
 const STATUS_BADGE={"Implemented":"badge--ok","In progress":"badge--warn","Not implemented":"badge--risk"};
 let allControls=[],allRisks=[],visibleControls=[];
+// Build the linked-risk list used in each Control Library row.
+// Each link opens the related risk and uses the record ID as a stable anchor.
 function makeRefList(ids,lookup,emptyText){
  const wrap=document.createElement("div"); wrap.className="reference-list";
  if(!ids?.length){wrap.textContent=emptyText;return wrap;}
  ids.forEach(id=>{const item=document.createElement("a");item.className="linked-reference record-link";item.href=`risks.html#${id}`;item.textContent=`${id} — ${lookup.get(id)?.title||"Unknown risk"}`;wrap.append(item);});
  return wrap;
 }
+// Render the currently visible controls and refresh the announced result count.
 function renderControlRows(controls){
  visibleControls=controls; const tbody=document.getElementById("control-rows");tbody.replaceChildren();
  const riskLookup=new Map(allRisks.map(r=>[r.id,r]));
@@ -23,6 +28,8 @@ function renderControlRows(controls){
  }
  document.getElementById("control-count").textContent=`${controls.length} control${controls.length===1?"":"s"} shown.`;
 }
+// Apply text, framework and implementation-status filters together.
+// Linked risk IDs/titles are included in the searchable text for cross-register discovery.
 function applyFilters(){
  const text=document.getElementById("filter-text").value.trim().toLowerCase(),framework=document.getElementById("filter-framework").value,status=document.getElementById("filter-status").value;
  const riskLookup=new Map(allRisks.map(r=>[r.id,r.title]));
@@ -32,5 +39,6 @@ function applyFilters(){
 }
 ["filter-text","filter-framework","filter-status"].forEach(id=>document.getElementById(id).addEventListener(id==="filter-text"?"input":"change",applyFilters));
 document.getElementById("download-controls")?.addEventListener("click",()=>downloadCSV("control-library.csv",[["Control ID","Name","Framework mapping","Owner role","Status","Risks mitigated"],...visibleControls.map(c=>[c.id,c.name,c.frameworks.join("; "),c.owner,c.status,(c.riskIds||[]).join("; ")])]));
+// Load the Control and Risk datasets together so rows can include linked risk names.
 async function initControls(){try{[allControls,allRisks]=await Promise.all([loadJSON("data/controls.json"),loadJSON("data/risks.json")]);renderControlRows(allControls);}catch(error){document.getElementById("control-count").textContent=`Controls could not be loaded — serve the site over http (see README). (${error.message})`;}}
 initControls();

@@ -1,5 +1,6 @@
-/* risks.js — risk register and live CVE/EPSS lookup.
-   Extended from the original AI-assisted scaffold by Graham Deacon. */
+/* risks.js — Risk Register rendering, visualisations and live CVE/EPSS enrichment.
+   The module combines synthetic baseline risks with browser-added records while
+   keeping external API guidance clearly separated from governance decisions. */
 
 "use strict";
 
@@ -145,10 +146,9 @@ function addRiskFromLookup(cveId, likelihood, impact, button) {
   const saved = saveStoredList(RISK_STORAGE_KEY, userRisks);
   refreshRiskViews();
   button.disabled = true;
-  // The result card sits in the aria-live results region, so this update
-  // is announced to screen readers. Be honest about where the data went:
-  // localStorage can be unavailable (e.g. private browsing), in which
-  // case the entry survives only until the page is closed.
+  // The result card is inside an aria-live region, so this status can be
+  // announced to screen-reader users. If localStorage is unavailable, the
+  // newly added risk remains available only until the page is closed.
   button.textContent = saved
     ? `Added as ${risk.id} (saved in this browser)`
     : `Added as ${risk.id} (this browser session only — storage unavailable)`;

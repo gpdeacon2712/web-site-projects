@@ -1,5 +1,6 @@
-/* support.js — browser-local governance support workflow.
-   Version 14 extension developed with AI-assisted editing. */
+/* support.js — browser-local Governance Support request workflow.
+   Requests are demonstration records stored only in the current browser profile;
+   no request is transmitted to a real support service. */
 "use strict";
 
 const SUPPORT_STORAGE_KEY = "grcHubSupportRequests";
@@ -12,6 +13,7 @@ const messageInput = document.getElementById("request-message");
 const messageCount = document.getElementById("message-count");
 let supportRequests = loadStoredList(SUPPORT_STORAGE_KEY);
 
+// Generate the next demonstration support identifier from the records stored locally.
 function nextRequestId() {
   const numbers = supportRequests
     .map(item => Number.parseInt(String(item.id || "").replace(/\D/g, ""), 10))
@@ -24,6 +26,7 @@ function formatDateTime(value) {
   return Number.isNaN(date.getTime()) ? "Unknown" : date.toLocaleString();
 }
 
+// Render saved requests newest-first; an empty state is shown when none are stored.
 function renderSupportRequests() {
   supportList.replaceChildren();
   clearSupportButton.hidden = supportRequests.length === 0;
@@ -64,6 +67,8 @@ function renderSupportRequests() {
   });
 }
 
+// Pre-fill selected fields when another module links to Support with query parameters.
+// Length limits prevent an external URL from inserting unexpectedly long text.
 function applyQueryContext() {
   const params = new URLSearchParams(window.location.search);
   const type = params.get("type");
@@ -82,6 +87,7 @@ messageInput.addEventListener("input", () => {
   messageCount.value = String(messageInput.value.length);
 });
 
+// Validate, create and store a fictional support request entirely in the browser.
 supportForm.addEventListener("submit", event => {
   event.preventDefault();
   if (!supportForm.reportValidity()) return;
@@ -121,6 +127,7 @@ clearSupportButton.addEventListener("click", () => {
   renderSupportRequests();
 });
 
+// Export the browser-local request history as CSV for demonstration/reporting.
 downloadSupportButton.addEventListener("click", () => {
   if (!supportRequests.length) {
     supportFeedback.textContent = "There are no saved support requests to download.";

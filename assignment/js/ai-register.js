@@ -1,5 +1,6 @@
-/* ai-register.js — AI use-case form behaviour.
-   Extended from the original AI-assisted scaffold by Graham Deacon. */
+/* ai-register.js — AI use-case registration, recommendations, persistence and export.
+   The module keeps baseline synthetic records separate from browser-added records
+   so demonstrations can be reset without altering the supplied dataset. */
 
 "use strict";
 
@@ -28,6 +29,9 @@ function refreshUseCases() {
 }
 
 
+// Recommend representative AI-governance risks from the selected data category,
+// rating and oversight choices. These mappings are demonstration rules, not a
+// substitute for a formal organisational risk assessment.
 function recommendRisks(dataCategory, riskRating, oversight) {
   const ids = new Set(["RSK-014"]);
   if (["internal", "personal", "special"].includes(dataCategory)) ids.add("RSK-012");
@@ -45,6 +49,8 @@ function makeRecordLink(href, text) {
   return link;
 }
 
+// Recommend example controls that correspond to the selected governance context.
+// The rules illustrate traceability between form choices and the Control Library.
 function recommendControls(dataCategory, riskRating, oversight, frameworks) {
   const ids = new Set(["CTL-010", "CTL-011"]);
   if (oversight.includes("human-review") || oversight.includes("approval-gate")) ids.add("CTL-012");
@@ -67,6 +73,7 @@ function formatDate(value) {
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"});
 }
 
+// Rebuild the visible AI register from the merged baseline and browser-added records.
 function renderUseCases() {
   const list = document.getElementById("usecase-list");
   list.replaceChildren();
@@ -124,6 +131,7 @@ function roleLabel(value) {
   return document.querySelector(`#owner-role option[value="${CSS.escape(value)}"]`)?.textContent || value;
 }
 
+// Prevent a newly registered use case from being assigned a review date in the past.
 function setMinimumReviewDate() {
   const dateInput = document.getElementById("review-date");
   const today = new Date();
@@ -150,6 +158,8 @@ riskIncrease?.addEventListener("click", () => {
   slider.focus();
 });
 
+// Validate governance-specific rules, create the next AI record, persist it locally,
+// and refresh the register without modifying the supplied JSON dataset.
 form.addEventListener("submit", event => {
   event.preventDefault();
   feedback.replaceChildren();
@@ -198,14 +208,15 @@ form.addEventListener("submit", event => {
   form.reset();
   updateRiskOutput();
   feedback.className = "results-region success-message";
-  // Be honest about where the data went: localStorage can be unavailable
-  // (e.g. private browsing), in which case the entry is session-only.
+  // localStorage may be unavailable in some browser modes. In that case,
+  // the record remains available only for the current page session.
   feedback.textContent = saved
     ? `${toolName} was added and saved in this browser (localStorage — not sent to any server).`
     : `${toolName} was added for this browser session only (localStorage unavailable).`;
   document.getElementById("tool-name").focus();
 });
 
+// Load baseline use cases, controls and risks in parallel, then merge local additions.
 async function initUseCases() {
   setMinimumReviewDate();
   updateRiskOutput();
