@@ -21,11 +21,11 @@ The governance model links risks, controls and AI use cases through common ident
 
 The Risk Register also integrates external cyber-threat intelligence from the **CIRCL CVE API** and **FIRST EPSS API**, allowing vulnerability information to be enriched and converted into browser-persisted risk records.
 
-## AI assistance
+## AI assistance — AITS Level 2 (AI for Shaping)
 
-AI assistance was used during the **initial shaping of the project**, helping to establish a framework skeleton for the application, including an initial folder structure, page skeletons, starter styling and example data structures.
+AI assistance was used only during the **initial shaping of the project** to help establish a framework skeleton, including the initial folder structure, page skeletons, starter styling and example data structures.
 
-The subsequent development, extension, testing, evaluation, refinement and final implementation were undertaken and verified by the author. All outputs used within the project were reviewed, understood and adapted before inclusion.
+Subsequent development, extension, testing, evaluation, refinement and final implementation were undertaken and verified by the author. AI references are intentionally generic because the relevant academic declaration concerns the nature and level of assistance rather than a specific provider.
 
 ## Final submitted build
 
@@ -451,6 +451,6 @@ Future production refinement could include:
 
 This repository documents an academic prototype and its iterative development history.
 
-AI assistance was limited to initial project shaping and framework scaffolding. The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
+AI assistance was limited to AITS Level 2 initial project shaping and framework scaffolding. The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
 
 External technical references and standards used in the accompanying report are cited there in accordance with the required academic referencing approach.
