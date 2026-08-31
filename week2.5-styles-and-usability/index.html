@@ -110,6 +110,14 @@
             top: 20px;
         }
 
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
         figure {
             margin: 1.5rem 0;
         }
@@ -175,6 +183,13 @@
         </header>
 
         <main id="main-content">
+            <p>
+                <a class="back-link" href="../index.html">
+                    <span aria-hidden="true">&larr;</span>
+                    Back to portfolio
+                </a>
+            </p>
+
             <section aria-labelledby="about-heading">
                 <h2 id="about-heading">About Me</h2>
 
@@ -260,7 +275,7 @@
                 <p>
                     You can learn more about my professional background,
                     qualifications and experience on my
-                    <a
+                    
                         href="https://www.linkedin.com/in/gpdeacon/"
                         target="_blank"
                         rel="noopener noreferrer">
