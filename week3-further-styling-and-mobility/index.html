@@ -10,13 +10,17 @@
 
     <meta
         name="description"
-        content="Personal profile of Graham Deacon demonstrating responsive HTML and CSS design techniques.">
+        content="Personal profile of Graham Deacon demonstrating responsive HTML, CSS and accessibility techniques.">
 
     <title>Graham Deacon - Responsive Personal Web Page</title>
 
     <style>
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -37,12 +41,16 @@
             border-radius: 10px;
         }
 
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
         h1 {
             margin-top: 0;
             color: darkblue;
             font-size: clamp(2rem, 6vw, 3rem);
             line-height: 1.2;
-            text-align: center;
         }
 
         h2 {
@@ -53,7 +61,8 @@
         }
 
         .introductory-text {
-            text-align: center;
+            margin-bottom: 0;
+            font-style: italic;
         }
 
         .interests-heading {
@@ -71,17 +80,9 @@
             color: darkblue;
         }
 
-        img {
-            display: block;
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin-top: 1rem;
-            border-radius: 10px;
-        }
-
         a {
             color: #0046a8;
+            text-decoration: underline;
             text-decoration-thickness: 0.12em;
             text-underline-offset: 0.15em;
         }
@@ -93,6 +94,62 @@
         a:focus-visible {
             outline: 3px solid #000000;
             outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 20px;
+            z-index: 1000;
+            padding: 12px 16px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 3px solid #000000;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        figure {
+            margin: 1.5rem 0;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        figcaption {
+            max-width: 600px;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        abbr[title] {
+            text-decoration: underline dotted;
+            text-underline-offset: 0.15em;
+            cursor: help;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #767676;
+            font-size: 0.95rem;
         }
 
         @media (max-width: 600px) {
@@ -105,7 +162,7 @@
                 border-radius: 6px;
             }
 
-            .introductory-text {
+            header {
                 text-align: left;
             }
 
@@ -117,217 +174,346 @@
                 padding-left: 1.4rem;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <main class="container">
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
 
-        <h1>Graham Deacon</h1>
+    <div class="container">
 
-        <p class="introductory-text">
-            <em>
+        <header>
+            <h1>Graham Deacon</h1>
+
+            <p class="introductory-text">
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
-            </em>
-        </p>
+            </p>
+        </header>
 
-        <h2>About Me</h2>
+        <main id="main-content">
 
-        <p>
-            Welcome to my responsive personal web page. My name is
-            <strong>Graham Deacon</strong>, and I work in information
-            technology within the industrial automation sector. I have
-            extensive experience in IT operations, programme delivery,
-            governance and technology improvement initiatives.
-        </p>
+            <p>
+                <a class="back-link" href="../index.html">
+                    <span aria-hidden="true">&larr;</span>
+                    Back to portfolio
+                </a>
+            </p>
 
-        <p>
-            I am currently transitioning into a new role at
-            <strong>Rockwell Automation</strong> within the
-            <mark>Governance, Risk and Compliance (GRC)</mark>
-            domain, supporting projects focused on
-            <strong>AI risk governance</strong>.
-        </p>
+            <section aria-labelledby="about-heading">
+                <h2 id="about-heading">About Me</h2>
 
-        <p>
-            I am also studying for an
-            <strong>MSc in Computing and Cyber Security</strong>
-            at Sheffield Hallam University and have recently started
-            <strong>Module 9</strong> of the programme.
-        </p>
+                <p>
+                    Welcome to my responsive personal web page. My name is
+                    <strong>Graham Deacon</strong>, and I work in information
+                    technology within the industrial automation sector. I have
+                    extensive experience in IT operations, programme delivery,
+                    governance and technology improvement initiatives.
+                </p>
 
-        <h2>Professional Qualifications and Profile</h2>
+                <p>
+                    I am currently transitioning into a new role at
+                    <strong>Rockwell Automation</strong> within the
+                    <mark>Governance, Risk and Compliance (GRC)</mark>
+                    domain, supporting projects focused on
+                    <strong>AI risk governance</strong>.
+                </p>
 
-        <p>
-            I hold a number of professional qualifications and
-            certifications, including:
-        </p>
+                <p>
+                    I am also studying for an
+                    <strong>MSc in Computing and Cyber Security</strong>
+                    at Sheffield Hallam University and have recently started
+                    <strong>Module 9</strong> of the programme.
+                </p>
+            </section>
 
-        <ul>
-            <li>Chartered Engineer (CEng)</li>
-            <li>MIET</li>
-            <li>PMP</li>
-            <li>RMP</li>
-            <li>ACP</li>
-            <li>AAISM</li>
-            <li>CISM</li>
-            <li>CRISC</li>
-            <li>CISA</li>
-        </ul>
+            <section aria-labelledby="qualifications-heading">
+                <h2 id="qualifications-heading">
+                    Professional Qualifications and Profile
+                </h2>
 
-        <p>
-            These qualifications reflect my experience across engineering,
-            project delivery, governance, risk management, information
-            security and audit disciplines.
-        </p>
+                <p>
+                    I hold a number of professional qualifications and
+                    certifications, including:
+                </p>
 
-        <p>
-            You can learn more about my professional background,
-            qualifications and experience on my
-            <a
-                href="https://www.linkedin.com/in/gpdeacon/"
-                target="_blank"
-                rel="noopener noreferrer">
-                LinkedIn profile (opens in a new tab)
-            </a>.
-        </p>
+                <ul>
+                    <li>
+                        Chartered Engineer
+                        (<abbr title="Chartered Engineer">CEng</abbr>)
+                    </li>
 
-        <h2>Family Life</h2>
+                    <li>
+                        Member of the Institution of Engineering and Technology
+                        (<abbr title="Member of the Institution of Engineering and Technology">MIET</abbr>)
+                    </li>
 
-        <p>
-            I am married to my wife, <strong>Fiona</strong>, and together we
-            have two daughters and a son. Family life keeps me busy outside
-            work and university, and we enjoy spending time together.
-        </p>
+                    <li>
+                        Project Management Professional
+                        (<abbr title="Project Management Professional">PMP</abbr>)
+                    </li>
 
-        <p>
-            We also have a working <strong>Cocker Spaniel</strong> who enjoys
-            long walks and is very much part of the family.
-        </p>
+                    <li>
+                        Risk Management Professional
+                        (<abbr title="Risk Management Professional">RMP</abbr>)
+                    </li>
 
-        <h2 class="interests-heading">My Interests</h2>
+                    <li>
+                        Agile Certified Practitioner
+                        (<abbr title="Agile Certified Practitioner">ACP</abbr>)
+                    </li>
 
-        <ul>
-            <li>Reading, especially fiction novels</li>
-            <li>Listening to music</li>
-            <li>Learning to play the banjo</li>
-            <li>Figure painting and miniature modelling</li>
-            <li>Cinema and theatre</li>
-            <li>Supporting Oxford United Football Club</li>
-            <li>Spending time with family and friends</li>
-        </ul>
+                    <li>
+                        Advanced in AI Security Management
+                        (<abbr title="Advanced in AI Security Management">AAISM</abbr>)
+                    </li>
 
-        <h2>Oxford United</h2>
+                    <li>
+                        Certified Information Security Manager
+                        (<abbr title="Certified Information Security Manager">CISM</abbr>)
+                    </li>
 
-        <p class="highlight">
-            I am a lifelong supporter of Oxford United Football Club and a
-            proud season ticket holder. I enjoy attending matches throughout
-            the season and following the club's progress.
-        </p>
+                    <li>
+                        Certified in Risk and Information Systems Control
+                        (<abbr title="Certified in Risk and Information Systems Control">CRISC</abbr>)
+                    </li>
 
-        <img
-            src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
-            alt="Oxford United football players during a match"
-            width="600"
-            height="400">
+                    <li>
+                        Certified Information Systems Auditor
+                        (<abbr title="Certified Information Systems Auditor">CISA</abbr>)
+                    </li>
+                </ul>
 
-        <h2>Why I Am Studying Computing and Cyber Security</h2>
+                <p>
+                    These qualifications reflect my experience across engineering,
+                    project delivery, governance, risk management, information
+                    security and audit disciplines.
+                </p>
 
-        <p>
-            Technology continues to evolve rapidly, and I believe lifelong
-            learning is essential. My MSc studies are helping me develop
-            deeper knowledge of software development, cyber security,
-            data management and artificial intelligence, complementing my
-            professional experience.
-        </p>
+                <p>
+                    You can learn more about my professional background,
+                    qualifications and experience on my
+                    <a
+                        href="https://www.linkedin.com/in/gpdeacon/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        LinkedIn profile (opens in a new tab)
+                    </a>.
+                </p>
+            </section>
 
-        <p class="learning-summary">
-            Developing this page has helped me understand how HTML provides
-            the content structure while CSS controls presentation, spacing,
-            colour and responsive behaviour across different devices.
-        </p>
+            <section aria-labelledby="family-heading">
+                <h2 id="family-heading">Family Life</h2>
 
-        <h2>Responsive Styling Techniques Used</h2>
+                <p>
+                    I am married to my wife, <strong>Fiona</strong>, and together we
+                    have two daughters and a son. Family life keeps me busy outside
+                    work and university, and we enjoy spending time together.
+                </p>
 
-        <p>
-            For this version of the webpage, I extended the original styling
-            so that the content adapts more effectively to desktop, tablet and
-            mobile screen sizes.
-        </p>
+                <p>
+                    We also have a working <strong>Cocker Spaniel</strong> who enjoys
+                    long walks and is very much part of the family.
+                </p>
+            </section>
 
-        <ul>
-            <li>
-                Added the viewport meta tag so mobile browsers use the
-                physical width of the device.
-            </li>
-            <li>
-                Used a responsive container with a maximum width to prevent
-                text lines becoming too long on larger screens.
-            </li>
-            <li>
-                Used relative sizing and the CSS
-                <strong>clamp()</strong> function so headings adapt to
-                different screen widths.
-            </li>
-            <li>
-                Made the Oxford United image responsive using
-                <strong>width: 100%</strong> and
-                <strong>height: auto</strong>.
-            </li>
-            <li>
-                Added a media query for screens below 600 pixels to reduce
-                margins, padding and heading spacing.
-            </li>
-            <li>
-                Used the CSS <strong>box-sizing</strong> property to make
-                element widths easier to manage.
-            </li>
-            <li>
-                Centred the main content on larger screens while allowing it
-                to use most of the available width on mobile devices.
-            </li>
-            <li>
-                Replaced inline styles with reusable CSS classes to make the
-                code more consistent and easier to maintain.
-            </li>
-            <li>
-                Added visible keyboard focus styling to improve navigation
-                for users who do not use a mouse.
-            </li>
-            <li>
-                Used line spacing and scalable text to maintain readability
-                on small and large screens.
-            </li>
-        </ul>
+            <section aria-labelledby="interests-heading">
+                <h2 id="interests-heading" class="interests-heading">
+                    My Interests
+                </h2>
 
-        <h2>Responsive Design Reflection</h2>
+                <ul>
+                    <li>Reading, especially fiction novels</li>
+                    <li>Listening to music</li>
+                    <li>Learning to play the banjo</li>
+                    <li>Figure painting and miniature modelling</li>
+                    <li>Cinema and theatre</li>
+                    <li>Supporting Oxford United Football Club</li>
+                    <li>Spending time with family and friends</li>
+                </ul>
+            </section>
 
-        <p>
-            The original page remained functional on a mobile device, but it
-            was designed mainly for a desktop-sized screen. Fixed image sizes,
-            page margins and padding could make the content appear cramped or
-            require unnecessary scaling on smaller devices.
-        </p>
+            <section aria-labelledby="football-heading">
+                <h2 id="football-heading">Oxford United</h2>
 
-        <p>
-            The revised page uses responsive CSS so that the same HTML content
-            can be presented appropriately across mobile, tablet and desktop
-            screens. The image reduces in size when required, the text remains
-            readable, and the content container adjusts to the available width
-            without causing horizontal scrolling.
-        </p>
+                <p class="highlight">
+                    I am a lifelong supporter of Oxford United Football Club and a
+                    proud season ticket holder. I enjoy attending matches throughout
+                    the season and following the club's progress.
+                </p>
 
-        <p>
-            I tested the page using the responsive device tools in the browser
-            developer tools at mobile, tablet and desktop widths. This showed
-            that responsive web design involves more than making a desktop page
-            smaller. It also requires suitable spacing, readable text, flexible
-            images and controls that remain easy to use on touchscreen devices.
-        </p>
+                <figure>
+                    <img
+                        src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
+                        alt="Oxford United football players during a match"
+                        width="600"
+                        height="400">
 
-    </main>
+                    <figcaption>
+                        Oxford United Football Club, which I have supported
+                        throughout my life.
+                    </figcaption>
+                </figure>
+            </section>
+
+            <section aria-labelledby="study-heading">
+                <h2 id="study-heading">
+                    Why I Am Studying Computing and Cyber Security
+                </h2>
+
+                <p>
+                    Technology continues to evolve rapidly, and I believe lifelong
+                    learning is essential. My MSc studies are helping me develop
+                    deeper knowledge of software development, cyber security,
+                    data management and artificial intelligence, complementing my
+                    professional experience.
+                </p>
+
+                <p class="learning-summary">
+                    Developing this page has helped me understand how HTML provides
+                    the content structure while CSS controls presentation, spacing,
+                    colour and responsive behaviour across different devices.
+                </p>
+            </section>
+
+            <section aria-labelledby="responsive-heading">
+                <h2 id="responsive-heading">
+                    Responsive Styling Techniques Used
+                </h2>
+
+                <p>
+                    For this version of the webpage, I extended the original styling
+                    so that the content adapts more effectively to desktop, tablet and
+                    mobile screen sizes while retaining the accessibility and semantic
+                    techniques introduced in the previous exercise.
+                </p>
+
+                <ul>
+                    <li>
+                        Added the viewport meta tag so mobile browsers use the
+                        physical width of the device.
+                    </li>
+
+                    <li>
+                        Used a responsive container with a maximum width to prevent
+                        text lines becoming too long on larger screens.
+                    </li>
+
+                    <li>
+                        Used relative sizing and the CSS
+                        <strong>clamp()</strong> function so headings adapt to
+                        different screen widths.
+                    </li>
+
+                    <li>
+                        Made the Oxford United image responsive using
+                        <strong>width: 100%</strong> and
+                        <strong>height: auto</strong>.
+                    </li>
+
+                    <li>
+                        Added a media query for screens below 600 pixels to reduce
+                        padding and heading spacing.
+                    </li>
+
+                    <li>
+                        Used the CSS <strong>box-sizing</strong> property to make
+                        element widths easier to manage.
+                    </li>
+
+                    <li>
+                        Centred the main content on larger screens while allowing it
+                        to use most of the available width on mobile devices.
+                    </li>
+
+                    <li>
+                        Used reusable CSS classes rather than inline styles to make
+                        the code more consistent and easier to maintain.
+                    </li>
+
+                    <li>
+                        Retained visible keyboard focus styling to support users who
+                        navigate without a mouse.
+                    </li>
+
+                    <li>
+                        Retained semantic HTML landmarks, meaningful headings,
+                        accessible abbreviations and descriptive image text.
+                    </li>
+
+                    <li>
+                        Used line spacing and scalable text to maintain readability
+                        on small and large screens.
+                    </li>
+
+                    <li>
+                        Added support for users who prefer reduced motion.
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="reflection-heading">
+                <h2 id="reflection-heading">
+                    Responsive Design Reflection
+                </h2>
+
+                <p>
+                    The original page remained functional on a mobile device, but it
+                    was designed mainly for a desktop-sized screen. Fixed image sizes,
+                    page margins and padding could make the content appear cramped or
+                    require unnecessary scaling on smaller devices.
+                </p>
+
+                <p>
+                    The revised page uses responsive CSS so that the same HTML content
+                    can be presented appropriately across mobile, tablet and desktop
+                    screens. The image reduces in size when required, the text remains
+                    readable, and the content container adjusts to the available width
+                    without causing horizontal scrolling.
+                </p>
+
+                <p>
+                    I also retained the semantic structure and accessibility
+                    improvements introduced in the previous exercise. This helped me
+                    recognise that responsive web design should not replace good
+                    accessibility practice, but should work alongside it.
+                </p>
+
+                <p>
+                    I tested the page using the responsive device tools in the browser
+                    developer tools at mobile, tablet and desktop widths. This showed
+                    that responsive web design involves more than making a desktop page
+                    smaller. It also requires suitable spacing, readable text, flexible
+                    images and controls that remain easy to use on touchscreen devices.
+                </p>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>
+                Personal webpage created by Graham Deacon as part of the
+                MSc Computing and Cyber Security programme.
+            </p>
+
+            <p>
+                <a class="back-link" href="../index.html">
+                    <span aria-hidden="true">&larr;</span>
+                    Return to main portfolio
+                </a>
+            </p>
+        </footer>
+
+    </div>
 
 </body>
 
