@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 
 <head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Personal profile of Graham Deacon, an MSc Computing and Cyber Security student and IT professional.">
+
     <title>Graham Deacon - Personal Web Page</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
             color: #333333;
+            line-height: 1.6;
         }
 
         .container {
+            max-width: 900px;
+            margin: 0 auto;
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
         }
 
@@ -28,8 +45,10 @@
         }
 
         img {
+            display: block;
+            max-width: 100%;
+            height: auto;
             border-radius: 10px;
-            max-width: 600px;
         }
 
         .highlight {
@@ -37,41 +56,43 @@
             padding: 10px;
             border-radius: 5px;
         }
-   
-    .back-link {
-    display: inline-block;
-    margin-bottom: 1.25rem;
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: none;
-}
 
-.back-link:hover,
-.back-link:focus {
-    text-decoration: underline;
-}
-    
-    
-    
-    
-    
-    
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.25rem;
+            color: darkblue;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link:hover,
+        .back-link:focus {
+            text-decoration: underline;
+        }
+
+        .bottom-link {
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
     </style>
-
 </head>
 
 <body>
 
     <div class="container">
 
-    <a class="back-link" href="../index.html">
-        &larr; Back to portfolio
-    </a>
+        <a class="back-link" href="../index.html">
+            &larr; Return to main portfolio
+        </a>
 
-    <h1>Graham Deacon</h1>
+        <h1>Graham Deacon</h1>
 
         <p style="text-align: center;">
-            <em>MSc Computing and Cyber Security Student | IT Professional | GRC and AI Governance</em>
+            <em>
+                MSc Computing and Cyber Security Student |
+                IT Professional |
+                GRC and AI Governance
+            </em>
         </p>
 
         <h2>About Me</h2>
@@ -115,7 +136,6 @@
             <li>CISM</li>
             <li>CRISC</li>
             <li>CISA</li>
-           
         </ul>
 
         <p>
@@ -127,8 +147,11 @@
         <p>
             You can learn more about my professional background,
             qualifications and experience on my
-            <a href="https://www.linkedin.com/in/gpdeacon/" target="_blank">
-                LinkedIn Profile
+            <a
+                href="https://www.linkedin.com/in/gpdeacon/"
+                target="_blank"
+                rel="noopener noreferrer">
+                LinkedIn profile (opens in a new tab)
             </a>.
         </p>
 
@@ -165,11 +188,10 @@
             the season and following the club's progress.
         </p>
 
-       <img
+        <img
             src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
             alt="Oxford United Football Club"
             width="600">
-
 
         <h2>Why I Am Studying Computing and Cyber Security</h2>
 
@@ -195,15 +217,57 @@
         </p>
 
         <ul>
-            <li>Applied colours to headings using the <strong>color</strong> property.</li>
-            <li>Used a light grey <strong>background colour</strong> for the page.</li>
-            <li>Applied the <strong>Arial</strong> font across the webpage.</li>
-            <li>Centred the main page heading using <strong>text-align</strong>.</li>
-            <li>Used <strong>padding</strong> and <strong>border-radius</strong> to improve layout and appearance.</li>
-            <li>Applied emphasis using the <strong> strong </strong> and <strong> em </strong> formatting tags.</li>
-            <li>Created a reusable CSS class called <strong>highlight</strong>.</li>
-            <li>Rounded the corners of the image using CSS.</li>
-            <li>Used hyperlinks to connect the page to external resources such as LinkedIn.</li>
+            <li>
+                Applied colours to headings using the
+                <strong>color</strong> property.
+            </li>
+
+            <li>
+                Used a light grey
+                <strong>background colour</strong>
+                for the page.
+            </li>
+
+            <li>
+                Applied the
+                <strong>Arial</strong>
+                font across the webpage.
+            </li>
+
+            <li>
+                Centred the main page heading using
+                <strong>text-align</strong>.
+            </li>
+
+            <li>
+                Used
+                <strong>padding</strong>
+                and
+                <strong>border-radius</strong>
+                to improve layout and appearance.
+            </li>
+
+            <li>
+                Applied emphasis using the
+                <strong>&lt;strong&gt;</strong>
+                and
+                <strong>&lt;em&gt;</strong>
+                formatting tags.
+            </li>
+
+            <li>
+                Created a reusable CSS class called
+                <strong>highlight</strong>.
+            </li>
+
+            <li>
+                Rounded the corners of the image using CSS.
+            </li>
+
+            <li>
+                Used hyperlinks to connect the page to external resources
+                such as LinkedIn.
+            </li>
         </ul>
 
         <p>
@@ -212,6 +276,12 @@
             difference between content structure (HTML) and visual
             presentation (CSS).
         </p>
+
+        <a
+            class="back-link bottom-link"
+            href="../index.html">
+            &larr; Return to main portfolio
+        </a>
 
     </div>
 
