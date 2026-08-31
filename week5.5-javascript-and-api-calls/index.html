@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="Personal profile of Graham Deacon demonstrating responsive HTML, CSS, forms, JavaScript, DOM manipulation and API calls.">
+        content="Personal profile of Graham Deacon demonstrating responsive HTML, CSS, forms, JavaScript, DOM manipulation, accessibility and API calls.">
 
     <title>Graham Deacon - Interactive Web Page with API</title>
 
@@ -41,12 +41,16 @@
             border-radius: 10px;
         }
 
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
         h1 {
             margin-top: 0;
             color: darkblue;
             font-size: clamp(2rem, 6vw, 3rem);
             line-height: 1.2;
-            text-align: center;
         }
 
         h2 {
@@ -61,7 +65,8 @@
         }
 
         .introductory-text {
-            text-align: center;
+            margin-bottom: 0;
+            font-style: italic;
         }
 
         .interests-heading {
@@ -84,17 +89,9 @@
             color: darkblue;
         }
 
-        img {
-            display: block;
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 1rem auto 0;
-            border-radius: 10px;
-        }
-
         a {
             color: #0046a8;
+            text-decoration: underline;
             text-decoration-thickness: 0.12em;
             text-underline-offset: 0.15em;
         }
@@ -106,6 +103,56 @@
         a:focus-visible {
             outline: 3px solid #000000;
             outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 20px;
+            z-index: 1000;
+            padding: 12px 16px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 3px solid #000000;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        figure {
+            margin: 1.5rem 0;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 1rem auto 0;
+            border-radius: 10px;
+        }
+
+        figcaption {
+            max-width: 600px;
+            margin: 8px auto 0;
+            font-size: 0.95rem;
+        }
+
+        abbr[title] {
+            text-decoration: underline dotted;
+            text-underline-offset: 0.15em;
+            cursor: help;
         }
 
         form {
@@ -372,6 +419,13 @@
             color: #563d7c;
         }
 
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #767676;
+            font-size: 0.95rem;
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -382,7 +436,7 @@
                 border-radius: 6px;
             }
 
-            .introductory-text {
+            header {
                 text-align: left;
             }
 
@@ -421,629 +475,813 @@
 
 <body>
 
-    <main class="container">
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
 
-        <h1>Graham Deacon</h1>
+    <div class="container">
 
-        <p class="introductory-text">
-            <em>
+        <header>
+            <h1>Graham Deacon</h1>
+
+            <p class="introductory-text">
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
-            </em>
-        </p>
+            </p>
+        </header>
 
-        <h2>About Me</h2>
-
-        <p>
-            Welcome to my interactive personal web page. My name is
-            <strong>Graham Deacon</strong>, and I work in information
-            technology within the industrial automation sector. I have
-            extensive experience in IT operations, programme delivery,
-            governance and technology improvement initiatives.
-        </p>
-
-        <p>
-            I am currently transitioning into a new role at
-            <strong>Rockwell Automation</strong> within the
-            <mark>Governance, Risk and Compliance (GRC)</mark>
-            domain, supporting projects focused on
-            <strong>AI risk governance</strong>.
-        </p>
-
-        <p>
-            I am also studying for an
-            <strong>MSc in Computing and Cyber Security</strong>
-            at Sheffield Hallam University and have recently started
-            <strong>Module 9</strong> of the programme.
-        </p>
-
-        <h2>Professional Qualifications and Profile</h2>
-
-        <p>
-            I hold a number of professional qualifications and
-            certifications, including:
-        </p>
-
-        <ul>
-            <li>Chartered Engineer (CEng)</li>
-            <li>MIET</li>
-            <li>PMP</li>
-            <li>RMP</li>
-            <li>ACP</li>
-            <li>AAISM</li>
-            <li>CISM</li>
-            <li>CRISC</li>
-            <li>CISA</li>
-        </ul>
-
-        <p>
-            These qualifications reflect my experience across engineering,
-            project delivery, governance, risk management, information
-            security and audit disciplines.
-        </p>
-
-        <p>
-            You can learn more about my professional background,
-            qualifications and experience on my
-            <a
-                href="https://www.linkedin.com/in/gpdeacon/"
-                target="_blank"
-                rel="noopener noreferrer">
-                LinkedIn profile (opens in a new tab)
-            </a>.
-        </p>
-
-        <h2>Family Life</h2>
-
-        <p>
-            I am married to my wife, <strong>Fiona</strong>, and together we
-            have two daughters and a son. Family life keeps me busy outside
-            work and university, and we enjoy spending time together.
-        </p>
-
-        <p>
-            We also have a working <strong>Cocker Spaniel</strong> who enjoys
-            long walks and is very much part of the family.
-        </p>
-
-        <section
-            class="dog-api-section"
-            aria-labelledby="dog-api-heading">
-
-            <h2 id="dog-api-heading">
-                Random Cocker Spaniel Image
-            </h2>
+        <main id="main-content">
 
             <p>
-                Select the button to retrieve a random Cocker Spaniel image
-                from the Dog CEO API.
+                <a class="back-link" href="../index.html">
+                    <span aria-hidden="true">&larr;</span>
+                    Back to portfolio
+                </a>
             </p>
 
-            <button
-                type="button"
-                id="load-dog-button">
-                Show a random Cocker Spaniel
-            </button>
-
-            <p
-                id="dog-api-status"
-                class="api-status"
-                role="status"
-                aria-live="polite">
-            </p>
-
-            <div
-                id="dog-image-container"
-                class="dog-image-container hidden">
-
-                <img
-                    id="dog-image"
-                    src=""
-                    alt="">
-            </div>
-
-            <div class="api-notes">
-                <h3>API Feature Added</h3>
+            <section aria-labelledby="about-heading">
+                <h2 id="about-heading">About Me</h2>
 
                 <p>
-                    This feature uses JavaScript to send a request to an
-                    external web API and display the returned image.
+                    Welcome to my interactive personal web page. My name is
+                    <strong>Graham Deacon</strong>, and I work in information
+                    technology within the industrial automation sector. I have
+                    extensive experience in IT operations, programme delivery,
+                    governance and technology improvement initiatives.
+                </p>
+
+                <p>
+                    I am currently transitioning into a new role at
+                    <strong>Rockwell Automation</strong> within the
+                    <mark>Governance, Risk and Compliance (GRC)</mark>
+                    domain, supporting projects focused on
+                    <strong>AI risk governance</strong>.
+                </p>
+
+                <p>
+                    I am also studying for an
+                    <strong>MSc in Computing and Cyber Security</strong>
+                    at Sheffield Hallam University and have recently started
+                    <strong>Module 9</strong> of the programme.
+                </p>
+            </section>
+
+            <section aria-labelledby="qualifications-heading">
+                <h2 id="qualifications-heading">
+                    Professional Qualifications and Profile
+                </h2>
+
+                <p>
+                    I hold a number of professional qualifications and
+                    certifications, including:
                 </p>
 
                 <ul>
                     <li>
-                        <code>fetch()</code> sends a request to the API.
+                        Chartered Engineer
+                        (<abbr title="Chartered Engineer">CEng</abbr>)
                     </li>
 
                     <li>
-                        <code>async</code> and <code>await</code> manage the
-                        asynchronous request.
+                        Member of the Institution of Engineering and Technology
+                        (<abbr title="Member of the Institution of Engineering and Technology">MIET</abbr>)
                     </li>
 
                     <li>
-                        <code>response.json()</code> converts the API response
-                        into a JavaScript object.
+                        Project Management Professional
+                        (<abbr title="Project Management Professional">PMP</abbr>)
                     </li>
 
                     <li>
-                        The returned image URL is read from the
-                        <code>message</code> property.
+                        Risk Management Professional
+                        (<abbr title="Risk Management Professional">RMP</abbr>)
                     </li>
 
                     <li>
-                        The DOM is updated to display the returned image and
-                        status message.
+                        Agile Certified Practitioner
+                        (<abbr title="Agile Certified Practitioner">ACP</abbr>)
                     </li>
 
                     <li>
-                        Error handling displays a helpful message if the
-                        request is unsuccessful.
+                        Advanced in AI Security Management
+                        (<abbr title="Advanced in AI Security Management">AAISM</abbr>)
+                    </li>
+
+                    <li>
+                        Certified Information Security Manager
+                        (<abbr title="Certified Information Security Manager">CISM</abbr>)
+                    </li>
+
+                    <li>
+                        Certified in Risk and Information Systems Control
+                        (<abbr title="Certified in Risk and Information Systems Control">CRISC</abbr>)
+                    </li>
+
+                    <li>
+                        Certified Information Systems Auditor
+                        (<abbr title="Certified Information Systems Auditor">CISA</abbr>)
                     </li>
                 </ul>
-            </div>
-        </section>
 
-        <h2 class="interests-heading">My Interests</h2>
+                <p>
+                    These qualifications reflect my experience across engineering,
+                    project delivery, governance, risk management, information
+                    security and audit disciplines.
+                </p>
 
-        <ul>
-            <li>Reading, especially fiction novels</li>
-            <li>Listening to music</li>
-            <li>Learning to play the banjo</li>
-            <li>Figure painting and miniature modelling</li>
-            <li>Cinema and theatre</li>
-            <li>Supporting Oxford United Football Club</li>
-            <li>Spending time with family and friends</li>
-        </ul>
+                <p>
+                    You can learn more about my professional background,
+                    qualifications and experience on my
+                    <a
+                        href="https://www.linkedin.com/in/gpdeacon/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        LinkedIn profile (opens in a new tab)
+                    </a>.
+                </p>
+            </section>
 
-        <h2>Oxford United</h2>
+            <section aria-labelledby="family-heading">
+                <h2 id="family-heading">Family Life</h2>
 
-        <p class="highlight">
-            I am a lifelong supporter of Oxford United Football Club and a
-            proud season ticket holder. I enjoy attending matches throughout
-            the season and following the club's progress.
-        </p>
+                <p>
+                    I am married to my wife, <strong>Fiona</strong>, and together we
+                    have two daughters and a son. Family life keeps me busy outside
+                    work and university, and we enjoy spending time together.
+                </p>
 
-        <img
-            src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
-            alt="Oxford United football players during a match"
-            width="600"
-            height="400">
+                <p>
+                    We also have a working <strong>Cocker Spaniel</strong> who enjoys
+                    long walks and is very much part of the family.
+                </p>
+            </section>
 
-        <h2>Why I Am Studying Computing and Cyber Security</h2>
+            <section
+                class="dog-api-section"
+                aria-labelledby="dog-api-heading">
 
-        <p>
-            Technology continues to evolve rapidly, and I believe lifelong
-            learning is essential. My MSc studies are helping me develop
-            deeper knowledge of software development, cyber security,
-            data management and artificial intelligence, complementing my
-            professional experience.
-        </p>
+                <h2 id="dog-api-heading">
+                    Random Cocker Spaniel Image
+                </h2>
 
-        <p class="learning-summary">
-            Developing this page has helped me understand how HTML provides
-            structure, CSS controls presentation, JavaScript adds interaction,
-            DOM methods dynamically change content, and APIs provide data from
-            external services.
-        </p>
+                <p>
+                    Select the button to retrieve a random Cocker Spaniel image
+                    from the Dog CEO API.
+                </p>
 
-        <h2>Responsive Styling Techniques Used</h2>
+                <button
+                    type="button"
+                    id="load-dog-button">
+                    Show a random Cocker Spaniel
+                </button>
 
-        <p>
-            I extended the original styling so that the content adapts more
-            effectively to desktop, tablet and mobile screen sizes.
-        </p>
+                <p
+                    id="dog-api-status"
+                    class="api-status"
+                    role="status"
+                    aria-live="polite">
+                </p>
 
-        <ul>
-            <li>
-                Added the viewport meta tag so mobile browsers use the
-                physical width of the device.
-            </li>
+                <div
+                    id="dog-image-container"
+                    class="dog-image-container hidden">
 
-            <li>
-                Used a responsive container with a maximum width to prevent
-                text lines becoming too long.
-            </li>
+                    <img
+                        id="dog-image"
+                        src=""
+                        alt="">
+                </div>
 
-            <li>
-                Used relative sizing and the CSS
-                <strong>clamp()</strong> function for responsive headings.
-            </li>
+                <div class="api-notes">
 
-            <li>
-                Made images responsive using
-                <strong>width: 100%</strong> and
-                <strong>height: auto</strong>.
-            </li>
+                    <h3>API Feature Added</h3>
 
-            <li>
-                Added a media query for screens below 600 pixels.
-            </li>
+                    <p>
+                        This feature uses JavaScript to send a request to an
+                        external web API and display the returned image.
+                    </p>
 
-            <li>
-                Added visible keyboard focus indicators.
-            </li>
+                    <ul>
+                        <li>
+                            <code>fetch()</code> sends a request to the API.
+                        </li>
 
-            <li>
-                Used mobile-friendly buttons with a minimum height of
-                44 pixels.
-            </li>
-        </ul>
+                        <li>
+                            <code>async</code> and <code>await</code> manage the
+                            asynchronous request.
+                        </li>
 
-        <h2>Responsive Design Reflection</h2>
+                        <li>
+                            <code>response.json()</code> converts the API response
+                            into a JavaScript object.
+                        </li>
 
-        <p>
-            The original page remained functional on mobile devices, but it
-            was designed mainly for a desktop-sized screen. Fixed image sizes,
-            larger margins and wider layouts could make the content appear
-            cramped on smaller displays.
-        </p>
+                        <li>
+                            The returned image URL is read from the
+                            <code>message</code> property.
+                        </li>
 
-        <p>
-            The revised page uses responsive CSS so that the same HTML content
-            can be presented appropriately across mobile, tablet and desktop
-            screens. Images reduce in size when required, text remains readable
-            and the content adjusts without introducing horizontal scrolling.
-        </p>
+                        <li>
+                            The DOM is updated to display the returned image and
+                            status message.
+                        </li>
 
-        <section aria-labelledby="contact-heading">
+                        <li>
+                            The request button is temporarily disabled while the
+                            API request is being processed.
+                        </li>
 
-            <h2 id="contact-heading">Contact and Interests Form</h2>
+                        <li>
+                            Error handling displays a helpful message if the
+                            request is unsuccessful.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section aria-labelledby="interests-heading">
+                <h2 id="interests-heading" class="interests-heading">
+                    My Interests
+                </h2>
+
+                <ul>
+                    <li>Reading, especially fiction novels</li>
+                    <li>Listening to music</li>
+                    <li>Learning to play the banjo</li>
+                    <li>Figure painting and miniature modelling</li>
+                    <li>Cinema and theatre</li>
+                    <li>Supporting Oxford United Football Club</li>
+                    <li>Spending time with family and friends</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="football-heading">
+                <h2 id="football-heading">
+                    Oxford United
+                </h2>
+
+                <p class="highlight">
+                    I am a lifelong supporter of Oxford United Football Club and a
+                    proud season ticket holder. I enjoy attending matches throughout
+                    the season and following the club's progress.
+                </p>
+
+                <figure>
+                    <img
+                        src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
+                        alt="Oxford United football players during a match"
+                        width="600"
+                        height="400">
+
+                    <figcaption>
+                        Oxford United Football Club, which I have supported
+                        throughout my life.
+                    </figcaption>
+                </figure>
+            </section>
+
+            <section aria-labelledby="study-heading">
+                <h2 id="study-heading">
+                    Why I Am Studying Computing and Cyber Security
+                </h2>
+
+                <p>
+                    Technology continues to evolve rapidly, and I believe lifelong
+                    learning is essential. My MSc studies are helping me develop
+                    deeper knowledge of software development, cyber security,
+                    data management and artificial intelligence, complementing my
+                    professional experience.
+                </p>
+
+                <p class="learning-summary">
+                    Developing this page has helped me understand how HTML provides
+                    structure, CSS controls presentation, JavaScript adds interaction,
+                    DOM methods dynamically change content, and APIs provide data from
+                    external services.
+                </p>
+            </section>
+
+            <section aria-labelledby="responsive-heading">
+                <h2 id="responsive-heading">
+                    Responsive Styling Techniques Used
+                </h2>
+
+                <p>
+                    For this version, I retained the responsive, semantic,
+                    accessibility, form and DOM techniques developed in the previous
+                    exercises and extended the page to retrieve external data
+                    asynchronously using a web API.
+                </p>
+
+                <ul>
+                    <li>
+                        Added the viewport meta tag so mobile browsers use the
+                        physical width of the device.
+                    </li>
+
+                    <li>
+                        Used a responsive container with a maximum width to prevent
+                        text lines becoming too long.
+                    </li>
+
+                    <li>
+                        Used relative sizing and the CSS
+                        <strong>clamp()</strong> function for responsive headings.
+                    </li>
+
+                    <li>
+                        Made images responsive using
+                        <strong>width: 100%</strong> and
+                        <strong>height: auto</strong>.
+                    </li>
+
+                    <li>
+                        Added a media query for screens below 600 pixels.
+                    </li>
+
+                    <li>
+                        Retained semantic HTML landmarks and meaningful section
+                        headings.
+                    </li>
+
+                    <li>
+                        Retained descriptive alternative text, accessible
+                        abbreviations and a figure caption.
+                    </li>
+
+                    <li>
+                        Added visible keyboard focus indicators.
+                    </li>
+
+                    <li>
+                        Used mobile-friendly buttons with a minimum height of
+                        44 pixels.
+                    </li>
+
+                    <li>
+                        Added support for users who prefer reduced motion.
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="reflection-heading">
+                <h2 id="reflection-heading">
+                    Responsive Design, DOM and API Reflection
+                </h2>
+
+                <p>
+                    Earlier versions of the page introduced responsive layouts,
+                    accessible forms, JavaScript event handling and HTML DOM
+                    manipulation. In this exercise I extended those techniques by
+                    retrieving data asynchronously from an external web API.
+                </p>
+
+                <p>
+                    The API exercise helped me understand that a webpage can request
+                    information from an external service after the page has loaded.
+                    JavaScript can process the returned data and update the DOM without
+                    requiring the browser to reload the page.
+                </p>
+
+                <p>
+                    Using <code>async</code>, <code>await</code> and
+                    <code>fetch()</code> also helped me understand the asynchronous
+                    nature of web requests. The page needs to provide feedback while
+                    waiting for a response and deal appropriately with situations in
+                    which the request fails or the expected data is not returned.
+                </p>
+
+                <p>
+                    I retained the semantic structure, responsive behaviour and
+                    accessibility improvements from the previous exercises. This
+                    reinforced that external API functionality should build on
+                    accessible HTML, responsive CSS and predictable user feedback
+                    rather than replace them.
+                </p>
+            </section>
+
+            <section aria-labelledby="contact-heading">
+
+                <h2 id="contact-heading">
+                    Contact and Interests Form
+                </h2>
+
+                <p>
+                    This form demonstrates HTML form controls, JavaScript
+                    interaction and HTML DOM manipulation. Required fields are
+                    marked with an asterisk.
+                </p>
+
+                <form id="contact-form" action="#" method="post">
+
+                    <fieldset>
+                        <legend>Your Details</legend>
+
+                        <div class="form-group">
+                            <label for="name">
+                                Name *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                Email address *
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                autocomplete="email"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">
+                                Your role
+                            </label>
+
+                            <select id="role" name="role">
+                                <option value="">
+                                    Please select
+                                </option>
+
+                                <option value="student">
+                                    Student
+                                </option>
+
+                                <option value="it-professional">
+                                    IT professional
+                                </option>
+
+                                <option value="engineer">
+                                    Engineer
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+                            </select>
+                        </div>
+
+                        <div
+                            class="form-group hidden"
+                            id="other-role-group">
+
+                            <label for="other-role">
+                                Please describe your role *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="other-role"
+                                name="other-role">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Areas of Interest</legend>
+
+                        <p>
+                            Select all that apply:
+                        </p>
+
+                        <div class="option-group">
+                            <input
+                                type="checkbox"
+                                id="cyber-security"
+                                name="interests"
+                                value="cyber-security">
+
+                            <label for="cyber-security">
+                                Cyber security
+                            </label>
+                        </div>
+
+                        <div class="option-group">
+                            <input
+                                type="checkbox"
+                                id="ai-governance"
+                                name="interests"
+                                value="ai-governance">
+
+                            <label for="ai-governance">
+                                AI governance
+                            </label>
+                        </div>
+
+                        <div class="option-group">
+                            <input
+                                type="checkbox"
+                                id="web-development"
+                                name="interests"
+                                value="web-development">
+
+                            <label for="web-development">
+                                Web development
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>
+                            Preferred Contact Method
+                        </legend>
+
+                        <div class="option-group">
+                            <input
+                                type="radio"
+                                id="contact-email"
+                                name="contact-method"
+                                value="email"
+                                checked>
+
+                            <label for="contact-email">
+                                Email
+                            </label>
+                        </div>
+
+                        <div class="option-group">
+                            <input
+                                type="radio"
+                                id="contact-linkedin"
+                                name="contact-method"
+                                value="linkedin">
+
+                            <label for="contact-linkedin">
+                                LinkedIn
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group">
+                        <label for="message">
+                            Message
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            maxlength="500"
+                            aria-describedby="message-character-count"
+                            placeholder="Enter your message here"></textarea>
+
+                        <small
+                            class="form-note"
+                            id="message-character-count">
+                            <span id="character-count">0</span>
+                            of 500 characters used.
+                        </small>
+                    </div>
+
+                    <div class="form-progress">
+                        <label for="form-progress">
+                            Form completion
+                        </label>
+
+                        <progress
+                            id="form-progress"
+                            value="0"
+                            max="4">
+                            0%
+                        </progress>
+
+                        <span
+                            id="progress-text"
+                            aria-live="polite">
+                            0% complete
+                        </span>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit">
+                            Submit form
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="secondary-button">
+                            Clear form
+                        </button>
+                    </div>
+
+                </form>
+
+                <div
+                    id="form-confirmation"
+                    class="form-confirmation hidden"
+                    role="status"
+                    aria-live="polite">
+                </div>
+
+                <div
+                    id="submission-summary"
+                    class="submission-summary hidden"
+                    aria-live="polite">
+                </div>
+
+                <div class="form-notes">
+
+                    <h3>
+                        HTML Form Elements Retained
+                    </h3>
+
+                    <p>
+                        The form retains the accessible HTML form elements and
+                        attributes introduced in the previous exercises.
+                    </p>
+
+                    <ul>
+                        <li>
+                            The <code>&lt;form&gt;</code> element groups the
+                            controls.
+                        </li>
+
+                        <li>
+                            <code>&lt;fieldset&gt;</code> and
+                            <code>&lt;legend&gt;</code> organise related controls.
+                        </li>
+
+                        <li>
+                            Labels are connected to inputs using matching
+                            <code>for</code> and <code>id</code> values.
+                        </li>
+
+                        <li>
+                            Text and email inputs collect basic user details.
+                        </li>
+
+                        <li>
+                            A drop-down list allows the user to choose a role.
+                        </li>
+
+                        <li>
+                            Checkboxes support multiple selections.
+                        </li>
+
+                        <li>
+                            Radio buttons allow one preferred contact method.
+                        </li>
+
+                        <li>
+                            A textarea accepts longer messages.
+                        </li>
+
+                        <li>
+                            The <code>required</code>,
+                            <code>autocomplete</code> and
+                            <code>maxlength</code> attributes improve usability.
+                        </li>
+
+                        <li>
+                            The message guidance is associated with the textarea
+                            using <code>aria-describedby</code>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="javascript-notes">
+
+                    <h3>
+                        JavaScript Features Retained
+                    </h3>
+
+                    <ul>
+                        <li>
+                            A live character counter updates as the message is
+                            entered.
+                        </li>
+
+                        <li>
+                            Selecting "Other" displays an additional role field.
+                        </li>
+
+                        <li>
+                            The additional role field becomes required only when
+                            it is displayed.
+                        </li>
+
+                        <li>
+                            The form displays an accessible confirmation message
+                            after successful validation.
+                        </li>
+
+                        <li>
+                            A progress indicator updates as the main form fields
+                            are completed.
+                        </li>
+
+                        <li>
+                            The reset button clears the form and all
+                            JavaScript-generated content.
+                        </li>
+                    </ul>
+
+                    <p>
+                        The form remains a demonstration and does not send or store
+                        information. JavaScript prevents the page from reloading and
+                        provides feedback locally in the browser.
+                    </p>
+                </div>
+
+                <div class="dom-notes">
+
+                    <h3>
+                        HTML DOM Methods Retained
+                    </h3>
+
+                    <p>
+                        The page uses JavaScript DOM methods to select, create,
+                        update, insert and remove elements while the webpage is
+                        running.
+                    </p>
+
+                    <ul>
+                        <li>
+                            <code>getElementById()</code> selects individual
+                            elements using their unique IDs.
+                        </li>
+
+                        <li>
+                            <code>querySelector()</code> selects the chosen
+                            contact-method radio button.
+                        </li>
+
+                        <li>
+                            <code>querySelectorAll()</code> retrieves all selected
+                            interest checkboxes.
+                        </li>
+
+                        <li>
+                            <code>createElement()</code> creates the submission
+                            summary heading, paragraph, list items and button.
+                        </li>
+
+                        <li>
+                            <code>appendChild()</code> inserts newly created
+                            elements into the summary.
+                        </li>
+
+                        <li>
+                            <code>replaceChildren()</code> clears previously
+                            generated summary content.
+                        </li>
+
+                        <li>
+                            <code>classList.add()</code>,
+                            <code>classList.remove()</code> and
+                            <code>classList.toggle()</code> change the appearance
+                            and visibility of elements.
+                        </li>
+
+                        <li>
+                            <code>setAttribute()</code> adds an accessible label
+                            to the dynamically created removal button.
+                        </li>
+
+                        <li>
+                            <code>textContent</code> safely changes displayed text.
+                        </li>
+
+                        <li>
+                            <code>insertAdjacentElement()</code> inserts a DOM
+                            status message beneath the main heading.
+                        </li>
+                    </ul>
+
+                    <p>
+                        These methods allow the webpage to react dynamically
+                        without requiring the browser to load a new page.
+                    </p>
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>
+                Personal webpage created by Graham Deacon as part of the
+                MSc Computing and Cyber Security programme.
+            </p>
 
             <p>
-                This form demonstrates HTML form controls, JavaScript
-                interaction and HTML DOM manipulation. Required fields are
-                marked with an asterisk.
+                <a class="back-link" href="../index.html">
+                    <span aria-hidden="true">&larr;</span>
+                    Return to main portfolio
+                </a>
             </p>
+        </footer>
 
-            <form id="contact-form" action="#" method="post">
-
-                <fieldset>
-                    <legend>Your Details</legend>
-
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            autocomplete="name"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email address *</label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            autocomplete="email"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role">Your role</label>
-
-                        <select id="role" name="role">
-                            <option value="">Please select</option>
-                            <option value="student">Student</option>
-                            <option value="it-professional">
-                                IT professional
-                            </option>
-                            <option value="engineer">Engineer</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div
-                        class="form-group hidden"
-                        id="other-role-group">
-
-                        <label for="other-role">
-                            Please describe your role *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="other-role"
-                            name="other-role">
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Areas of Interest</legend>
-
-                    <p>Select all that apply:</p>
-
-                    <div class="option-group">
-                        <input
-                            type="checkbox"
-                            id="cyber-security"
-                            name="interests"
-                            value="cyber-security">
-
-                        <label for="cyber-security">
-                            Cyber security
-                        </label>
-                    </div>
-
-                    <div class="option-group">
-                        <input
-                            type="checkbox"
-                            id="ai-governance"
-                            name="interests"
-                            value="ai-governance">
-
-                        <label for="ai-governance">
-                            AI governance
-                        </label>
-                    </div>
-
-                    <div class="option-group">
-                        <input
-                            type="checkbox"
-                            id="web-development"
-                            name="interests"
-                            value="web-development">
-
-                        <label for="web-development">
-                            Web development
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Preferred Contact Method</legend>
-
-                    <div class="option-group">
-                        <input
-                            type="radio"
-                            id="contact-email"
-                            name="contact-method"
-                            value="email"
-                            checked>
-
-                        <label for="contact-email">
-                            Email
-                        </label>
-                    </div>
-
-                    <div class="option-group">
-                        <input
-                            type="radio"
-                            id="contact-linkedin"
-                            name="contact-method"
-                            value="linkedin">
-
-                        <label for="contact-linkedin">
-                            LinkedIn
-                        </label>
-                    </div>
-                </fieldset>
-
-                <div class="form-group">
-                    <label for="message">Message</label>
-
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="6"
-                        maxlength="500"
-                        placeholder="Enter your message here"></textarea>
-
-                    <small class="form-note">
-                        <span id="character-count">0</span>
-                        of 500 characters used.
-                    </small>
-                </div>
-
-                <div class="form-progress">
-                    <label for="form-progress">
-                        Form completion
-                    </label>
-
-                    <progress
-                        id="form-progress"
-                        value="0"
-                        max="4">
-                        0%
-                    </progress>
-
-                    <span id="progress-text">
-                        0% complete
-                    </span>
-                </div>
-
-                <div class="button-group">
-                    <button type="submit">
-                        Submit form
-                    </button>
-
-                    <button
-                        type="reset"
-                        class="secondary-button">
-                        Clear form
-                    </button>
-                </div>
-
-            </form>
-
-            <div
-                id="form-confirmation"
-                class="form-confirmation hidden"
-                role="status"
-                aria-live="polite">
-            </div>
-
-            <div
-                id="submission-summary"
-                class="submission-summary hidden"
-                aria-live="polite">
-            </div>
-
-            <div class="form-notes">
-
-                <h3>HTML Form Elements Added</h3>
-
-                <p>
-                    The form demonstrates several commonly used HTML form
-                    elements and attributes.
-                </p>
-
-                <ul>
-                    <li>
-                        The <code>&lt;form&gt;</code> element groups the
-                        controls.
-                    </li>
-
-                    <li>
-                        <code>&lt;fieldset&gt;</code> and
-                        <code>&lt;legend&gt;</code> organise related controls.
-                    </li>
-
-                    <li>
-                        Labels are connected to inputs using matching
-                        <code>for</code> and <code>id</code> values.
-                    </li>
-
-                    <li>
-                        Text and email inputs collect basic user details.
-                    </li>
-
-                    <li>
-                        A drop-down list allows the user to choose a role.
-                    </li>
-
-                    <li>
-                        Checkboxes support multiple selections.
-                    </li>
-
-                    <li>
-                        Radio buttons allow one preferred contact method.
-                    </li>
-
-                    <li>
-                        A textarea accepts longer messages.
-                    </li>
-
-                    <li>
-                        The <code>required</code>,
-                        <code>autocomplete</code> and
-                        <code>maxlength</code> attributes improve usability.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="javascript-notes">
-
-                <h3>JavaScript Features Added</h3>
-
-                <ul>
-                    <li>
-                        A live character counter updates as the message is
-                        entered.
-                    </li>
-
-                    <li>
-                        Selecting “Other” displays an additional role field.
-                    </li>
-
-                    <li>
-                        The additional role field becomes required only when
-                        it is displayed.
-                    </li>
-
-                    <li>
-                        The form displays an accessible confirmation message
-                        after successful validation.
-                    </li>
-
-                    <li>
-                        The reset button clears the form and all
-                        JavaScript-generated content.
-                    </li>
-                </ul>
-
-                <p>
-                    The form is still a demonstration and does not send or
-                    store information. JavaScript prevents the page from
-                    reloading and displays feedback locally in the browser.
-                </p>
-            </div>
-
-            <div class="dom-notes">
-
-                <h3>HTML DOM Methods Added</h3>
-
-                <p>
-                    The page uses JavaScript DOM methods to select, create,
-                    update, insert and remove elements while the webpage is
-                    running.
-                </p>
-
-                <ul>
-                    <li>
-                        <code>getElementById()</code> selects individual
-                        elements using their unique IDs.
-                    </li>
-
-                    <li>
-                        <code>querySelector()</code> selects the chosen
-                        contact-method radio button.
-                    </li>
-
-                    <li>
-                        <code>querySelectorAll()</code> retrieves all selected
-                        interest checkboxes.
-                    </li>
-
-                    <li>
-                        <code>createElement()</code> creates the submission
-                        summary heading, paragraph, list items and button.
-                    </li>
-
-                    <li>
-                        <code>appendChild()</code> inserts newly created
-                        elements into the summary.
-                    </li>
-
-                    <li>
-                        <code>replaceChildren()</code> clears previously
-                        generated summary content.
-                    </li>
-
-                    <li>
-                        <code>classList.add()</code>,
-                        <code>classList.remove()</code> and
-                        <code>classList.toggle()</code> change the appearance
-                        and visibility of elements.
-                    </li>
-
-                    <li>
-                        <code>setAttribute()</code> adds an accessible label
-                        to the dynamically created removal button.
-                    </li>
-
-                    <li>
-                        <code>textContent</code> safely changes displayed text.
-                    </li>
-
-                    <li>
-                        <code>insertAdjacentElement()</code> inserts a DOM
-                        status message beneath the main heading.
-                    </li>
-                </ul>
-
-                <p>
-                    These methods allow the webpage to react dynamically
-                    without requiring the browser to load a new page.
-                </p>
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
     <script>
         const form =
@@ -1108,7 +1346,13 @@
                 completedFields++;
             }
 
-            if (roleSelect.value !== "") {
+            if (
+                roleSelect.value !== "" &&
+                (
+                    roleSelect.value !== "other" ||
+                    otherRoleInput.value.trim() !== ""
+                )
+            ) {
                 completedFields++;
             }
 
@@ -1145,6 +1389,11 @@
 
                 updateProgress();
             }
+        );
+
+        otherRoleInput.addEventListener(
+            "input",
+            updateProgress
         );
 
         messageBox.addEventListener(
@@ -1260,7 +1509,8 @@
             const removeButton =
                 document.createElement("button");
 
-            removeButton.type = "button";
+            removeButton.type =
+                "button";
 
             removeButton.textContent =
                 "Remove summary";
@@ -1332,8 +1582,14 @@
 
                 createSubmissionSummary(name);
 
+                const prefersReducedMotion =
+                    window.matchMedia(
+                        "(prefers-reduced-motion: reduce)"
+                    ).matches;
+
                 summaryContainer.scrollIntoView({
-                    behavior: "smooth",
+                    behavior:
+                        prefersReducedMotion ? "auto" : "smooth",
                     block: "center"
                 });
             }
@@ -1374,7 +1630,8 @@
                             "hidden"
                         );
 
-                        progressBar.value = 0;
+                        progressBar.value =
+                            0;
 
                         progressText.textContent =
                             "0% complete";
@@ -1399,7 +1656,8 @@
                 "hidden"
             );
 
-            loadDogButton.disabled = true;
+            loadDogButton.disabled =
+                true;
 
             try {
                 const response =
@@ -1423,15 +1681,8 @@
                     );
                 }
 
-                dogImage.src =
-                    data.message;
-
-                dogImage.alt =
-                    "A randomly selected Cocker Spaniel";
-
-                dogImage.addEventListener(
-                    "load",
-                    function handleImageLoad() {
+                const handleImageLoad =
+                    function () {
                         dogImageContainer.classList.remove(
                             "hidden"
                         );
@@ -1443,10 +1694,26 @@
                             "load",
                             handleImageLoad
                         );
-                    }
+                    };
+
+                dogImage.addEventListener(
+                    "load",
+                    handleImageLoad
                 );
+
+                dogImage.alt =
+                    "A randomly selected Cocker Spaniel";
+
+                dogImage.src =
+                    data.message;
+
             } catch (error) {
-                dogImage.removeAttribute("src");
+                dogImage.removeAttribute(
+                    "src"
+                );
+
+                dogImage.alt =
+                    "";
 
                 dogImageContainer.classList.add(
                     "hidden"
@@ -1463,8 +1730,10 @@
                     "Dog API request failed:",
                     error
                 );
+
             } finally {
-                loadDogButton.disabled = false;
+                loadDogButton.disabled =
+                    false;
             }
         }
 
