@@ -103,6 +103,13 @@
             font-size: 0.9rem;
         }
 
+        .qualification-badge abbr {
+            color: inherit;
+            text-decoration: underline dotted;
+            text-underline-offset: 0.15em;
+            cursor: help;
+        }
+
         .oxford-image,
         #dog-image {
             display: block;
@@ -186,7 +193,7 @@
             *,
             *::before,
             *::after {
-                scroll-behaviou: auto !important;
+                scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
@@ -274,7 +281,16 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="../index.html">
+                            Portfolio
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -343,6 +359,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </header>
@@ -429,47 +446,65 @@
 
                                     <span
                                         class="badge text-bg-primary qualification-badge">
-                                        CEng
+                                        <abbr title="Chartered Engineer">
+                                            CEng
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-primary qualification-badge">
-                                        MIET
+                                        <abbr title="Member of the Institution of Engineering and Technology">
+                                            MIET
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-success qualification-badge">
-                                        PMP
+                                        <abbr title="Project Management Professional">
+                                            PMP
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-success qualification-badge">
-                                        PMI-RMP
+                                        <abbr title="Project Management Institute Risk Management Professional">
+                                            PMI-RMP
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-success qualification-badge">
-                                        PMI-ACP
+                                        <abbr title="Project Management Institute Agile Certified Practitioner">
+                                            PMI-ACP
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-dark qualification-badge">
-                                        CISM
+                                        <abbr title="Certified Information Security Manager">
+                                            CISM
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-dark qualification-badge">
-                                        CRISC
+                                        <abbr title="Certified in Risk and Information Systems Control">
+                                            CRISC
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-dark qualification-badge">
-                                        CISA
+                                        <abbr title="Certified Information Systems Auditor">
+                                            CISA
+                                        </abbr>
                                     </span>
 
                                     <span
                                         class="badge text-bg-warning qualification-badge">
-                                        AAISM
+                                        <abbr title="Advanced in AI Security Management">
+                                            AAISM
+                                        </abbr>
                                     </span>
 
                                 </div>
@@ -1017,6 +1052,7 @@
                                     name="message"
                                     rows="6"
                                     maxlength="500"
+                                    aria-describedby="message-help"
                                     placeholder="Enter your message here"></textarea>
 
                                 <div
@@ -1169,7 +1205,7 @@
 
                                 <p class="mb-0">
                                     Some initial time was still required to
-                                    learn the framework’s class names and
+                                    learn the framework's class names and
                                     component structure.
                                 </p>
 
@@ -1194,7 +1230,7 @@
                                 </h3>
 
                                 <p>
-                                    Bootstrap’s mobile-first grid allowed the
+                                    Bootstrap's mobile-first grid allowed the
                                     same content to stack on narrow screens
                                     and form multiple columns at wider
                                     breakpoints.
@@ -1223,7 +1259,7 @@
                                 </span>
 
                                 <h3 class="h4 mt-3">
-                                    Usability
+                                    Usability and accessibility
                                 </h3>
 
                                 <p>
@@ -1252,12 +1288,28 @@
                         Overall evaluation
                     </h3>
 
-                    <p class="mb-0">
+                    <p>
                         Bootstrap accelerated development and produced a
                         consistent responsive interface. The original
                         application offered greater styling freedom and
                         avoided a framework dependency, but required more
                         custom CSS and manual testing.
+                    </p>
+
+                    <p>
+                        The previous exercise explored jQuery as a JavaScript
+                        library for selectors, event handling, effects and DOM
+                        manipulation. This exercise focused instead on Bootstrap
+                        as a front-end framework. Bootstrap primarily simplified
+                        layout, responsive behaviour and interface components,
+                        while JavaScript remained responsible for validation,
+                        DOM updates, form feedback and API interaction.
+                    </p>
+
+                    <p class="mb-0">
+                        This helped me distinguish between a front-end framework
+                        used to structure and style an interface and JavaScript
+                        techniques used to provide application behaviour.
                     </p>
 
                 </div>
@@ -1270,17 +1322,27 @@
     <footer class="bg-dark text-white py-4">
 
         <div
-            class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+            class="container d-flex flex-column flex-md-row justify-content-between gap-3">
 
             <p class="mb-0">
                 Bootstrap framework web application
             </p>
 
-            <a
-                class="footer-link"
-                href="#top">
-                Return to the top
-            </a>
+            <div class="d-flex flex-column flex-sm-row gap-3">
+
+                <a
+                    class="footer-link"
+                    href="#top">
+                    Return to the top
+                </a>
+
+                <a
+                    class="footer-link"
+                    href="../index.html">
+                    Return to main portfolio
+                </a>
+
+            </div>
 
         </div>
 
@@ -1362,6 +1424,15 @@
             document.getElementById("dog-image");
 
         /*
+         * ACCESSIBILITY SETTINGS
+         */
+
+        const prefersReducedMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+        /*
          * HELPER FUNCTIONS
          */
 
@@ -1407,6 +1478,7 @@
 
             if (!otherSelected) {
                 otherRoleInput.value = "";
+
                 otherRoleInput.classList.remove(
                     "is-valid",
                     "is-invalid"
@@ -1429,7 +1501,13 @@
                 completedFields++;
             }
 
-            if (roleSelect.value !== "") {
+            if (
+                roleSelect.value !== "" &&
+                (
+                    roleSelect.value !== "other" ||
+                    otherRoleInput.value.trim() !== ""
+                )
+            ) {
                 completedFields++;
             }
 
@@ -1578,6 +1656,16 @@
             );
         }
 
+        function scrollToElement(element) {
+            element.scrollIntoView({
+                behavior:
+                    prefersReducedMotion
+                        ? "auto"
+                        : "smooth",
+                block: "center"
+            });
+        }
+
         /*
          * FORM EVENTS
          */
@@ -1588,6 +1676,11 @@
                 updateOtherRoleField();
                 updateProgress();
             }
+        );
+
+        otherRoleInput.addEventListener(
+            "input",
+            updateProgress
         );
 
         nameInput.addEventListener(
@@ -1647,10 +1740,9 @@
                     "success"
                 );
 
-                submissionSummary.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+                scrollToElement(
+                    submissionSummary
+                );
             }
         );
 
@@ -1688,10 +1780,9 @@
                     "secondary"
                 );
 
-                formFeedback.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+                scrollToElement(
+                    formFeedback
+                );
             }
         );
 
@@ -1781,11 +1872,11 @@
                 const imageLoading =
                     waitForImage(dogImage);
 
-                dogImage.src =
-                    data.message;
-
                 dogImage.alt =
                     "A randomly selected Cocker Spaniel";
+
+                dogImage.src =
+                    data.message;
 
                 await imageLoading;
 
@@ -1797,6 +1888,7 @@
                     "A new Cocker Spaniel image has loaded successfully.",
                     "success"
                 );
+
             } catch (error) {
                 dogImage.removeAttribute(
                     "src"
@@ -1818,6 +1910,7 @@
                     "Dog API request failed:",
                     error
                 );
+
             } finally {
                 loadDogButton.disabled =
                     false;
