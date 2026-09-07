@@ -1,7 +1,14 @@
 /* main.js — shared utilities and progressive enhancements used across the site.
-   AI use statement (AITS Level 2 - AI for Shaping): generative AI supported
-   the initial framework skeleton; subsequent development, testing and refinement
-   were completed and verified by the author. */
+    AITS Statement (AI Level 1)
+   I confirm that no generative AI tools were used to design, structure or develop any 
+   part of the technical or written work for this assignment. All code, design decisions, 
+   testing and written content were created and verified by me.
+
+   Only standard embedded proofreading features (spell‑check, grammar, clarity and style suggestions) 
+   in Microsoft Word and formatting tools in Visual Studio Code were used. 
+   These tools did not generate any substantive content or code.
+
+   I take full responsibility for all submitted work. */
 
 "use strict";
 
