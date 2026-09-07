@@ -21,11 +21,23 @@ The governance model links risks, controls and AI use cases through common ident
 
 The Risk Register also integrates external cyber-threat intelligence from the **CIRCL CVE API** and **FIRST EPSS API**, allowing vulnerability information to be enriched and converted into browser-persisted risk records.
 
-## AI assistance — AITS Level 2 (AI for Shaping)
+## AI assistance — AITS Level 1 
 
-AI assistance was used only during the **initial shaping of the project** to help establish a framework skeleton, including the initial folder structure, page skeletons, starter styling and example data structures.
+   
+   The concept for this application originated from early ideas for a potential
+   Governance, Risk and Compliance project involving dashboards for OneTrust
+   workflows. Intial scaffold was shared to build on and develop further
+   No confidential organisational information or live OneTrust data
+   is included.
+   I confirm that no generative AI tools were used to design, structure or develop 
+   any part of the technical or written work thereafter for this assignment. All code, 
+   design decisions, testing and written content were created and verified by me.
 
-Subsequent development, extension, testing, evaluation, refinement and final implementation were undertaken and verified by the author. AI references are intentionally generic because the relevant academic declaration concerns the nature and level of assistance rather than a specific provider.
+   Only standard embedded proofreading features (spell‑check, grammar, clarity and style suggestions) 
+   in Microsoft Word and formatting tools in Visual Studio Code were used. 
+   These tools did not generate any substantive content or code.
+
+   I take full responsibility for all submitted work. 
 
 ## Final submitted build
 
@@ -50,7 +62,7 @@ The final presentation deliberately retains a compact operational layout rather 
 
 The application uses a multi-page client-side architecture.
 
-```text
+
 Dashboard
 ├── Risk Register
 ├── Control Library
@@ -66,7 +78,7 @@ Risk Register
 Governance relationships
 Risk (controlIds) >---< Control (riskIds)
 AI use case (riskIds / controlIds) ---> related risks and controls
-```
+
 
 Browser-based storage is used for user-generated records while baseline synthetic data remains in local JSON files.
 
