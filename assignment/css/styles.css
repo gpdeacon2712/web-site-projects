@@ -517,7 +517,7 @@ button[type="submit"]:hover {
      fade blended both the band colour and the white score text toward the
      card background at once, which visually receded the cell as intended but
      also dropped the effective text contrast to roughly 1.7–1.9:1 (confirmed
-     by Axe DevTools, Section 7.4). Unoccupied cells now use a light tint of
+     by Axe DevTools, Appendix B). Unoccupied cells now use a light tint of
      the band colour with dark ink text instead, which keeps them visually
      receded next to the bold, fully-saturated occupied cells while staying
      comfortably above the 4.5:1 AA minimum (all three bands measure at least
