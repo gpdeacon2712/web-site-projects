@@ -233,66 +233,91 @@ A separate Governance Insight contrast regression caused by layered feature artw
 
 The Control Library retains a minor future-refinement opportunity around linked-reference touch-target spacing.
 
-## Lighthouse testing
+## ## Lighthouse testing
 
-Lighthouse 13.4.1 testing was completed against all six principal pages in desktop mode on the deployed GitHub Pages application. An additional mobile assessment was completed for the Risk Register.
+Lighthouse 13.4.1 testing was conducted against the published GitHub Pages application rather than a local development copy.
 
-### Desktop scores
+### Initial testing - 6 August 2026
 
-| Page | Performance | Accessibility | Best Practices | SEO |
-|---|---:|---:|---:|---:|
-| Governance Dashboard | 93 | 100 | 100 | 100 |
-| Control Library | 86 | 97 | 100 | 100 |
-| Risk Register | 83 | 100 | 100 | 100 |
-| AI Use-Case Register | 100 | 100 | 100 | 100 |
-| Governance Support | 100 | 100 | 100 | 100 |
-| My Profile | 99 | 100 | 100 | 100 |
+Initial desktop testing covered all six principal application pages, with an additional mobile assessment of the Risk Register.
 
-The Risk Register score shown above reflects the final desktop accessibility retest after redeployment of the corrected heat-map stylesheet.
+#### Initial desktop scores
 
-### Desktop performance metrics
+| Page                 | Performance | Accessibility | Best Practices | SEO |
+| -------------------- | ----------: | ------------: | -------------: | --: |
+| Governance Dashboard |          93 |           100 |            100 | 100 |
+| Control Library      |          86 |            97 |            100 | 100 |
+| Risk Register        |          83 |           100 |            100 | 100 |
+| AI Use-Case Register |         100 |           100 |            100 | 100 |
+| Governance Support   |         100 |           100 |            100 | 100 |
+| My Profile           |          99 |           100 |            100 | 100 |
 
-| Page | FCP | LCP | Total Blocking Time | CLS |
-|---|---:|---:|---:|---:|
-| Governance Dashboard | 0.6 s | 0.6 s | 0 ms | 0.154 |
-| Control Library | 0.7 s | 0.7 s | 0 ms | 0.273 |
-| Risk Register | 0.7 s | 0.7 s | 0 ms | 0.348 |
-| AI Use-Case Register | 0.6 s | 0.6 s | 0 ms | 0.001 |
-| Governance Support | 0.7 s | 0.7 s | 0 ms | 0.017 |
-| My Profile | 0.7 s | 0.7 s | 0 ms | 0.001 |
+The Risk Register initially recorded Accessibility 97 before correction of the identified colour-contrast problem. The value shown above represents the corrected desktop result following redeployment and retesting on 6 August 2026.
 
-The principal performance limitation is layout stability on dynamically rendered pages rather than blocking JavaScript. The Risk Register CVE panel and Control Library register panel account for the highest CLS values.
+#### Initial desktop performance metrics
 
-### Additional mobile Risk Register assessment
+| Page                 |   FCP |   LCP | Total Blocking Time |   CLS |
+| -------------------- | ----: | ----: | ------------------: | ----: |
+| Governance Dashboard | 0.6 s | 0.6 s |                0 ms | 0.154 |
+| Control Library      | 0.7 s | 0.7 s |                0 ms | 0.273 |
+| Risk Register        | 0.7 s | 0.7 s |                0 ms | 0.348 |
+| AI Use-Case Register | 0.6 s | 0.6 s |                0 ms | 0.001 |
+| Governance Support   | 0.7 s | 0.7 s |                0 ms | 0.017 |
+| My Profile           | 0.7 s | 0.7 s |                0 ms | 0.001 |
 
-| Metric | Result |
-|---|---:|
-| Performance | 90 |
-| Accessibility | 96 |
-| Best Practices | 100 |
-| SEO | 100 |
-| First Contentful Paint | 2.6 s |
-| Largest Contentful Paint | 2.7 s |
-| Speed Index | 4.3 s |
-| Total Blocking Time | 0 ms |
-| Cumulative Layout Shift | 0.000 |
+The principal performance limitation was layout stability on dynamically rendered pages rather than blocking JavaScript. The Risk Register and Control Library recorded the highest CLS values.
 
-The mobile assessment predates the final redeployment of the heat-map contrast correction and has not been separately rerun.
+#### Initial mobile Risk Register assessment
+
+| Metric                   | Result |
+| ------------------------ | -----: |
+| Performance              |     90 |
+| Accessibility            |     96 |
+| Best Practices           |    100 |
+| SEO                      |    100 |
+| First Contentful Paint   |  2.6 s |
+| Largest Contentful Paint |  2.7 s |
+| Speed Index              |  4.3 s |
+| Total Blocking Time      |   0 ms |
+| Cumulative Layout Shift  |  0.000 |
+
+The initial mobile Accessibility score of 96 reflected the same Risk Register heat-map contrast problem identified during desktop testing. This result is retained as evidence of the issue that subsequently triggered corrective action.
+
+### Final Lighthouse retesting - 3 September 2026
+
+Following completion of the final accessibility and usability corrections, the Governance Dashboard and Risk Register were reassessed using both desktop and mobile Lighthouse profiles.
+
+| Page and profile              | Performance | Accessibility | Best Practices | SEO |   FCP |   LCP | Speed Index |  TBT |   CLS |
+| ----------------------------- | ----------: | ------------: | -------------: | --: | ----: | ----: | ----------: | ---: | ----: |
+| Governance Dashboard, Desktop |          93 |           100 |            100 | 100 | 0.7 s | 0.7 s |       0.7 s | 0 ms | 0.154 |
+| Governance Dashboard, Mobile  |          93 |           100 |            100 | 100 | 2.6 s | 2.6 s |       2.9 s | 0 ms | 0.020 |
+| Risk Register, Desktop        |          83 |           100 |            100 | 100 | 0.7 s | 0.7 s |       0.7 s | 0 ms | 0.348 |
+| Risk Register, Mobile         |          86 |           100 |            100 | 100 | 2.4 s | 2.5 s |       2.4 s | 0 ms | 0.187 |
+
+All four final assessments achieved Accessibility 100, Best Practices 100 and SEO 100.
+
+The improvement in the mobile Risk Register from Accessibility 96 in the initial assessment to Accessibility 100 in the final retest provides direct evidence that the corrected heat-map styling remained effective in the mobile presentation as well as on desktop.
+
+The Risk Register retained measurable Cumulative Layout Shift, recording 0.348 on desktop and 0.187 on mobile. This remains a production optimisation opportunity rather than an accessibility defect.
 
 ## Standards and functional testing
 
 Completed testing includes:
 
-- deployment to GitHub Pages;
-- CIRCL and FIRST EPSS testing from the deployed HTTPS origin;
-- WAVE accessibility testing;
-- Axe DevTools testing;
-- Lighthouse testing;
-- keyboard-only operation;
-- responsive testing across desktop, tablet and mobile layouts;
-- functional testing of navigation, search, filtering, forms, validation and interactive components.
+* deployment to GitHub Pages;
+* W3C HTML validation across all six principal application pages;
+* CIRCL and FIRST EPSS testing from the deployed HTTPS origin;
+* WAVE accessibility testing;
+* Axe DevTools testing;
+* Lighthouse desktop and mobile testing;
+* keyboard-only operation;
+* structured manual accessibility testing;
+* responsive testing across desktop, tablet and mobile layouts;
+* functional testing of navigation, search, filtering, forms, validation and interactive components.
 
-HTML validation was also completed across the application. The final report records one minor semantic point on the AI Use-Case Register associated with the `<output>` element as requiring final validator confirmation.
+Final W3C Nu HTML Checker validation confirmed that all six principal application pages passed the planned HTML validation checks with no material validation errors remaining.
+
+The Risk Register heat-map contrast issue identified during automated testing was corrected by replacing the opacity-based treatment with fixed tints and dark text. Following redeployment, WAVE recorded 0 errors and 0 contrast errors, the planned Axe DevTools retest passed, and both desktop and mobile Risk Register Lighthouse assessments achieved Accessibility 100.
 
 ## Key technical design decisions
 
