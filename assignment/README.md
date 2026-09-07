@@ -1,4 +1,4 @@
-# GRC & AI Governance Control Hub — Version 23.3
+# GRC & AI Governance Control Hub - Version 23.3
 
 Masters-level academic prototype for module **55-709700 Web Technologies**.
 
@@ -21,7 +21,7 @@ The governance model links risks, controls and AI use cases through common ident
 
 The Risk Register also integrates external cyber-threat intelligence from the **CIRCL CVE API** and **FIRST EPSS API**, allowing vulnerability information to be enriched and converted into browser-persisted risk records.
 
-## AI assistance — AITS Level 1 
+## AI assistance - AITS Level 1 
 
    
    The concept for this application originated from early ideas for a potential
@@ -353,7 +353,7 @@ This is suitable for the academic prototype but is not intended as a production 
 - Synthetic JSON datasets.
 - Basic Risk, Control and AI views.
 
-### Versions 7–9 — API robustness
+### Versions 7–9 - API robustness
 
 - Made CVE validation case-insensitive.
 - Linked CVE format guidance using `aria-describedby`.
@@ -363,7 +363,7 @@ This is suitable for the academic prototype but is not intended as a production 
 - Documented observed CIRCL rate limiting.
 - Added per-provider caching, cooldown behaviour and `Retry-After` guidance.
 
-### Versions 10–13 — risk visualisation and governance integration
+### Versions 10–13 - risk visualisation and governance integration
 
 - Added 1–5 likelihood and impact scoring.
 - Added accessible 5×5 risk heat map.
@@ -374,14 +374,14 @@ This is suitable for the academic prototype but is not intended as a production 
 - Added AI use-case-to-risk and AI use-case-to-control relationships.
 - Added governance coverage metrics to the dashboard.
 
-### Version 14 — Governance Support
+### Version 14 - Governance Support
 
 - Added Governance Support as the sixth principal page.
 - Added structured browser-local governance request workflow.
 - Added contextual links from Risks, Controls and AI.
 - Added saved requests, CSV export and accessible FAQ content.
 
-### Versions 15–18 — dashboard evolution
+### Versions 15–18 - dashboard evolution
 
 - Added module icons and visual accents.
 - Added data-driven Governance Insight.
@@ -391,19 +391,19 @@ This is suitable for the academic prototype but is not intended as a production 
 - Added direct relationship links between dashboard information and registers.
 - Retained responsive and reduced-motion behaviour.
 
-### Version 19 — Bootstrap hybrid architecture
+### Version 19 - Bootstrap hybrid architecture
 
 - Introduced Bootstrap 5 for the shared page shell and standard components.
 - Reduced duplicated custom layout styling.
 - Retained custom CSS for specialist GRC components and visualisations.
 
-### Version 20 — compact operational headers
+### Version 20 - compact operational headers
 
 - Introduced compact, task-focused page headers.
 - Improved page actions and anchor navigation.
 - Reduced oversized decorative banner treatment.
 
-### Version 21 — API, accessibility and print enhancements
+### Version 21 - API, accessibility and print enhancements
 
 - Added recent-CVE datalist suggestions.
 - Added accessible API busy states.
@@ -412,7 +412,7 @@ This is suitable for the academic prototype but is not intended as a production 
 - Refined CVE-to-risk workflow behaviour.
 - Added print-specific Risk Register and Control Library presentation.
 
-### Version 23.3 — final visual and accessibility refinement
+### Version 23.3 - final visual and accessibility refinement
 
 - Reused SVG artwork as a restrained background layer.
 - Strengthened artwork visibility while preserving readable text areas.
