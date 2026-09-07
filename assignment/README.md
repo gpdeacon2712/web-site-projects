@@ -461,6 +461,6 @@ Future production refinement could include:
 
 This repository documents an academic prototype and its iterative development history.
 
-AI assistance was limited to AITS Level 2 initial project shaping and framework scaffolding. The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
+AI assistance was limited to AITS Level 1 The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
 
 External technical references and standards used in the accompanying report are cited there in accordance with the required academic referencing approach.
