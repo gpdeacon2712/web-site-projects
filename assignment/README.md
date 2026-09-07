@@ -62,22 +62,26 @@ The final presentation deliberately retains a compact operational layout rather 
 
 The application uses a multi-page client-side architecture.
 
+```mermaid
+flowchart TD
+    D[Governance Dashboard] --> R[Risk Register]
+    D --> C[Control Library]
+    D --> A[AI Use-Case Register]
+    D --> G[Governance Support]
+    D --> P[My Profile]
+    R --> CVE[CIRCL CVE API]
+    R --> EPSS[FIRST EPSS API]
+    R --> W[CVE-to-risk workflow]
+```
 
-Dashboard
-├── Risk Register
-├── Control Library
-├── AI Use-Case Register
-├── Governance Support
-└── My Profile
+Governance relationships are maintained using common identifiers:
 
-Risk Register
-├── CIRCL CVE API
-├── FIRST EPSS API
-└── CVE-to-risk workflow
-
-Governance relationships
-Risk (controlIds) >---< Control (riskIds)
-AI use case (riskIds / controlIds) ---> related risks and controls
+```mermaid
+flowchart LR
+    R[Risk records] <-->|riskIds and controlIds| C[Control records]
+    A[AI use cases] -->|riskIds| R
+    A -->|controlIds| C
+```
 
 
 Browser-based storage is used for user-generated records while baseline synthetic data remains in local JSON files.
@@ -90,15 +94,13 @@ Serve the project folder over HTTP rather than opening the HTML files directly, 
 
 For example:
 
+```bash
 cd grc-hub
 python3 -m http.server 8000
+```
 
+Alternatively, use the VS Code Live Server extension. Then open <http://localhost:8000>.
 
-or use VS Code Live Server.
-
-Then open:
-
-http://localhost:8000
 
 
 ## Project links
