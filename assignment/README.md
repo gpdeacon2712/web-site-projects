@@ -90,18 +90,16 @@ Serve the project folder over HTTP rather than opening the HTML files directly, 
 
 For example:
 
-```bash
 cd grc-hub
 python3 -m http.server 8000
-```
+
 
 or use VS Code Live Server.
 
 Then open:
 
-```text
 http://localhost:8000
-```
+
 
 ## Project links
 
