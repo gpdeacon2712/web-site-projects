@@ -233,7 +233,7 @@ A separate Governance Insight contrast regression caused by layered feature artw
 
 The Control Library retains a minor future-refinement opportunity around linked-reference touch-target spacing.
 
-## ## Lighthouse testing
+##  Lighthouse testing
 
 Lighthouse 13.4.1 testing was conducted against the published GitHub Pages application rather than a local development copy.
 
