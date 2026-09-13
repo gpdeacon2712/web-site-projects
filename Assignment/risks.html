@@ -105,7 +105,7 @@
 </section>
 <section aria-labelledby="cve-lookup-title" class="cve-lookup-panel artwork-panel artwork-panel--circuit card shadow-sm border-0">
 <h2 id="cve-lookup-title">Live threat-intelligence lookup</h2>
-<p>This is the prototype's genuine third-party API integration. Recent identifiers are loaded from CIRCL into a datalist, after which the selected CVE is enriched through the CIRCL CVE Search API and the FIRST EPSS API. A resulting decision-aid can be added directly to the browser-persisted risk register.</p>
+<p>This component provides live threat‑intelligence integration using external APIs. CIRCL supplies recent CVE identifiers, which are presented through a datalist interface. Selecting a CVE triggers enrichment via the CIRCL CVE Search API and the FIRST EPSS service, producing a contextualised decision‑aid. The enriched record can then be added to the browser‑stored risk register.</p>
 <form id="cve-lookup">
 <label class="form-label" for="cve-id">CVE identifier</label>
 <!-- Native required and pattern validation check the CVE format before the API
