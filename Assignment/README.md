@@ -106,9 +106,9 @@ Alternatively, use the VS Code Live Server extension. Then open <http://localhos
 ## Project links
 
 - **GitHub repository:** https://github.com/gpdeacon2712/web-site-projects
-- **Assignment source folder:** https://github.com/gpdeacon2712/web-site-projects/tree/main/assignment
+- **Assignment source folder:** https://github.com/gpdeacon2712/web-site-projects/tree/main/Assignment
 - **Module weekly coursework and assignments:** https://gpdeacon2712.github.io/web-site-projects/
-- **Direct GRC Hub assignment:** https://gpdeacon2712.github.io/web-site-projects/assignment/index.html
+- **Direct GRC Hub assignment:** https://gpdeacon2712.github.io/web-site-projects/Assignment/index.html
 
 ## GitHub Pages deployment
 
@@ -116,9 +116,9 @@ The application is deployed using GitHub Pages.
 
 **Module site:** https://gpdeacon2712.github.io/web-site-projects/
 
-**Direct assignment:** https://gpdeacon2712.github.io/web-site-projects/assignment/index.html
+**Direct assignment:** https://gpdeacon2712.github.io/web-site-projects/Assignment/index.html
 
-**Assignment source:** https://github.com/gpdeacon2712/web-site-projects/tree/main/assignment
+**Assignment source:** https://github.com/gpdeacon2712/web-site-projects/tree/main/Assignment
 
 The canonical pages are:
 
