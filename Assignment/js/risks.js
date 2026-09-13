@@ -436,14 +436,27 @@ function firstEnglishDescription(cve) {
 }
 
 function extractCvssValue(cve) {
+  // CIRCL's CVE Record Format does not always keep the CVSS score in the
+  // CNA container: for many current CVEs (e.g. CVE-2021-44228) the CNA
+  // metrics only carry a non-numeric "other" entry, and the real score is
+  // added later by an ADP (Authorised Data Publisher) container instead,
+  // such as CISA-ADP. Every metrics entry from both containers is searched
+  // here, rather than assuming index 0 of containers.cna.metrics.
+  const metricGroups = [
+    ...(cve.containers?.cna?.metrics || []),
+    ...(cve.containers?.adp || []).flatMap(container => container.metrics || []),
+  ];
+  const metricScore = metricGroups
+    .map(metric => metric?.cvssV4_0?.baseScore ?? metric?.cvssV3_1?.baseScore ?? metric?.cvssV3_0?.baseScore ?? metric?.cvssV2_0?.baseScore)
+    .find(value => typeof value === "number");
+
   const candidates = [
     cve.cvss, cve.cvss3, cve.cvssScore,
     cve.metrics?.cvssMetricV31?.[0]?.cvssData?.baseScore,
     cve.metrics?.cvssMetricV30?.[0]?.cvssData?.baseScore,
     cve.cve?.metrics?.cvssMetricV31?.[0]?.cvssData?.baseScore,
     cve.cve?.metrics?.cvssMetricV30?.[0]?.cvssData?.baseScore,
-    cve.containers?.cna?.metrics?.[0]?.cvssV3_1?.baseScore,
-    cve.containers?.cna?.metrics?.[0]?.cvssV3_0?.baseScore,
+    metricScore,
   ];
   const raw = candidates.find(value => value !== undefined && value !== null && value !== "");
   const score = Number(raw);
@@ -591,6 +604,11 @@ function extractRecentCveIds(payload) {
 
   const ids = records.map(record => {
     if (typeof record === "string") return record;
+    // CIRCL's "last N vulnerabilities" feed returns each record as a
+    // [identifier, source] pair (e.g. ["cve-2026-90570", "cvelistv5"]),
+    // not a string or an object with an id-style field, so that shape
+    // must be unpacked before the object-field checks below are tried.
+    if (Array.isArray(record)) return record[0];
     return record?.id || record?.cve || record?.cveId || record?.cveMetadata?.cveId || record?.CVE;
   }).filter(value => /^CVE-\d{4}-\d{4,}$/i.test(String(value || "")))
     .map(value => String(value).toUpperCase());
