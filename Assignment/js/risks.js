@@ -1,4 +1,4 @@
-/* risks.js - Risk Register rendering, visualisations and live CVE/EPSS enrichment.
+/* risks.js - Risk Register rendering, visualisations and live CVE/EPSS API.
    The module combines synthetic baseline risks with browser-added records while
    keeping external API guidance clearly separated from governance decisions. */
 
