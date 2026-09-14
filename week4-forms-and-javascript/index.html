@@ -252,6 +252,15 @@
             font-size: 0.95rem;
         }
 
+        .form-status {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            background-color: #e8f5e9;
+            border-left: 5px solid darkgreen;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
         .form-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -648,7 +657,7 @@
                     fields are marked with an asterisk.
                 </p>
 
-                <form action="#" method="post">
+                <form id="contact-form">
 
                     <fieldset>
                         <legend>Your Details</legend>
@@ -789,6 +798,14 @@
                         </button>
                     </div>
 
+                    <p
+                        id="form-status"
+                        class="form-status"
+                        role="status"
+                        aria-live="polite"
+                        hidden>
+                    </p>
+
                 </form>
 
                 <div class="form-notes">
@@ -803,8 +820,8 @@
                     <ul>
                         <li>
                             The <code>&lt;form&gt;</code> element groups the
-                            controls and defines how the information would be
-                            submitted.
+                            controls and allows JavaScript to respond when the
+                            form is submitted.
                         </li>
 
                         <li>
@@ -866,15 +883,26 @@
                             Visible focus indicators support users navigating the
                             form using a keyboard rather than a mouse.
                         </li>
+
+                        <li>
+                            JavaScript uses the form's
+                            <code>submit</code> event and
+                            <code>preventDefault()</code> to prevent the browser
+                            from attempting to send the form to a server.
+                        </li>
+
+                        <li>
+                            An accessible confirmation message is displayed after
+                            successful browser validation.
+                        </li>
                     </ul>
 
                     <p>
-                        The form currently demonstrates browser-based form
-                        behaviour only. Because its <code>action</code> attribute
-                        is set to <code>#</code>, the information is not sent to
-                        an email address, server or database. JavaScript could
-                        later be added to display a confirmation message and
-                        provide further validation.
+                        The form demonstrates browser-based validation and
+                        JavaScript interaction only. JavaScript prevents the form
+                        from being submitted to a server and displays a confirmation
+                        message instead. No information is sent to an email address,
+                        server or database.
                     </p>
 
                 </div>
@@ -897,6 +925,31 @@
         </footer>
 
     </div>
+
+    <script>
+        const contactForm = document.getElementById("contact-form");
+        const formStatus = document.getElementById("form-status");
+
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("name");
+            const userName = nameInput.value.trim();
+
+            formStatus.textContent =
+                "Thank you, " +
+                userName +
+                ". Your form has been completed successfully. " +
+                "This demonstration does not send or store your information.";
+
+            formStatus.hidden = false;
+        });
+
+        contactForm.addEventListener("reset", function () {
+            formStatus.textContent = "";
+            formStatus.hidden = true;
+        });
+    </script>
 
 </body>
 
