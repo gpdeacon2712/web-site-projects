@@ -56,6 +56,7 @@ The substantive visual and accessibility refinements completed in Version 23.3 r
 - additional spacing beneath the Governance Support contact-card grid;
 - correction and redeployment of the Risk Register heat-map contrast styling;
 - correction of the Governance Insight artwork/contrast regression identified during manual accessibility review.
+
 The final presentation deliberately retains a compact operational layout rather than returning to the large decorative hero banners used in earlier iterations.
 For configuration-control purposes, Version 23.4 is the final release baseline. Earlier version numbers in this README are retained where they identify the development stage in which a feature, correction or test result was originally introduced or verified.
 ## Application architecture
