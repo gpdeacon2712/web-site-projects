@@ -203,7 +203,7 @@ window.addEventListener(
    The GRC functions remain separate so they are easier to maintain
    and test. The application version is stored in the page data. */
 
-document.documentElement.dataset.appVersion = "23.3";
+document.documentElement.dataset.appVersion = "23.4";
 
 
 /* ---------------------------------------------------------------------------
