@@ -1,4 +1,4 @@
-# GRC & AI Governance Control Hub - Version 23.3
+# GRC & AI Governance Control Hub - Version 23.4
 
 Masters-level academic prototype for module **55-709700 Web Technologies**.
 
