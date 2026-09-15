@@ -447,6 +447,13 @@ This is suitable for the academic prototype but is not intended as a production 
 - Corrected the Governance Insight contrast regression.
 - Redeployed the corrected Risk Register heat-map styling and confirmed the desktop accessibility improvement.
 
+### Version 23.4 - final clean-up and verification
+- Removed obsolete .site-nav CSS rules retained from the navigation design used before the Bootstrap 5 migration in Version 19.
+- Closed the associated outstanding CSS clean-up item.
+- Manually checked navigation and layout across all six principal application pages following the CSS removal.
+- Confirmed that the clean-up introduced no visual or functional regressions.
+- Established Version 23.4 as the final controlled release for submission.
+
 ## Known limitations and future development
 
 The application is intentionally a client-side prototype and does not include:
