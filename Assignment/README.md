@@ -41,12 +41,13 @@ The Risk Register also integrates external cyber-threat intelligence from the **
 
 ## Final submitted build
 
-The final submitted application is **Version 23.3**.
-
-Version 23.3 retains the substantive functionality introduced through the earlier development stages, including the Version 21 API, validation, accessibility and print enhancements, while refining the visual presentation through selective use of the project's SVG artwork.
-
-Key Version 23.3 refinements include:
-
+The final submitted application is Version 23.4.
+Version 23.4 is the final controlled release of the application. It retains the substantive functionality and visual/accessibility refinements completed in Version 23.3 and introduces a final code-clean-up and regression-verification step before submission.
+The Version 23.4 changes were deliberately limited in scope:
+removed unused .site-nav CSS rules retained from the pre-Bootstrap navigation design;
+confirmed that removal of the obsolete CSS introduced no visual or functional regressions;
+manually checked navigation and layout across all six principal application pages.
+The substantive visual and accessibility refinements completed in Version 23.3 remain part of the Version 23.4 final release, including:
 - compact image-backed page headers across the six principal pages;
 - selective reuse of circuit, neural and mesh SVG artwork;
 - stronger visual treatment of the Dashboard, Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight and CVE lookup areas;
@@ -55,9 +56,8 @@ Key Version 23.3 refinements include:
 - additional spacing beneath the Governance Support contact-card grid;
 - correction and redeployment of the Risk Register heat-map contrast styling;
 - correction of the Governance Insight artwork/contrast regression identified during manual accessibility review.
-
 The final presentation deliberately retains a compact operational layout rather than returning to the large decorative hero banners used in earlier iterations.
-
+For configuration-control purposes, Version 23.4 is the final release baseline. Earlier version numbers in this README are retained where they identify the development stage in which a feature, correction or test result was originally introduced or verified.
 ## Application architecture
 
 The application uses a multi-page client-side architecture.
