@@ -1,4 +1,5 @@
-/* main.js - shared functions used across the website.
+/* main.js
+   Shared functions used across the website.
 
    AITS Statement (AI Level 1)
 
@@ -27,9 +28,8 @@
 /* ---------------------------------------------------------------------------
    OLD MOBILE NAVIGATION
 
-   This code was used before the site was changed to Bootstrap 5.
-   Bootstrap now controls the mobile navigation, so this code is no
-   longer used. It has been left here for reference.
+   Legacy navigation retained for reference after migration to Bootstrap 5.
+---------------------------------------------------------------------------
 
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.getElementById("site-nav");
@@ -61,9 +61,8 @@ if (navToggle && siteNav) {
 /* ---------------------------------------------------------------------------
    LOAD JSON DATA
 
-   Loads local JSON data used by the prototype.
-   The project should be run through a web server because fetch() may
-   not work correctly when files are opened directly using file://.
+   Loads local prototype data using fetch().
+   The site should be served over HTTP rather than opened with file://.
 --------------------------------------------------------------------------- */
 
 async function loadJSON(path) {
@@ -80,15 +79,11 @@ async function loadJSON(path) {
 /* ---------------------------------------------------------------------------
    LOCAL STORAGE
 
-   These functions save, load and clear user-added entries in the browser.
-
-   The data stays in localStorage on the user's device and is not sent
-   to a server. It remains there until it is cleared.
-
-   try/catch is used because localStorage may not always be available,
-   for example in some private browsing modes.
+   Shared helpers for loading, saving and clearing browser-stored records.
+   try/catch allows the application to degrade safely if storage is unavailable.
 --------------------------------------------------------------------------- */
 
+// Returns a stored array, or an empty array if storage is unavailable or invalid.
 function loadStoredList(key) {
   try {
     const parsed = JSON.parse(localStorage.getItem(key) ?? "[]");
@@ -99,6 +94,7 @@ function loadStoredList(key) {
 }
 
 
+// Saves a list to localStorage and reports whether the operation succeeded.
 function saveStoredList(key, list) {
   try {
     localStorage.setItem(key, JSON.stringify(list));
@@ -109,6 +105,7 @@ function saveStoredList(key, list) {
 }
 
 
+// Removes a stored list without interrupting the application if storage fails.
 function clearStoredList(key) {
   try {
     localStorage.removeItem(key);
@@ -121,14 +118,15 @@ function clearStoredList(key) {
 /* ---------------------------------------------------------------------------
    CSV EXPORT
 
-   Converts table data into CSV format and downloads it as a file.
-   Special characters are escaped and UTF-8 encoding is used to improve
-   compatibility with spreadsheet software.
+   Converts row data to CSV and downloads it as a UTF-8 file.
 --------------------------------------------------------------------------- */
 
 function downloadCSV(filename, rows) {
+
+  // Escapes values containing commas, quotes or line breaks.
   const escapeCell = value => {
     const text = String(value ?? "");
+
     return /[",\n]/.test(text)
       ? `"${text.replace(/"/g, '""')}"`
       : text;
@@ -138,6 +136,7 @@ function downloadCSV(filename, rows) {
     .map(row => row.map(escapeCell).join(","))
     .join("\r\n");
 
+  // Adds a UTF-8 BOM to improve spreadsheet compatibility.
   const blob = new Blob(
     ["\uFEFF" + csv],
     {type: "text/csv;charset=utf-8;"}
@@ -153,11 +152,16 @@ function downloadCSV(filename, rows) {
   link.click();
   link.remove();
 
+  // Releases the temporary browser URL after the download starts.
   URL.revokeObjectURL(url);
 }
 
 
-/* Highlight a record when a link opens it directly. */
+/* ---------------------------------------------------------------------------
+   LINKED RECORD HIGHLIGHTING
+
+   Highlights and scrolls to a record opened through a URL fragment.
+--------------------------------------------------------------------------- */
 
 function highlightLinkedRecord() {
   const id = decodeURIComponent(window.location.hash.slice(1));
@@ -171,6 +175,7 @@ function highlightLinkedRecord() {
 
     target.classList.add("linked-target");
 
+    // Respects reduced-motion preferences when scrolling to the target.
     target.scrollIntoView({
       behavior: window.matchMedia(
         "(prefers-reduced-motion: reduce)"
@@ -180,6 +185,7 @@ function highlightLinkedRecord() {
       block: "center"
     });
 
+    // Moves focus to an interactive element when the target is a table row.
     if (target.matches("tr")) {
       target
         .querySelector("a, button")
@@ -188,6 +194,8 @@ function highlightLinkedRecord() {
   }, 250);
 }
 
+
+// Re-run highlighting when the fragment changes or the page first loads.
 window.addEventListener(
   "hashchange",
   highlightLinkedRecord
@@ -199,9 +207,8 @@ window.addEventListener(
 );
 
 
-/* Bootstrap provides the shared page layout and navigation.
-   The GRC functions remain separate so they are easier to maintain
-   and test. The application version is stored in the page data. */
+/* Bootstrap provides the shared layout and navigation.
+   Application-specific functions remain separate for maintainability. */
 
 document.documentElement.dataset.appVersion = "23.4";
 
@@ -209,11 +216,11 @@ document.documentElement.dataset.appVersion = "23.4";
 /* ---------------------------------------------------------------------------
    FORM VALIDATION
 
-   Browser validation is used as the main validation method.
-   JavaScript adds clear error messages for invalid form fields and
-   links each message to the correct field for accessibility.
+   Uses native browser validation with clearer inline error messages.
+   Errors are linked to their fields for accessibility.
 --------------------------------------------------------------------------- */
 
+// Returns a user-friendly validation message for the failed constraint.
 function validationMessageFor(control) {
   if (control.validity.valueMissing) {
     return "This field is required.";
@@ -252,6 +259,7 @@ function validationMessageFor(control) {
 }
 
 
+// Creates an inline error element and associates it with the form control.
 function ensureInlineError(control) {
   if (!control.id) return null;
 
@@ -271,6 +279,7 @@ function ensureInlineError(control) {
     );
   }
 
+  // Preserve existing descriptions while adding the validation message.
   const describedBy = new Set(
     (control.getAttribute("aria-describedby") || "")
       .split(/\s+/)
@@ -288,6 +297,7 @@ function ensureInlineError(control) {
 }
 
 
+// Displays the appropriate inline message and marks the field invalid.
 function showInlineError(control) {
   const error = ensureInlineError(control);
 
@@ -305,6 +315,7 @@ function showInlineError(control) {
 }
 
 
+// Hides the inline message when the control becomes valid.
 function clearInlineError(control) {
   if (!control.id) return;
 
@@ -320,7 +331,7 @@ function clearInlineError(control) {
 }
 
 
-/* Show an error when a form field is invalid. */
+/* Capture invalid events so browser validation can be enhanced consistently. */
 
 document.addEventListener(
   "invalid",
@@ -337,7 +348,7 @@ document.addEventListener(
 );
 
 
-/* Remove the error when the field becomes valid. */
+/* Remove errors as soon as a field becomes valid while typing. */
 
 document.addEventListener(
   "input",
@@ -358,6 +369,8 @@ document.addEventListener(
 );
 
 
+/* Also clear errors when select, radio or checkbox values change. */
+
 document.addEventListener(
   "change",
   event => {
@@ -375,4 +388,6 @@ document.addEventListener(
     }
   }
 );
+
+
 
