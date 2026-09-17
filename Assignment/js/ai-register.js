@@ -78,7 +78,7 @@ function formatDate(value) {
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"});
 }
 
-// Rebuild the visible AI register from the merged baseline and browser-added records.
+// Updates the displayed AI register by combining baseline and user-created records.
 function renderUseCases() {
   const list = document.getElementById("usecase-list");
   list.replaceChildren();
@@ -163,9 +163,8 @@ riskIncrease?.addEventListener("click", () => {
   slider.focus();
 });
 
-// Validates governance-specific requirements, creates a new AI use-case
-// record, persists user data locally, and refreshes the register while
-// preserving the integrity of the original demonstration dataset.
+// Validates governance requirements, stores the new AI use case locally
+// and updates the register without affecting the baseline records.
 form.addEventListener("submit", event => {
   event.preventDefault();
   feedback.replaceChildren();
@@ -240,8 +239,7 @@ async function initUseCases() {
   }
 }
 
-// Clears user-persisted additions while preserving the integrity
-// of the baseline demonstration dataset.
+// Clears user-created records while preserving the baseline demonstration data.
 document.getElementById("clear-saved-usecases")?.addEventListener("click", () => {
   userUseCases = [];
   clearStoredList(USECASE_STORAGE_KEY);
