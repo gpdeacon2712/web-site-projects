@@ -1,7 +1,7 @@
 /* risks.js
-   Implements Risk Register rendering, visualisations and live CVE/EPSS lookup.
-   Synthetic baseline risks remain separate from browser-added records, while
-   external threat intelligence supports rather than replaces governance decisions.
+Implements Risk Register rendering, visualisations and live CVE/EPSS lookups.
+Baseline risk records remain separate from user-created entries, while
+external threat intelligence informs rather than determines governance decisions.
 */
 
 "use strict";
