@@ -1,336 +1,271 @@
-<!DOCTYPE html>
-
-<!-- AITS Statement (AI Level 1)
-   
-   The concept for this application originated from early ideas for a potential
-   Governance, Risk and Compliance project involving dashboards for OneTrust
-   workflows. Intial scaffold was shared to build on and develop further
-   No confidential organisational information or live OneTrust data
-   is included.
-   I confirm that no generative AI tools were used to design, structure or develop 
-   any part of the technical or written work thereafter for this assignment. All code, 
-   design decisions, testing and written content were created and verified by me.
-
-   Only standard embedded proofreading features (spell-check, grammar, clarity and style suggestions) 
-   in Microsoft Word and formatting tools in Visual Studio Code were used. 
-   These tools did not generate any substantive content or code.
-
-   I take full responsibility for all submitted work. -->
-
-<html lang="en-GB">
-
-<head>
-    <meta charset="utf-8"/>
-
-    <!-- Ensures responsive scaling on mobile devices -->
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
-    <title>Control Library - GRC & AI Governance Control Hub | Version 23.4</title>
-
-    <meta
-        content="Sample security control library mapped to ISO 27001, NIST CSF and IEC 62443. Version 23.4 uses Bootstrap 5 for responsive layout and standard interface components."
-        name="description"/>
-
-    <!-- Site icon and web fonts -->
-    <link href="images/logo-mark.svg" rel="icon" type="image/svg+xml"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
-        rel="stylesheet"/>
-
-    <!-- Bootstrap framework and custom site styles -->
-    <link
-        crossorigin="anonymous"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        rel="stylesheet"/>
-    <link href="css/styles.css" rel="stylesheet"/>
-</head>
-
-<body>
-
-    <!-- Keyboard shortcut to bypass repeated navigation -->
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <!-- Identifies the page as an academic prototype -->
-    <p class="prototype-banner mb-0 py-1 px-3">
-        Version 23.4 academic prototype — all data is fictional / synthetic
-    </p>
-
-    <!-- Responsive Bootstrap navigation -->
-    <nav
-        aria-label="Main navigation"
-        class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-
-        <div class="container-fluid px-3 px-lg-4">
-
-            <a
-                class="navbar-brand d-flex align-items-center gap-2 fw-bold"
-                href="index.html">
-                <img alt="" height="34" src="images/logo-mark.svg" width="34"/>
-                GRC & AI Governance Hub
-            </a>
-
-            <!-- Collapses navigation on smaller screens -->
-            <button
-                aria-controls="site-nav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#site-nav"
-                data-bs-toggle="collapse"
-                type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="site-nav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <span aria-hidden="true">🏠</span> Dashboard
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a
-                            aria-current="page"
-                            class="nav-link active"
-                            href="controls.html">
-                            <span aria-hidden="true">🛡️</span> Control Library
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="risks.html">
-                            <span aria-hidden="true">⚠️</span> Risk Register
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="ai-register.html">
-                            <span aria-hidden="true">🤖</span> AI Use-Case Register
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="governance-support.html">
-                            <span aria-hidden="true">📞</span> Governance Support
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="my-profile.html">
-                            <span aria-hidden="true">👤</span> My Profile
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <main class="container py-4 py-lg-5" id="main-content">
-
-        <!-- Page heading and primary actions -->
-        <header class="page-header page-header--controls card border-0 shadow-sm mb-4">
-
-            <div class="card-body p-3 p-md-4">
-                <div
-                    class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
-
-                    <div class="d-flex align-items-start gap-3 flex-grow-1">
-
-                        <div aria-hidden="true" class="page-header-icon">🛡️</div>
-
-                        <div class="page-header-copy">
-                            <h1 class="h2 mb-1">Control Library</h1>
-
-                            <p class="text-body-secondary mb-2">
-                                Search and filter controls mapped across security,
-                                operational technology and AI governance frameworks.
-                            </p>
-
-                            <div class="d-flex flex-wrap gap-2 page-header-badges">
-                                <span class="badge rounded-pill text-bg-light border">
-                                    Framework mappings
-                                </span>
-                                <span class="badge rounded-pill text-bg-light border">
-                                    Instant browser filtering
-                                </span>
-                                <span class="badge rounded-pill text-bg-light border">
-                                    CSV export
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-wrap gap-2 page-header-actions">
-                        <a class="btn btn-primary" href="#control-filter">
-                            Search controls
-                        </a>
-                        <a class="btn btn-outline-secondary" href="risks.html">
-                            View linked risks
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </header>
-
-        <!-- Search region used to filter the control dataset -->
-        <form
-            aria-label="Filter controls"
-            id="control-filter"
-            role="search">
-
-            <label class="form-label" for="filter-text">
-                Search controls
-            </label>
-
-            <!-- Search input filters controls by entered text -->
-            <input
-                autocomplete="off"
-                class="form-control"
-                id="filter-text"
-                name="filter-text"
-                placeholder="e.g. access control"
-                type="search"/>
-
-            <label class="form-label" for="filter-framework">
-                Framework
-            </label>
-
-            <!-- Select limits filtering to one framework -->
-            <select
-                class="form-select"
-                id="filter-framework"
-                name="filter-framework">
-
-                <option value="">All frameworks</option>
-                <option value="ISO 27001">ISO/IEC 27001:2022</option>
-                <option value="NIST CSF">NIST CSF</option>
-                <option value="IEC 62443">IEC 62443</option>
-                <option value="NIST SP 800-82">NIST SP 800-82</option>
-
-                <!-- Values match framework names stored in controls.json -->
-                <option value="ISO 42001">
-                    ISO/IEC 42001:2023 (AI management)
-                </option>
-                <option value="NIST AI RMF">NIST AI RMF</option>
-            </select>
-
-            <label class="form-label" for="filter-status">
-                Status
-            </label>
-
-            <!-- Select filters controls by implementation status -->
-            <select
-                class="form-select"
-                id="filter-status"
-                name="filter-status">
-
-                <option value="">All statuses</option>
-                <option value="Implemented">Implemented</option>
-                <option value="In progress">In progress</option>
-                <option value="Not implemented">Not implemented</option>
-            </select>
-
-        </form>
-
-        <!-- Announces updated result totals without moving keyboard focus -->
-        <p aria-live="polite" id="control-count"></p>
-
-        <!-- Exports the currently filtered control list -->
-        <p class="table-actions">
-            <button
-                class="toggle-button btn btn-primary"
-                id="download-controls"
-                type="button">
-                Download filtered controls (CSV)
-            </button>
-        </p>
-
-        <!-- Keyboard-focusable responsive region containing the control table -->
-        <div
-            aria-describedby="controls-scroll-hint"
-            aria-label="Scrollable Control Library"
-            class="register-scroll register-scroll--controls table-responsive"
-            role="region"
-            tabindex="0">
-
-            <p class="scroll-hint" id="controls-scroll-hint">
-                Scroll within this panel to review additional controls.
-                The column headings remain visible.
-            </p>
-
-            <!-- Semantic table presents the filtered control records -->
-            <table class="data-table table table-striped table-hover align-middle">
-
-                <caption>
-                    Security control library (synthetic sample data)
-                </caption>
-
-                <thead>
-                    <tr>
-                        <th scope="col">Control ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Framework mapping</th>
-                        <th scope="col">Owner role</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Risks mitigated</th>
-                    </tr>
-                </thead>
-
-                <tbody id="control-rows">
-                    <!-- JavaScript inserts rows from the synthetic controls dataset -->
-                </tbody>
-
-            </table>
-        </div>
-
-        <!-- Link to further governance support -->
-        <section
-            aria-label="Control support"
-            class="context-support">
-
-            <h2>Need help with a control?</h2>
-
-            <p>
-                <a
-                    href="governance-support.html?type=suggest-control&subject=Control%20library%20query">
-                    Raise a control review request
-                </a>.
-            </p>
-
-        </section>
-
-    </main>
-
-    <!-- Site footer -->
-    <footer class="site-footer bg-dark text-white text-center py-4 px-3 mt-5">
-
-        <p>
-            Masters-level academic prototype.
-            No real organisational data is stored or displayed.
-        </p>
-
-        <p class="small mb-0">
-            Version 23.4 — Bootstrap 5 hybrid refactor with enhanced API workflow
-        </p>
-
-    </footer>
-
-    <!-- Bootstrap behaviour and page-specific JavaScript -->
-    <script
-        crossorigin="anonymous"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-    </script>
-
-    <script src="js/main.js"></script>
-    <script src="js/controls.js"></script>
-
-</body>
-</html>
+/* ai-register.js
+   Provides AI use-case registration, recommendation and export features.
+   The module maintains a clear separation between supplied synthetic
+   records and user-generated entries, supporting repeatable testing,
+   demonstrations and dataset integrity. */
+
+"use strict";
+
+const form = document.getElementById("ai-usecase-form");
+const slider = document.getElementById("risk-rating");
+const output = document.getElementById("risk-output");
+const riskDecrease = document.getElementById("risk-decrease");
+const riskIncrease = document.getElementById("risk-increase");
+const feedback = document.getElementById("register-feedback");
+
+// Synthetic baseline records and user-generated records are managed
+// independently. User additions are persisted in localStorage and
+// merged at runtime, preserving dataset integrity during resets.
+const USECASE_STORAGE_KEY = "grc-hub.user-usecases";
+let baselineUseCases = [];
+let userUseCases = [];
+let useCases = [];
+let allControls = [];
+let allRisks = [];
+
+function refreshUseCases() {
+  useCases = [...baselineUseCases, ...userUseCases];
+  renderUseCases();
+  const clearButton = document.getElementById("clear-saved-usecases");
+  if (clearButton) clearButton.hidden = userUseCases.length === 0;
+}
+
+
+// Generates representative AI-governance risk recommendations based on
+// selected data categories, risk ratings and oversight requirements.
+// The mappings are illustrative demonstration rules and should not be
+// considered a substitute for a formal risk assessment.
+function recommendRisks(dataCategory, riskRating, oversight) {
+  const ids = new Set(["RSK-014"]);
+  if (["internal", "personal", "special"].includes(dataCategory)) ids.add("RSK-012");
+  if (["personal", "special"].includes(dataCategory)) ids.add("RSK-013");
+  if (riskRating >= 4) ids.add("RSK-015");
+  if (!oversight.includes("human-review") && !oversight.includes("approval-gate")) ids.add("RSK-016");
+  return [...ids];
+}
+
+function makeRecordLink(href, text) {
+  const link = document.createElement("a");
+  link.className = "record-link";
+  link.href = href;
+  link.textContent = text;
+  return link;
+}
+
+// Demonstrates control traceability by linking governance selections
+// to representative controls within the Control Library. These mappings
+// are intended to support understanding rather than provide definitive
+// control assessments.
+function recommendControls(dataCategory, riskRating, oversight, frameworks) {
+  const ids = new Set(["CTL-010", "CTL-011"]);
+  if (oversight.includes("human-review") || oversight.includes("approval-gate")) ids.add("CTL-012");
+  if (["internal", "personal", "special"].includes(dataCategory)) ids.add("CTL-017");
+  if (["personal", "special"].includes(dataCategory)) ids.add("CTL-018");
+  if (riskRating >= 4) ids.add("CTL-019");
+  if (oversight.includes("audit-logging")) ids.add("CTL-013");
+  if (frameworks.includes("IEC 62443")) ids.add("CTL-004");
+  return [...ids];
+}
+
+const APPROVAL_BADGE = {
+  Approved: "badge--ok",
+  "Pending review": "badge--warn",
+  Rejected: "badge--risk",
+};
+
+function formatDate(value) {
+  const date = new Date(`${value}T00:00:00`);
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"});
+}
+
+// Rebuild the visible AI register from the merged baseline and browser-added records.
+function renderUseCases() {
+  const list = document.getElementById("usecase-list");
+  list.replaceChildren();
+
+  for (const useCase of useCases) {
+    const item = document.createElement("li");
+    item.className = "usecase-card";
+    const heading = document.createElement("h3");
+    const ref = document.createElement("span");
+    ref.className = "ref-id";
+    ref.textContent = useCase.id;
+    item.id = useCase.id;
+    heading.append(ref, ` ${useCase.toolName}`);
+
+    const status = document.createElement("span");
+    status.className = `badge ${APPROVAL_BADGE[useCase.approvalStatus] || ""}`;
+    status.textContent = useCase.approvalStatus;
+
+    const details = document.createElement("p");
+    const frameworks = useCase.frameworkAlignment.length ? useCase.frameworkAlignment.join(", ") : "No framework selected";
+    details.textContent = `${useCase.ownerRole} · Risk ${useCase.riskRating}/5 · Review ${formatDate(useCase.reviewDate)} · ${frameworks}`;
+    const controls = document.createElement("p");
+    controls.className = "mapped-controls";
+    const controlLookup = new Map(allControls.map(control => [control.id, control]));
+    const mapped = (useCase.controlIds || []).map(id => {
+      const control = controlLookup.get(id);
+      return `${id} ${control?.name || "Unknown control"} (${control?.status || "status unavailable"})`;
+    });
+    controls.append("Applicable controls: ");
+    if (mapped.length) {
+      (useCase.controlIds || []).forEach((id, index) => {
+        const control = controlLookup.get(id);
+        if (index) controls.append("; ");
+        controls.append(makeRecordLink(`controls.html#${id}`, `${id} ${control?.name || "Unknown control"} (${control?.status || "status unavailable"})`));
+      });
+    } else controls.append("None mapped");
+
+    const riskLookup = new Map(allRisks.map(risk => [risk.id, risk]));
+    const risks = document.createElement("p");
+    risks.className = "mapped-risks";
+    risks.append("AI-specific risks: ");
+    if ((useCase.riskIds || []).length) {
+      useCase.riskIds.forEach((id, index) => {
+        if (index) risks.append("; ");
+        risks.append(makeRecordLink(`risks.html#${id}`, `${id} ${riskLookup.get(id)?.title || "Unknown risk"}`));
+      });
+    } else risks.append("None identified");
+
+    item.append(heading, status, details, controls, risks);
+    list.append(item);
+  }
+}
+
+function roleLabel(value) {
+  return document.querySelector(`#owner-role option[value="${CSS.escape(value)}"]`)?.textContent || value;
+}
+
+// Prevent a newly registered use case from being assigned a review date in the past.
+function setMinimumReviewDate() {
+  const dateInput = document.getElementById("review-date");
+  const today = new Date();
+  const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  dateInput.min = localToday;
+}
+
+function updateRiskOutput() {
+  output.value = slider.value;
+  output.textContent = slider.value;
+}
+
+slider.addEventListener("input", updateRiskOutput);
+
+riskDecrease?.addEventListener("click", () => {
+  slider.value = String(Math.max(Number(slider.min), Number(slider.value) - Number(slider.step || 1)));
+  updateRiskOutput();
+  slider.focus();
+});
+
+riskIncrease?.addEventListener("click", () => {
+  slider.value = String(Math.min(Number(slider.max), Number(slider.value) + Number(slider.step || 1)));
+  updateRiskOutput();
+  slider.focus();
+});
+
+// Validates governance-specific requirements, creates a new AI use-case
+// record, persists user data locally, and refreshes the register while
+// preserving the integrity of the original demonstration dataset.
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  feedback.replaceChildren();
+
+  const data = new FormData(form);
+  const category = data.get("data-category");
+  const oversight = data.getAll("oversight");
+  const toolName = String(data.get("tool-name") || "").trim();
+
+  if (["personal", "special"].includes(category) && oversight.length === 0) {
+    feedback.textContent = "Select at least one human oversight arrangement when personal or special-category data is used.";
+    feedback.className = "results-region error-message";
+    document.getElementById("oversight-review").focus();
+    return;
+  }
+
+  if (useCases.some(item => item.toolName.toLowerCase() === toolName.toLowerCase())) {
+    feedback.textContent = "That AI tool name is already registered. Use a distinct name or update the existing record.";
+    feedback.className = "results-region error-message";
+    document.getElementById("tool-name").focus();
+    return;
+  }
+
+  const nextNumber = Math.max(0, ...useCases.map(item => Number(item.id.replace(/\D/g, "")) || 0)) + 1;
+  const frameworks = data.getAll("framework-alignment");
+  const riskRating = Number(data.get("risk-rating"));
+  userUseCases.push({
+    id: `AI-${String(nextNumber).padStart(3, "0")}`,
+    toolName,
+    purpose: String(data.get("purpose") || "").trim(),
+    supplier: String(data.get("supplier") || "").trim(),
+    ownerRole: roleLabel(String(data.get("owner-role"))),
+    ownerEmail: String(data.get("owner-email") || "").trim(),
+    dataCategory: category,
+    riskRating,
+    approvalStatus: "Pending review",
+    oversight,
+    reviewDate: String(data.get("review-date")),
+    frameworkAlignment: frameworks,
+    controlIds: recommendControls(category, riskRating, oversight, frameworks),
+    riskIds: recommendRisks(category, riskRating, oversight),
+  });
+
+  const saved = saveStoredList(USECASE_STORAGE_KEY, userUseCases);
+  refreshUseCases();
+  form.reset();
+  updateRiskOutput();
+  feedback.className = "results-region success-message";
+  // localStorage may be unavailable in some browser modes. In that case,
+  // the record remains available only for the current page session.
+  feedback.textContent = saved
+    ? `${toolName} was added and saved in this browser (localStorage - not sent to any server).`
+    : `${toolName} was added for this browser session only (localStorage unavailable).`;
+  document.getElementById("tool-name").focus();
+});
+
+// Load baseline use cases, controls and risks in parallel, then merge local additions.
+async function initUseCases() {
+  setMinimumReviewDate();
+  updateRiskOutput();
+  try {
+    [baselineUseCases, allControls, allRisks] = await Promise.all([
+      loadJSON("data/ai-usecases.json"),
+      loadJSON("data/controls.json"),
+      loadJSON("data/risks.json"),
+    ]);
+    userUseCases = loadStoredList(USECASE_STORAGE_KEY);
+    refreshUseCases();
+  } catch (error) {
+    feedback.className = "results-region error-message";
+    feedback.textContent = `Existing use cases could not be loaded. Serve the site over http. (${error.message})`;
+  }
+}
+
+// Clears user-persisted additions while preserving the integrity
+// of the baseline demonstration dataset.
+document.getElementById("clear-saved-usecases")?.addEventListener("click", () => {
+  userUseCases = [];
+  clearStoredList(USECASE_STORAGE_KEY);
+  refreshUseCases();
+  feedback.className = "results-region success-message";
+  feedback.textContent = "Saved use cases were removed from this browser's localStorage.";
+});
+
+document.getElementById("download-usecases")?.addEventListener("click", () => {
+  const rows = [
+    ["ID", "Tool name", "Purpose", "Supplier", "Owner role", "Owner email",
+     "Data category", "Risk rating", "Approval status", "Oversight",
+     "Review date", "Framework alignment", "Applicable controls", "AI-specific risks"],
+    ...useCases.map(item => [
+      item.id, item.toolName, item.purpose, item.supplier || "", item.ownerRole,
+      item.ownerEmail || "", item.dataCategory, item.riskRating, item.approvalStatus,
+      (item.oversight || []).join("; "), item.reviewDate,
+      (item.frameworkAlignment || []).join("; "), (item.controlIds || []).join("; "),
+      (item.riskIds || []).join("; "),
+    ]),
+  ];
+  downloadCSV("ai-use-case-register.csv", rows);
+});
+
+initUseCases();
+
 
