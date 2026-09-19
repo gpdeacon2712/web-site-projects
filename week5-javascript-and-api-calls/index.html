@@ -122,6 +122,34 @@
             top: 20px;
         }
 
+        /* Visible shortcut to the contact form */
+        .contact-link {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+
+        /* Makes the contact link look like a button */
+        .contact-link a {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contact-link a:hover {
+            background-color: #003f7f;
+        }
+
+        /* Keeps the shortcut easy to see when using a keyboard */
+        .contact-link a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -370,6 +398,7 @@
             font-size: 0.95rem;
         }
 
+        /* Mobile layout */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -405,6 +434,7 @@
             }
         }
 
+        /* Removes smooth movement if the user prefers reduced motion */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -415,12 +445,14 @@
 
 <body>
 
+    <!-- Keyboard shortcut that skips repeated content -->
     <a class="skip-link" href="#main-content">
         Skip to main content
     </a>
 
     <div class="container">
 
+        <!-- Page heading and quick contact shortcut -->
         <header>
             <h1>Graham Deacon</h1>
 
@@ -428,8 +460,14 @@
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
             </p>
+
+            <!-- Quick link to the contact form lower down the page -->
+            <p class="contact-link">
+                <a href="#contact">Contact Me</a>
+            </p>
         </header>
 
+        <!-- Main page content starts here -->
         <main id="main-content">
 
             <p>
@@ -439,6 +477,7 @@
                 </a>
             </p>
 
+            <!-- About section -->
             <section aria-labelledby="about-heading">
                 <h2 id="about-heading">About Me</h2>
 
@@ -466,6 +505,7 @@
                 </p>
             </section>
 
+            <!-- Qualifications section -->
             <section aria-labelledby="qualifications-heading">
                 <h2 id="qualifications-heading">
                     Professional Qualifications and Profile
@@ -541,6 +581,7 @@
                 </p>
             </section>
 
+            <!-- Family section -->
             <section aria-labelledby="family-heading">
                 <h2 id="family-heading">Family Life</h2>
 
@@ -556,6 +597,7 @@
                 </p>
             </section>
 
+            <!-- Interests section -->
             <section aria-labelledby="interests-heading">
                 <h2 id="interests-heading" class="interests-heading">
                     My Interests
@@ -572,6 +614,7 @@
                 </ul>
             </section>
 
+            <!-- Oxford United section -->
             <section aria-labelledby="football-heading">
                 <h2 id="football-heading">Oxford United</h2>
 
@@ -595,6 +638,7 @@
                 </figure>
             </section>
 
+            <!-- Study section -->
             <section aria-labelledby="study-heading">
                 <h2 id="study-heading">
                     Why I Am Studying Computing and Cyber Security
@@ -616,6 +660,7 @@
                 </p>
             </section>
 
+            <!-- Responsive design techniques -->
             <section aria-labelledby="responsive-heading">
                 <h2 id="responsive-heading">
                     Responsive Styling Techniques Used
@@ -679,6 +724,7 @@
                 </ul>
             </section>
 
+            <!-- Reflection on responsive design and DOM work -->
             <section aria-labelledby="reflection-heading">
                 <h2 id="reflection-heading">
                     Responsive Design and DOM Reflection
@@ -706,7 +752,8 @@
                 </p>
             </section>
 
-            <section aria-labelledby="contact-heading">
+            <!-- Contact form section. The id allows the Contact Me link to jump here. -->
+            <section id="contact" aria-labelledby="contact-heading">
 
                 <h2 id="contact-heading">
                     Contact and Interests Form
@@ -718,8 +765,10 @@
                     marked with an asterisk.
                 </p>
 
+                <!-- Demonstration form. JavaScript prevents real submission. -->
                 <form id="contact-form" action="#" method="post">
 
+                    <!-- Basic personal details -->
                     <fieldset>
                         <legend>Your Details</legend>
 
@@ -774,6 +823,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Checkboxes allow more than one interest -->
                     <fieldset>
                         <legend>Areas of Interest</legend>
 
@@ -816,6 +866,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Radio buttons allow one contact choice -->
                     <fieldset>
                         <legend>Preferred Contact Method</legend>
 
@@ -845,6 +896,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Message field and live character counter -->
                     <div class="form-group">
                         <label for="message">Message</label>
 
@@ -864,6 +916,7 @@
                         </small>
                     </div>
 
+                    <!-- Shows how much of the main form has been completed -->
                     <div class="form-progress">
                         <label for="form-progress">
                             Form completion
@@ -883,6 +936,7 @@
                         </span>
                     </div>
 
+                    <!-- Submit and reset buttons -->
                     <div class="button-group">
                         <button type="submit">
                             Submit form
@@ -897,6 +951,7 @@
 
                 </form>
 
+                <!-- Validation and success feedback appears here -->
                 <div
                     id="form-confirmation"
                     class="form-confirmation hidden"
@@ -904,12 +959,14 @@
                     aria-live="polite">
                 </div>
 
+                <!-- DOM-created summary appears here after submission -->
                 <div
                     id="submission-summary"
                     class="submission-summary hidden"
                     aria-live="polite">
                 </div>
 
+                <!-- Notes explaining the HTML form -->
                 <div class="form-notes">
 
                     <h3>HTML Form Elements Added</h3>
@@ -921,13 +978,13 @@
 
                     <ul>
                         <li>
-                            The <code><form></code> element groups the
+                            The <code>&lt;form&gt;</code> element groups the
                             controls.
                         </li>
 
                         <li>
-                            <code><fieldset></code> and
-                            <code><legend></code> organise related controls.
+                            <code>&lt;fieldset&gt;</code> and
+                            <code>&lt;legend&gt;</code> organise related controls.
                         </li>
 
                         <li>
@@ -968,6 +1025,7 @@
                     </ul>
                 </div>
 
+                <!-- Notes explaining retained JavaScript behaviour -->
                 <div class="javascript-notes">
 
                     <h3>JavaScript Features Retained</h3>
@@ -1010,6 +1068,7 @@
                     </p>
                 </div>
 
+                <!-- Notes explaining the DOM methods -->
                 <div class="dom-notes">
 
                     <h3>HTML DOM Methods Added</h3>
@@ -1083,6 +1142,7 @@
 
         </main>
 
+        <!-- Page footer -->
         <footer>
             <p>
                 Personal webpage created by Graham Deacon as part of the
@@ -1100,6 +1160,7 @@
     </div>
 
     <script>
+        /* Select the page elements used by the JavaScript */
         const form =
             document.getElementById("contact-form");
 
@@ -1136,6 +1197,7 @@
         const progressText =
             document.getElementById("progress-text");
 
+        /* Update the form completion indicator */
         function updateProgress() {
             let completedFields = 0;
 
@@ -1173,6 +1235,7 @@
                 `${percentage}% complete`;
         }
 
+        /* Show or hide the Other role field */
         roleSelect.addEventListener(
             "change",
             function () {
@@ -1195,11 +1258,13 @@
             }
         );
 
+        /* Update progress when the Other role field changes */
         otherRoleInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update the character counter and form progress */
         messageBox.addEventListener(
             "input",
             function () {
@@ -1210,16 +1275,19 @@
             }
         );
 
+        /* Update progress when the name changes */
         nameInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update progress when the email changes */
         emailInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Build a summary using DOM methods */
         function createSubmissionSummary(name) {
             summaryContainer.replaceChildren();
 
@@ -1310,6 +1378,7 @@
             summaryList.appendChild(interestsItem);
             summaryList.appendChild(messageItem);
 
+            /* Create a button to remove the summary */
             const removeButton =
                 document.createElement("button");
 
@@ -1339,6 +1408,7 @@
                 }
             );
 
+            /* Add the generated elements to the summary area */
             summaryContainer.appendChild(heading);
             summaryContainer.appendChild(introduction);
             summaryContainer.appendChild(summaryList);
@@ -1349,11 +1419,13 @@
             );
         }
 
+        /* Validate the form and create feedback without sending data */
         form.addEventListener(
             "submit",
             function (event) {
                 event.preventDefault();
 
+                /* Stop if any required field is invalid */
                 if (!form.checkValidity()) {
                     confirmation.textContent =
                         "Please complete the required fields before submitting.";
@@ -1373,6 +1445,7 @@
                 const name =
                     nameInput.value.trim();
 
+                /* Show a local confirmation message */
                 confirmation.textContent =
                     `Thank you, ${name}. Your form has been completed ` +
                     "successfully. This demonstration does not send or " +
@@ -1383,13 +1456,16 @@
                     "form-error"
                 );
 
+                /* Build the DOM submission summary */
                 createSubmissionSummary(name);
 
+                /* Check whether the user prefers reduced motion */
                 const prefersReducedMotion =
                     window.matchMedia(
                         "(prefers-reduced-motion: reduce)"
                     ).matches;
 
+                /* Move the summary into view */
                 summaryContainer.scrollIntoView({
                     behavior: prefersReducedMotion ? "auto" : "smooth",
                     block: "center"
@@ -1397,6 +1473,7 @@
             }
         );
 
+        /* Return the form and generated content to the starting state */
         form.addEventListener(
             "reset",
             function () {
@@ -1442,6 +1519,7 @@
             }
         );
 
+        /* Create a small status message to demonstrate DOM insertion */
         const welcomeMessage =
             document.createElement("p");
 
@@ -1461,6 +1539,7 @@
         const mainHeading =
             document.querySelector("h1");
 
+        /* Insert the new DOM message directly after the main heading */
         mainHeading.insertAdjacentElement(
             "afterend",
             welcomeMessage
