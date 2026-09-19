@@ -15,14 +15,17 @@
     <title>Graham Deacon - Interactive Web Page with API</title>
 
     <style>
+        /* Keeps padding and borders inside element widths */
         * {
             box-sizing: border-box;
         }
 
+        /* Smooth scrolling for internal page links */
         html {
             scroll-behavior: smooth;
         }
 
+        /* Main page styling */
         body {
             margin: 0;
             padding: 20px;
@@ -33,6 +36,7 @@
             line-height: 1.6;
         }
 
+        /* Main content container */
         .container {
             width: min(100%, 900px);
             margin: 0 auto;
@@ -41,6 +45,7 @@
             border-radius: 10px;
         }
 
+        /* Page header */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -106,6 +111,7 @@
             border-radius: 2px;
         }
 
+        /* Accessibility skip link shown when keyboard focused */
         .skip-link {
             position: absolute;
             top: -100px;
@@ -122,6 +128,34 @@
             top: 20px;
         }
 
+        /* Visible shortcut to the contact form */
+        .contact-link {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+
+        /* Makes the Contact Me link look like a button */
+        .contact-link a {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contact-link a:hover {
+            background-color: #003f7f;
+        }
+
+        /* Keeps the shortcut easy to see when using a keyboard */
+        .contact-link a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -130,6 +164,7 @@
             font-weight: bold;
         }
 
+        /* Responsive image and caption styling */
         figure {
             margin: 1.5rem 0;
         }
@@ -155,6 +190,7 @@
             cursor: help;
         }
 
+        /* Contact form layout */
         form {
             margin-top: 1rem;
         }
@@ -321,6 +357,7 @@
             margin-top: 0.75rem;
         }
 
+        /* Dog API demonstration section */
         .dog-api-section {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -419,6 +456,7 @@
             color: #563d7c;
         }
 
+        /* Page footer */
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -426,6 +464,7 @@
             font-size: 0.95rem;
         }
 
+        /* Mobile layout */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -465,6 +504,7 @@
             }
         }
 
+        /* Removes smooth movement if the user prefers reduced motion */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -475,12 +515,14 @@
 
 <body>
 
+    <!-- Keyboard shortcut that skips repeated content -->
     <a class="skip-link" href="#main-content">
         Skip to main content
     </a>
 
     <div class="container">
 
+        <!-- Page heading and quick contact shortcut -->
         <header>
             <h1>Graham Deacon</h1>
 
@@ -488,8 +530,14 @@
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
             </p>
+
+            <!-- Quick link to the contact form lower down the page -->
+            <p class="contact-link">
+                <a href="#contact">Contact Me</a>
+            </p>
         </header>
 
+        <!-- Main page content starts here -->
         <main id="main-content">
 
             <p>
@@ -499,6 +547,7 @@
                 </a>
             </p>
 
+            <!-- About section -->
             <section aria-labelledby="about-heading">
                 <h2 id="about-heading">About Me</h2>
 
@@ -526,6 +575,7 @@
                 </p>
             </section>
 
+            <!-- Qualifications section -->
             <section aria-labelledby="qualifications-heading">
                 <h2 id="qualifications-heading">
                     Professional Qualifications and Profile
@@ -601,6 +651,7 @@
                 </p>
             </section>
 
+            <!-- Family section -->
             <section aria-labelledby="family-heading">
                 <h2 id="family-heading">Family Life</h2>
 
@@ -616,6 +667,7 @@
                 </p>
             </section>
 
+            <!-- API section -->
             <section
                 class="dog-api-section"
                 aria-labelledby="dog-api-heading">
@@ -629,6 +681,7 @@
                     from the Dog CEO API.
                 </p>
 
+                <!-- Button starts the API request -->
                 <button
                     type="button"
                     id="load-dog-button">
@@ -699,6 +752,7 @@
                 </div>
             </section>
 
+            <!-- Interests section -->
             <section aria-labelledby="interests-heading">
                 <h2 id="interests-heading" class="interests-heading">
                     My Interests
@@ -715,6 +769,7 @@
                 </ul>
             </section>
 
+            <!-- Oxford United section -->
             <section aria-labelledby="football-heading">
                 <h2 id="football-heading">
                     Oxford United
@@ -740,6 +795,7 @@
                 </figure>
             </section>
 
+            <!-- Study section -->
             <section aria-labelledby="study-heading">
                 <h2 id="study-heading">
                     Why I Am Studying Computing and Cyber Security
@@ -761,6 +817,7 @@
                 </p>
             </section>
 
+            <!-- Responsive design techniques -->
             <section aria-labelledby="responsive-heading">
                 <h2 id="responsive-heading">
                     Responsive Styling Techniques Used
@@ -824,6 +881,7 @@
                 </ul>
             </section>
 
+            <!-- Reflection section -->
             <section aria-labelledby="reflection-heading">
                 <h2 id="reflection-heading">
                     Responsive Design, DOM and API Reflection
@@ -860,7 +918,8 @@
                 </p>
             </section>
 
-            <section aria-labelledby="contact-heading">
+            <!-- Contact form section. The id allows the Contact Me link to jump here. -->
+            <section id="contact" aria-labelledby="contact-heading">
 
                 <h2 id="contact-heading">
                     Contact and Interests Form
@@ -872,8 +931,10 @@
                     marked with an asterisk.
                 </p>
 
+                <!-- Demonstration form. JavaScript prevents real submission. -->
                 <form id="contact-form" action="#" method="post">
 
+                    <!-- Basic personal details -->
                     <fieldset>
                         <legend>Your Details</legend>
 
@@ -946,6 +1007,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Checkboxes allow more than one interest -->
                     <fieldset>
                         <legend>Areas of Interest</legend>
 
@@ -990,6 +1052,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Radio buttons allow one contact choice -->
                     <fieldset>
                         <legend>
                             Preferred Contact Method
@@ -1021,6 +1084,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- Message field and live character counter -->
                     <div class="form-group">
                         <label for="message">
                             Message
@@ -1042,6 +1106,7 @@
                         </small>
                     </div>
 
+                    <!-- Shows how much of the main form has been completed -->
                     <div class="form-progress">
                         <label for="form-progress">
                             Form completion
@@ -1061,6 +1126,7 @@
                         </span>
                     </div>
 
+                    <!-- Submit and reset buttons -->
                     <div class="button-group">
                         <button type="submit">
                             Submit form
@@ -1075,6 +1141,7 @@
 
                 </form>
 
+                <!-- Validation and success feedback appears here -->
                 <div
                     id="form-confirmation"
                     class="form-confirmation hidden"
@@ -1082,12 +1149,14 @@
                     aria-live="polite">
                 </div>
 
+                <!-- DOM-created summary appears here after submission -->
                 <div
                     id="submission-summary"
                     class="submission-summary hidden"
                     aria-live="polite">
                 </div>
 
+                <!-- Notes explaining the HTML form -->
                 <div class="form-notes">
 
                     <h3>
@@ -1101,13 +1170,13 @@
 
                     <ul>
                         <li>
-                            The <code><form></code> element groups the
+                            The <code>&lt;form&gt;</code> element groups the
                             controls.
                         </li>
 
                         <li>
-                            <code><fieldset></code> and
-                            <code><legend></code> organise related controls.
+                            <code>&lt;fieldset&gt;</code> and
+                            <code>&lt;legend&gt;</code> organise related controls.
                         </li>
 
                         <li>
@@ -1148,6 +1217,7 @@
                     </ul>
                 </div>
 
+                <!-- Notes explaining the JavaScript behaviour -->
                 <div class="javascript-notes">
 
                     <h3>
@@ -1192,6 +1262,7 @@
                     </p>
                 </div>
 
+                <!-- Notes explaining the DOM methods -->
                 <div class="dom-notes">
 
                     <h3>
@@ -1267,6 +1338,7 @@
 
         </main>
 
+        <!-- Page footer -->
         <footer>
             <p>
                 Personal webpage created by Graham Deacon as part of the
@@ -1284,6 +1356,7 @@
     </div>
 
     <script>
+        /* Select the page elements used by the JavaScript */
         const form =
             document.getElementById("contact-form");
 
@@ -1332,6 +1405,7 @@
         const dogImage =
             document.getElementById("dog-image");
 
+        /* Update the form completion indicator */
         function updateProgress() {
             let completedFields = 0;
 
@@ -1369,6 +1443,7 @@
                 `${percentage}% complete`;
         }
 
+        /* Show or hide the Other role field */
         roleSelect.addEventListener(
             "change",
             function () {
@@ -1391,11 +1466,13 @@
             }
         );
 
+        /* Update progress when the Other role field changes */
         otherRoleInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update the character counter and form progress */
         messageBox.addEventListener(
             "input",
             function () {
@@ -1406,16 +1483,19 @@
             }
         );
 
+        /* Update progress when the name changes */
         nameInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update progress when the email changes */
         emailInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Build a summary using DOM methods */
         function createSubmissionSummary(name) {
             summaryContainer.replaceChildren();
 
@@ -1546,6 +1626,7 @@
             );
         }
 
+        /* Validate the form and create feedback without sending data */
         form.addEventListener(
             "submit",
             function (event) {
@@ -1595,6 +1676,7 @@
             }
         );
 
+        /* Return the form and generated content to the starting state */
         form.addEventListener(
             "reset",
             function () {
@@ -1641,6 +1723,7 @@
             }
         );
 
+        /* Request and display a random Cocker Spaniel image */
         async function loadRandomDogImage() {
             const apiUrl =
                 "https://dog.ceo/api/breed/spaniel/cocker/images/random";
@@ -1660,6 +1743,7 @@
                 true;
 
             try {
+                /* Send the request to the external API */
                 const response =
                     await fetch(apiUrl);
 
@@ -1669,6 +1753,7 @@
                     );
                 }
 
+                /* Convert the response into a JavaScript object */
                 const data =
                     await response.json();
 
@@ -1708,6 +1793,7 @@
                     data.message;
 
             } catch (error) {
+                /* Show a clear message if the API request fails */
                 dogImage.removeAttribute(
                     "src"
                 );
@@ -1732,16 +1818,19 @@
                 );
 
             } finally {
+                /* Re-enable the button after success or failure */
                 loadDogButton.disabled =
                     false;
             }
         }
 
+        /* Start the API request when the button is selected */
         loadDogButton.addEventListener(
             "click",
             loadRandomDogImage
         );
 
+        /* Create a small status message to demonstrate DOM insertion */
         const welcomeMessage =
             document.createElement("p");
 
@@ -1761,6 +1850,7 @@
         const mainHeading =
             document.querySelector("h1");
 
+        /* Insert the new DOM message directly after the main heading */
         mainHeading.insertAdjacentElement(
             "afterend",
             welcomeMessage
