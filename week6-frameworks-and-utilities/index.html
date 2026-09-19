@@ -19,10 +19,12 @@
             box-sizing: border-box;
         }
 
+        /* Allows smooth movement to internal links */
         html {
             scroll-behavior: smooth;
         }
 
+        /* Main page styling */
         body {
             margin: 0;
             padding: 20px;
@@ -33,6 +35,7 @@
             line-height: 1.6;
         }
 
+        /* Main content container */
         .container {
             width: min(100%, 900px);
             margin: 0 auto;
@@ -41,6 +44,7 @@
             border-radius: 10px;
         }
 
+        /* Page header */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -89,6 +93,7 @@
             color: darkblue;
         }
 
+        /* Standard link styling */
         a {
             color: #0046a8;
             text-decoration: underline;
@@ -100,12 +105,14 @@
             text-decoration-thickness: 0.2em;
         }
 
+        /* Visible focus for keyboard users */
         a:focus-visible {
             outline: 3px solid #000000;
             outline-offset: 4px;
             border-radius: 2px;
         }
 
+        /* Skip link appears when keyboard focused */
         .skip-link {
             position: absolute;
             top: -100px;
@@ -122,6 +129,34 @@
             top: 20px;
         }
 
+        /* Visible shortcut to the contact form */
+        .contact-link {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+
+        /* Makes the Contact Me link look like a button */
+        .contact-link a {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contact-link a:hover {
+            background-color: #003f7f;
+        }
+
+        /* Keeps the link easy to see when using a keyboard */
+        .contact-link a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -130,6 +165,7 @@
             font-weight: bold;
         }
 
+        /* Responsive image styling */
         figure {
             margin: 1.5rem 0;
         }
@@ -155,6 +191,7 @@
             cursor: help;
         }
 
+        /* Form layout */
         form {
             margin-top: 1rem;
         }
@@ -199,6 +236,7 @@
             resize: vertical;
         }
 
+        /* Checkbox and radio groups */
         .option-group {
             display: flex;
             gap: 0.6rem;
@@ -211,6 +249,7 @@
             height: 1.2rem;
         }
 
+        /* Form focus indicators */
         input:focus-visible,
         select:focus-visible,
         textarea:focus-visible,
@@ -219,6 +258,7 @@
             outline-offset: 3px;
         }
 
+        /* Button styling */
         button {
             min-height: 44px;
             padding: 0.75rem 1.25rem;
@@ -263,6 +303,7 @@
             font-size: 0.95rem;
         }
 
+        /* Form progress indicator */
         .form-progress {
             margin: 1.5rem 0;
         }
@@ -284,10 +325,12 @@
             font-size: 0.95rem;
         }
 
+        /* Used to hide elements */
         .hidden {
             display: none;
         }
 
+        /* Form success message */
         .form-confirmation {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -298,12 +341,14 @@
             font-weight: bold;
         }
 
+        /* Form error message */
         .form-error {
             background-color: #fdecec;
             color: #7a1c1c;
             border-left-color: #a61b1b;
         }
 
+        /* Generated submission summary */
         .submission-summary {
             margin-top: 1.5rem;
             padding: 1.25rem;
@@ -321,6 +366,7 @@
             margin-top: 0.75rem;
         }
 
+        /* Dog API section */
         .dog-api-section {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -370,6 +416,7 @@
             color: darkblue;
         }
 
+        /* HTML form notes */
         .form-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -394,6 +441,7 @@
             font-family: Consolas, Monaco, monospace;
         }
 
+        /* JavaScript notes */
         .javascript-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -407,6 +455,7 @@
             color: #6b4700;
         }
 
+        /* DOM notes */
         .dom-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -420,6 +469,7 @@
             color: #563d7c;
         }
 
+        /* jQuery demonstration section */
         .jquery-section {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -484,6 +534,7 @@
             color: darkgreen;
         }
 
+        /* Page footer */
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -491,6 +542,7 @@
             font-size: 0.95rem;
         }
 
+        /* Mobile layout */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -532,6 +584,7 @@
             }
         }
 
+        /* Removes smooth movement if the user prefers reduced motion */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -542,12 +595,14 @@
 
 <body>
 
+    <!-- Keyboard shortcut to main page content -->
     <a class="skip-link" href="#main-content">
         Skip to main content
     </a>
 
     <div class="container">
 
+        <!-- Page heading -->
         <header>
             <h1>Graham Deacon</h1>
 
@@ -555,8 +610,14 @@
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
             </p>
+
+            <!-- Quick link to the contact form lower down the page -->
+            <p class="contact-link">
+                <a href="#contact">Contact Me</a>
+            </p>
         </header>
 
+        <!-- Main page content starts here -->
         <main id="main-content">
 
             <p>
@@ -566,6 +627,7 @@
                 </a>
             </p>
 
+            <!-- About section -->
             <section aria-labelledby="about-heading">
 
                 <h2 id="about-heading">
@@ -597,6 +659,7 @@
 
             </section>
 
+            <!-- Qualifications section -->
             <section aria-labelledby="qualifications-heading">
 
                 <h2 id="qualifications-heading">
@@ -674,6 +737,7 @@
 
             </section>
 
+            <!-- Family section -->
             <section aria-labelledby="family-heading">
 
                 <h2 id="family-heading">
@@ -693,6 +757,7 @@
 
             </section>
 
+            <!-- Dog API demonstration -->
             <section
                 class="dog-api-section"
                 aria-labelledby="dog-api-heading">
@@ -706,12 +771,14 @@
                     from the Dog CEO API.
                 </p>
 
+                <!-- Starts the API request -->
                 <button
                     type="button"
                     id="load-dog-button">
                     Show a random Cocker Spaniel
                 </button>
 
+                <!-- API loading, success or error message -->
                 <p
                     id="dog-api-status"
                     class="api-status"
@@ -719,6 +786,7 @@
                     aria-live="polite">
                 </p>
 
+                <!-- Returned image appears here -->
                 <div
                     id="dog-image-container"
                     class="dog-image-container hidden">
@@ -782,6 +850,7 @@
 
             </section>
 
+            <!-- jQuery demonstration -->
             <section
                 class="jquery-section"
                 aria-labelledby="jquery-heading">
@@ -795,6 +864,7 @@
                     and methods for getting, setting, adding and removing content.
                 </p>
 
+                <!-- jQuery control buttons -->
                 <div class="jquery-controls">
 
                     <button
@@ -821,6 +891,7 @@
 
                 </div>
 
+                <!-- Profile panel shown and hidden using jQuery -->
                 <div
                     id="jquery-profile-panel"
                     class="jquery-panel">
@@ -837,6 +908,7 @@
 
                 </div>
 
+                <!-- Add and remove notes using jQuery -->
                 <div class="jquery-note-form">
 
                     <label for="jquery-note">
@@ -873,11 +945,13 @@
 
                     </div>
 
+                    <!-- New notes are added to this list -->
                     <ul
                         id="jquery-note-list"
                         class="jquery-note-list">
                     </ul>
 
+                    <!-- jQuery feedback appears here -->
                     <p
                         id="jquery-status"
                         class="jquery-status"
@@ -955,6 +1029,7 @@
 
             </section>
 
+            <!-- Interests section -->
             <section aria-labelledby="interests-heading">
 
                 <h2
@@ -975,6 +1050,7 @@
 
             </section>
 
+            <!-- Oxford United section -->
             <section aria-labelledby="football-heading">
 
                 <h2 id="football-heading">
@@ -1004,6 +1080,7 @@
 
             </section>
 
+            <!-- Study section -->
             <section aria-labelledby="study-heading">
 
                 <h2 id="study-heading">
@@ -1028,6 +1105,7 @@
 
             </section>
 
+            <!-- Responsive design techniques -->
             <section aria-labelledby="responsive-heading">
 
                 <h2 id="responsive-heading">
@@ -1094,6 +1172,7 @@
 
             </section>
 
+            <!-- Reflection section -->
             <section aria-labelledby="reflection-heading">
 
                 <h2 id="reflection-heading">
@@ -1133,7 +1212,8 @@
 
             </section>
 
-            <section aria-labelledby="contact-heading">
+            <!-- Contact form section. The id lets the Contact Me link jump here. -->
+            <section id="contact" aria-labelledby="contact-heading">
 
                 <h2 id="contact-heading">
                     Contact and Interests Form
@@ -1145,11 +1225,13 @@
                     marked with an asterisk.
                 </p>
 
+                <!-- Demonstration form -->
                 <form
                     id="contact-form"
                     action="#"
                     method="post">
 
+                    <!-- Personal details -->
                     <fieldset>
 
                         <legend>
@@ -1220,6 +1302,7 @@
 
                         </div>
 
+                        <!-- Shown only when Other is selected -->
                         <div
                             class="form-group hidden"
                             id="other-role-group">
@@ -1237,6 +1320,7 @@
 
                     </fieldset>
 
+                    <!-- Checkboxes allow multiple choices -->
                     <fieldset>
 
                         <legend>
@@ -1291,6 +1375,7 @@
 
                     </fieldset>
 
+                    <!-- Radio buttons allow one contact choice -->
                     <fieldset>
 
                         <legend>
@@ -1328,6 +1413,7 @@
 
                     </fieldset>
 
+                    <!-- Message field with character counter -->
                     <div class="form-group">
 
                         <label for="message">
@@ -1355,6 +1441,7 @@
 
                     </div>
 
+                    <!-- Form completion indicator -->
                     <div class="form-progress">
 
                         <label for="form-progress">
@@ -1376,6 +1463,7 @@
 
                     </div>
 
+                    <!-- Form buttons -->
                     <div class="button-group">
 
                         <button type="submit">
@@ -1392,6 +1480,7 @@
 
                 </form>
 
+                <!-- Form feedback appears here -->
                 <div
                     id="form-confirmation"
                     class="form-confirmation hidden"
@@ -1399,12 +1488,14 @@
                     aria-live="polite">
                 </div>
 
+                <!-- Generated submission summary appears here -->
                 <div
                     id="submission-summary"
                     class="submission-summary hidden"
                     aria-live="polite">
                 </div>
 
+                <!-- HTML form explanation -->
                 <div class="form-notes">
 
                     <h3>
@@ -1418,13 +1509,13 @@
 
                     <ul>
                         <li>
-                            The <code><form></code> element groups the
+                            The <code>&lt;form&gt;</code> element groups the
                             controls.
                         </li>
 
                         <li>
-                            <code><fieldset></code> and
-                            <code><legend></code> organise related controls.
+                            <code>&lt;fieldset&gt;</code> and
+                            <code>&lt;legend&gt;</code> organise related controls.
                         </li>
 
                         <li>
@@ -1466,6 +1557,7 @@
 
                 </div>
 
+                <!-- JavaScript explanation -->
                 <div class="javascript-notes">
 
                     <h3>
@@ -1511,6 +1603,7 @@
 
                 </div>
 
+                <!-- DOM explanation -->
                 <div class="dom-notes">
 
                     <h3>
@@ -1587,6 +1680,7 @@
 
         </main>
 
+        <!-- Page footer -->
         <footer>
 
             <p>
@@ -1611,9 +1705,11 @@
 
     </div>
 
+    <!-- Loads the jQuery library -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 
     <script>
+        /* Select the page elements used by JavaScript */
         const form =
             document.getElementById("contact-form");
 
@@ -1662,6 +1758,7 @@
         const dogImage =
             document.getElementById("dog-image");
 
+        /* Update the form completion indicator */
         function updateProgress() {
             let completedFields = 0;
 
@@ -1702,6 +1799,7 @@
                 `${percentage}% complete`;
         }
 
+        /* Show or hide the Other role field */
         roleSelect.addEventListener(
             "change",
             function () {
@@ -1725,11 +1823,13 @@
             }
         );
 
+        /* Update progress when the Other role field changes */
         otherRoleInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update character count and form progress */
         messageBox.addEventListener(
             "input",
             function () {
@@ -1740,16 +1840,19 @@
             }
         );
 
+        /* Update progress when name changes */
         nameInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Update progress when email changes */
         emailInput.addEventListener(
             "input",
             updateProgress
         );
 
+        /* Build a submission summary using DOM methods */
         function createSubmissionSummary(name) {
             summaryContainer.replaceChildren();
 
@@ -1854,6 +1957,7 @@
                 messageItem
             );
 
+            /* Create a button to remove the summary */
             const removeButton =
                 document.createElement("button");
 
@@ -1884,6 +1988,7 @@
                 }
             );
 
+            /* Add the generated content to the page */
             summaryContainer.appendChild(
                 heading
             );
@@ -1905,6 +2010,7 @@
             );
         }
 
+        /* Validate the form and show local feedback */
         form.addEventListener(
             "submit",
             function (event) {
@@ -1943,6 +2049,7 @@
                     name
                 );
 
+                /* Respect reduced-motion preference */
                 const prefersReducedMotion =
                     window.matchMedia(
                         "(prefers-reduced-motion: reduce)"
@@ -1958,6 +2065,7 @@
             }
         );
 
+        /* Reset the generated form content */
         form.addEventListener(
             "reset",
             function () {
@@ -2004,6 +2112,7 @@
             }
         );
 
+        /* Request and display a random Cocker Spaniel image */
         async function loadRandomDogImage() {
             const apiUrl =
                 "https://dog.ceo/api/breed/spaniel/cocker/images/random";
@@ -2023,6 +2132,7 @@
                 true;
 
             try {
+                /* Send the API request */
                 const response =
                     await fetch(apiUrl);
 
@@ -2032,6 +2142,7 @@
                     );
                 }
 
+                /* Convert response to JavaScript data */
                 const data =
                     await response.json();
 
@@ -2044,6 +2155,7 @@
                     );
                 }
 
+                /* Show the image after it has loaded */
                 const handleImageLoad =
                     function () {
                         dogImageContainer.classList.remove(
@@ -2071,6 +2183,7 @@
                     data.message;
 
             } catch (error) {
+                /* Show an error if the API request fails */
                 dogImage.removeAttribute(
                     "src"
                 );
@@ -2095,16 +2208,19 @@
                 );
 
             } finally {
+                /* Re-enable the button after success or failure */
                 loadDogButton.disabled =
                     false;
             }
         }
 
+        /* Run the API request when the button is selected */
         loadDogButton.addEventListener(
             "click",
             loadRandomDogImage
         );
 
+        /* Create a status message to demonstrate DOM insertion */
         const welcomeMessage =
             document.createElement("p");
 
@@ -2124,6 +2240,7 @@
         const mainHeading =
             document.querySelector("h1");
 
+        /* Insert the message after the main heading */
         mainHeading.insertAdjacentElement(
             "afterend",
             welcomeMessage
@@ -2131,7 +2248,10 @@
     </script>
 
     <script>
+        /* Run the jQuery code after the page is ready */
         $(document).ready(function () {
+
+            /* Check whether the user prefers reduced motion */
             const reducedMotion =
                 window.matchMedia(
                     "(prefers-reduced-motion: reduce)"
@@ -2140,6 +2260,7 @@
             const effectDuration =
                 reducedMotion ? 0 : 400;
 
+            /* Show or hide the profile summary */
             $("#toggle-profile-button").on(
                 "click",
                 function () {
@@ -2184,6 +2305,7 @@
                 }
             );
 
+            /* Fade or restore the dog API section */
             $("#fade-dog-button").on(
                 "click",
                 function () {
@@ -2208,6 +2330,7 @@
                 }
             );
 
+            /* Slide the API notes open or closed */
             $("#slide-api-notes-button").on(
                 "click",
                 function () {
@@ -2242,6 +2365,7 @@
                 }
             );
 
+            /* Add a learning note to the list */
             function addLearningNote() {
                 const noteText =
                     $("#jquery-note")
@@ -2260,15 +2384,18 @@
                     return;
                 }
 
+                /* Create a new list item */
                 const $newItem =
                     $("<li>").text(
                         noteText
                     );
 
+                /* Add the new item to the list */
                 $("#jquery-note-list").append(
                     $newItem
                 );
 
+                /* Clear the input */
                 $("#jquery-note").val(
                     ""
                 );
@@ -2278,11 +2405,13 @@
                 );
             }
 
+            /* Add a note when the button is selected */
             $("#add-note-button").on(
                 "click",
                 addLearningNote
             );
 
+            /* Also add a note when Enter is pressed */
             $("#jquery-note").on(
                 "keydown",
                 function (event) {
@@ -2294,6 +2423,7 @@
                 }
             );
 
+            /* Remove all generated learning notes */
             $("#remove-notes-button").on(
                 "click",
                 function () {
@@ -2316,6 +2446,7 @@
                 }
             );
 
+            /* Demonstrates getting and setting text with jQuery */
             const originalProfileText =
                 $("#jquery-profile-text")
                     .text()
