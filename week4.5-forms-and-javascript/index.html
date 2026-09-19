@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
+    <!-- Makes the page adapt correctly to mobile screen widths -->
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0">
@@ -15,14 +16,18 @@
     <title>Graham Deacon - Interactive Personal Web Page</title>
 
     <style>
+
+        /* Makes element sizing easier to manage */
         * {
             box-sizing: border-box;
         }
 
+        /* Smooth scrolling for internal page links */
         html {
             scroll-behavior: smooth;
         }
 
+        /* Main page styling */
         body {
             margin: 0;
             padding: 20px;
@@ -33,6 +38,7 @@
             line-height: 1.6;
         }
 
+        /* Main content container */
         .container {
             width: min(100%, 900px);
             margin: 0 auto;
@@ -41,6 +47,7 @@
             border-radius: 10px;
         }
 
+        /* Page header */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -73,6 +80,7 @@
             color: darkred;
         }
 
+        /* Highlighted Oxford United text */
         .highlight {
             padding: 15px;
             background-color: #ffffcc;
@@ -84,6 +92,7 @@
             color: darkblue;
         }
 
+        /* Standard link styling */
         a {
             color: #0046a8;
             text-decoration: underline;
@@ -95,12 +104,14 @@
             text-decoration-thickness: 0.2em;
         }
 
+        /* Visible keyboard focus */
         a:focus-visible {
             outline: 3px solid #000000;
             outline-offset: 4px;
             border-radius: 2px;
         }
 
+        /* Accessibility skip link - appears when keyboard focused */
         .skip-link {
             position: absolute;
             top: -100px;
@@ -117,6 +128,33 @@
             top: 20px;
         }
 
+        /* NEW: Contact shortcut near the top of the page */
+        .contact-link {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+
+        .contact-link a {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: #ffffff;
+            background-color: darkblue;
+            border: 2px solid darkblue;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contact-link a:hover {
+            background-color: #003f7f;
+        }
+
+        .contact-link a:focus-visible {
+            outline: 3px solid #000000;
+            outline-offset: 3px;
+        }
+
+        /* Portfolio return links */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -125,6 +163,7 @@
             font-weight: bold;
         }
 
+        /* Image and caption styling */
         figure {
             margin: 1.5rem 0;
         }
@@ -150,6 +189,7 @@
             cursor: help;
         }
 
+        /* Form layout */
         form {
             margin-top: 1rem;
         }
@@ -194,6 +234,7 @@
             resize: vertical;
         }
 
+        /* Checkbox and radio button groups */
         .option-group {
             display: flex;
             gap: 0.6rem;
@@ -206,6 +247,7 @@
             height: 1.2rem;
         }
 
+        /* Visible focus for form controls */
         input:focus-visible,
         select:focus-visible,
         textarea:focus-visible,
@@ -214,6 +256,7 @@
             outline-offset: 3px;
         }
 
+        /* Form buttons */
         button {
             min-height: 44px;
             padding: 0.75rem 1.25rem;
@@ -252,10 +295,12 @@
             font-size: 0.95rem;
         }
 
+        /* Used by JavaScript to hide elements */
         .hidden {
             display: none;
         }
 
+        /* Successful form feedback */
         .form-confirmation {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -266,12 +311,14 @@
             font-weight: bold;
         }
 
+        /* Form error feedback */
         .form-error {
             background-color: #fdecec;
             color: #7a1c1c;
             border-left-color: #a61b1b;
         }
 
+        /* Supporting form information */
         .form-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -293,6 +340,7 @@
             font-family: Consolas, Monaco, monospace;
         }
 
+        /* JavaScript explanation box */
         .javascript-notes {
             margin-top: 2rem;
             padding: 1.25rem;
@@ -306,6 +354,7 @@
             color: #6b4700;
         }
 
+        /* Page footer */
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -313,7 +362,9 @@
             font-size: 0.95rem;
         }
 
+        /* Mobile layout */
         @media (max-width: 600px) {
+
             body {
                 padding: 10px;
             }
@@ -325,6 +376,11 @@
 
             header {
                 text-align: left;
+            }
+
+            /* Keep Contact Me button centred on mobile */
+            .contact-link {
+                text-align: center;
             }
 
             h2 {
@@ -348,31 +404,46 @@
             }
         }
 
+        /* Respect users who prefer reduced motion */
         @media (prefers-reduced-motion: reduce) {
+
             html {
                 scroll-behavior: auto;
             }
         }
+
     </style>
 </head>
 
 <body>
 
+    <!-- Keyboard accessibility shortcut -->
     <a class="skip-link" href="#main-content">
         Skip to main content
     </a>
 
     <div class="container">
 
+        <!-- Main page heading -->
         <header>
+
             <h1>Graham Deacon</h1>
 
             <p class="introductory-text">
                 MSc Computing and Cyber Security Student |
                 IT Professional | GRC and AI Governance
             </p>
+
+            <!-- NEW: Quick link to the contact form -->
+            <p class="contact-link">
+                <a href="#contact">
+                    Contact Me
+                </a>
+            </p>
+
         </header>
 
+        <!-- Main page content -->
         <main id="main-content">
 
             <p>
@@ -382,7 +453,9 @@
                 </a>
             </p>
 
+            <!-- About Me -->
             <section aria-labelledby="about-heading">
+
                 <h2 id="about-heading">About Me</h2>
 
                 <p>
@@ -407,9 +480,12 @@
                     at Sheffield Hallam University and have recently started
                     <strong>Module 9</strong> of the programme.
                 </p>
+
             </section>
 
+            <!-- Qualifications -->
             <section aria-labelledby="qualifications-heading">
+
                 <h2 id="qualifications-heading">
                     Professional Qualifications and Profile
                 </h2>
@@ -420,6 +496,7 @@
                 </p>
 
                 <ul>
+
                     <li>
                         Chartered Engineer
                         (<abbr title="Chartered Engineer">CEng</abbr>)
@@ -464,6 +541,7 @@
                         Certified Information Systems Auditor
                         (<abbr title="Certified Information Systems Auditor">CISA</abbr>)
                     </li>
+
                 </ul>
 
                 <p>
@@ -482,9 +560,12 @@
                         LinkedIn profile (opens in a new tab)
                     </a>.
                 </p>
+
             </section>
 
+            <!-- Family -->
             <section aria-labelledby="family-heading">
+
                 <h2 id="family-heading">Family Life</h2>
 
                 <p>
@@ -497,10 +578,15 @@
                     We also have a working <strong>Cocker Spaniel</strong> who enjoys
                     long walks and is very much part of the family.
                 </p>
+
             </section>
 
+            <!-- Interests -->
             <section aria-labelledby="interests-heading">
-                <h2 id="interests-heading" class="interests-heading">
+
+                <h2
+                    id="interests-heading"
+                    class="interests-heading">
                     My Interests
                 </h2>
 
@@ -513,9 +599,12 @@
                     <li>Supporting Oxford United Football Club</li>
                     <li>Spending time with family and friends</li>
                 </ul>
+
             </section>
 
+            <!-- Oxford United -->
             <section aria-labelledby="football-heading">
+
                 <h2 id="football-heading">Oxford United</h2>
 
                 <p class="highlight">
@@ -525,6 +614,7 @@
                 </p>
 
                 <figure>
+
                     <img
                         src="https://cdn.oufc.co.uk/sites/default/files/2025-10/JAS_2766-2.jpg"
                         alt="Oxford United football players during a match"
@@ -535,10 +625,14 @@
                         Oxford United Football Club, which I have supported
                         throughout my life.
                     </figcaption>
+
                 </figure>
+
             </section>
 
+            <!-- Study -->
             <section aria-labelledby="study-heading">
+
                 <h2 id="study-heading">
                     Why I Am Studying Computing and Cyber Security
                 </h2>
@@ -556,9 +650,12 @@
                     structure, CSS controls presentation and responsive behaviour,
                     and JavaScript adds interaction and feedback.
                 </p>
+
             </section>
 
+            <!-- Responsive design techniques -->
             <section aria-labelledby="responsive-heading">
+
                 <h2 id="responsive-heading">
                     Responsive Styling Techniques Used
                 </h2>
@@ -571,6 +668,7 @@
                 </p>
 
                 <ul>
+
                     <li>
                         Added the viewport meta tag so mobile browsers use the
                         physical width of the device.
@@ -618,10 +716,14 @@
                     <li>
                         Added support for users who prefer reduced motion.
                     </li>
+
                 </ul>
+
             </section>
 
+            <!-- Responsive design reflection -->
             <section aria-labelledby="reflection-heading">
+
                 <h2 id="reflection-heading">
                     Responsive Design Reflection
                 </h2>
@@ -647,9 +749,14 @@
                     understand that JavaScript interaction should build on accessible
                     HTML and responsive CSS rather than replace them.
                 </p>
+
             </section>
 
-            <section aria-labelledby="contact-heading">
+            <!-- Contact form
+                 The id="contact" allows the Contact Me link to jump here -->
+            <section
+                id="contact"
+                aria-labelledby="contact-heading">
 
                 <h2 id="contact-heading">
                     Contact and Interests Form
@@ -661,13 +768,19 @@
                     asterisk.
                 </p>
 
+                <!-- Demonstration form - information is not sent or stored -->
                 <form id="contact-form" novalidate>
 
+                    <!-- Personal details -->
                     <fieldset>
+
                         <legend>Your Details</legend>
 
                         <div class="form-group">
-                            <label for="name">Name *</label>
+
+                            <label for="name">
+                                Name *
+                            </label>
 
                             <input
                                 type="text"
@@ -675,10 +788,14 @@
                                 name="name"
                                 autocomplete="name"
                                 required>
+
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email address *</label>
+
+                            <label for="email">
+                                Email address *
+                            </label>
 
                             <input
                                 type="email"
@@ -686,22 +803,42 @@
                                 name="email"
                                 autocomplete="email"
                                 required>
+
                         </div>
 
                         <div class="form-group">
-                            <label for="role">Your role</label>
+
+                            <label for="role">
+                                Your role
+                            </label>
 
                             <select id="role" name="role">
-                                <option value="">Please select</option>
-                                <option value="student">Student</option>
+
+                                <option value="">
+                                    Please select
+                                </option>
+
+                                <option value="student">
+                                    Student
+                                </option>
+
                                 <option value="it-professional">
                                     IT professional
                                 </option>
-                                <option value="engineer">Engineer</option>
-                                <option value="other">Other</option>
+
+                                <option value="engineer">
+                                    Engineer
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
                             </select>
+
                         </div>
 
+                        <!-- Displayed only when Other is selected -->
                         <div
                             class="form-group hidden"
                             id="other-role-group">
@@ -714,15 +851,20 @@
                                 type="text"
                                 id="other-role"
                                 name="other-role">
+
                         </div>
+
                     </fieldset>
 
+                    <!-- Multiple choice interests -->
                     <fieldset>
+
                         <legend>Areas of Interest</legend>
 
                         <p>Select all that apply:</p>
 
                         <div class="option-group">
+
                             <input
                                 type="checkbox"
                                 id="cyber-security"
@@ -732,9 +874,11 @@
                             <label for="cyber-security">
                                 Cyber security
                             </label>
+
                         </div>
 
                         <div class="option-group">
+
                             <input
                                 type="checkbox"
                                 id="ai-governance"
@@ -744,9 +888,11 @@
                             <label for="ai-governance">
                                 AI governance
                             </label>
+
                         </div>
 
                         <div class="option-group">
+
                             <input
                                 type="checkbox"
                                 id="web-development"
@@ -756,13 +902,18 @@
                             <label for="web-development">
                                 Web development
                             </label>
+
                         </div>
+
                     </fieldset>
 
+                    <!-- Single preferred contact method -->
                     <fieldset>
+
                         <legend>Preferred Contact Method</legend>
 
                         <div class="option-group">
+
                             <input
                                 type="radio"
                                 id="contact-email"
@@ -773,9 +924,11 @@
                             <label for="contact-email">
                                 Email
                             </label>
+
                         </div>
 
                         <div class="option-group">
+
                             <input
                                 type="radio"
                                 id="contact-linkedin"
@@ -785,11 +938,17 @@
                             <label for="contact-linkedin">
                                 LinkedIn
                             </label>
+
                         </div>
+
                     </fieldset>
 
+                    <!-- Message with character counter -->
                     <div class="form-group">
-                        <label for="message">Message</label>
+
+                        <label for="message">
+                            Message
+                        </label>
 
                         <textarea
                             id="message"
@@ -802,12 +961,17 @@
                         <small
                             class="form-note"
                             id="message-character-count">
+
                             <span id="character-count">0</span>
                             of 500 characters used.
+
                         </small>
+
                     </div>
 
+                    <!-- Form controls -->
                     <div class="button-group">
+
                         <button type="submit">
                             Submit form
                         </button>
@@ -817,10 +981,12 @@
                             class="secondary-button">
                             Clear form
                         </button>
+
                     </div>
 
                 </form>
 
+                <!-- JavaScript inserts confirmation or error text here -->
                 <div
                     id="form-confirmation"
                     class="form-confirmation hidden"
@@ -828,6 +994,7 @@
                     aria-live="polite">
                 </div>
 
+                <!-- Explanation of the HTML form -->
                 <div class="form-notes">
 
                     <h3>HTML Form Elements Added</h3>
@@ -838,6 +1005,7 @@
                     </p>
 
                     <ul>
+
                         <li>
                             The <code>&lt;form&gt;</code> element groups the
                             controls.
@@ -884,14 +1052,18 @@
                             message field using
                             <code>aria-describedby</code>.
                         </li>
+
                     </ul>
+
                 </div>
 
+                <!-- Explanation of JavaScript behaviour -->
                 <div class="javascript-notes">
 
                     <h3>JavaScript Features Added</h3>
 
                     <ul>
+
                         <li>
                             A live character counter updates as the message is
                             entered.
@@ -920,6 +1092,7 @@
                             JavaScript checks the user's reduced-motion preference
                             before using smooth scrolling.
                         </li>
+
                     </ul>
 
                     <p>
@@ -927,13 +1100,16 @@
                         store information. JavaScript prevents the page from
                         reloading and displays feedback locally in the browser.
                     </p>
+
                 </div>
 
             </section>
 
         </main>
 
+        <!-- Page footer -->
         <footer>
+
             <p>
                 Personal webpage created by Graham Deacon as part of the
                 MSc Computing and Cyber Security programme.
@@ -945,47 +1121,76 @@
                     Return to main portfolio
                 </a>
             </p>
+
         </footer>
 
     </div>
 
     <script>
-        const form = document.getElementById("contact-form");
-        const roleSelect = document.getElementById("role");
+
+        /* Get the form elements needed by JavaScript */
+        const form =
+            document.getElementById("contact-form");
+
+        const roleSelect =
+            document.getElementById("role");
+
         const otherRoleGroup =
             document.getElementById("other-role-group");
+
         const otherRoleInput =
             document.getElementById("other-role");
+
         const messageBox =
             document.getElementById("message");
+
         const characterCount =
             document.getElementById("character-count");
+
         const confirmation =
             document.getElementById("form-confirmation");
 
+
+        /* Show the additional role field when Other is selected */
         roleSelect.addEventListener("change", function () {
-            const otherSelected = roleSelect.value === "other";
+
+            const otherSelected =
+                roleSelect.value === "other";
 
             otherRoleGroup.classList.toggle(
                 "hidden",
                 !otherSelected
             );
 
-            otherRoleInput.required = otherSelected;
+            otherRoleInput.required =
+                otherSelected;
 
+            /* Clear the field again when it is hidden */
             if (!otherSelected) {
                 otherRoleInput.value = "";
             }
+
         });
 
+
+        /* Update the message character counter */
         messageBox.addEventListener("input", function () {
-            characterCount.textContent = messageBox.value.length;
+
+            characterCount.textContent =
+                messageBox.value.length;
+
         });
 
+
+        /* Validate the form when Submit is selected */
         form.addEventListener("submit", function (event) {
+
+            /* Prevent the demonstration form leaving the page */
             event.preventDefault();
 
+            /* Check the HTML validation rules */
             if (!form.checkValidity()) {
+
                 confirmation.textContent =
                     "Please complete the required fields before submitting.";
 
@@ -993,12 +1198,15 @@
                 confirmation.classList.add("form-error");
 
                 form.reportValidity();
+
                 return;
             }
 
+            /* Read the user's name */
             const name =
                 document.getElementById("name").value.trim();
 
+            /* Display confirmation without sending information */
             confirmation.textContent =
                 `Thank you, ${name}. Your form has been completed ` +
                 "successfully. This demonstration does not send or " +
@@ -1009,19 +1217,28 @@
                 "form-error"
             );
 
+            /* Check whether the user prefers reduced motion */
             const prefersReducedMotion =
                 window.matchMedia(
                     "(prefers-reduced-motion: reduce)"
                 ).matches;
 
+            /* Move to the confirmation message */
             confirmation.scrollIntoView({
-                behavior: prefersReducedMotion ? "auto" : "smooth",
+                behavior: prefersReducedMotion
+                    ? "auto"
+                    : "smooth",
                 block: "center"
             });
+
         });
 
+
+        /* Return JavaScript content to its starting state */
         form.addEventListener("reset", function () {
+
             window.setTimeout(function () {
+
                 characterCount.textContent = "0";
 
                 otherRoleGroup.classList.add("hidden");
@@ -1032,10 +1249,12 @@
                 confirmation.classList.add("hidden");
                 confirmation.classList.remove("form-error");
                 confirmation.textContent = "";
+
             }, 0);
+
         });
+
     </script>
 
 </body>
-
 </html>
