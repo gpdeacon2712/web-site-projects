@@ -32,22 +32,26 @@
          * features not provided directly by Bootstrap.
          */
 
+        /* Reusable colours used throughout the page. */
         :root {
             --personal-dark-blue: #003b70;
             --personal-light-blue: #eaf4ff;
             --personal-dark-green: #14532d;
         }
 
+        /* Smoothly moves the page to sections when navigation links are used. */
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 5rem;
         }
 
+        /* Sets the main page background and default text colour. */
         body {
             background-color: #f5f7fa;
             color: #212529;
         }
 
+        /* Keeps the skip link off-screen until a keyboard user focuses it. */
         .skip-link {
             position: absolute;
             top: -100px;
@@ -59,6 +63,7 @@
             border-radius: 0.375rem;
         }
 
+        /* Makes the skip link visible when reached with the keyboard. */
         .skip-link:focus {
             top: 1rem;
         }
@@ -67,6 +72,7 @@
             font-weight: 700;
         }
 
+        /* Styles the large introductory banner at the top of the page. */
         .hero-section {
             padding: 5rem 0;
             color: #ffffff;
@@ -90,6 +96,7 @@
             color: var(--personal-dark-blue);
         }
 
+        /* Gives cards a consistent height and light shadow. */
         .profile-card,
         .feature-card {
             height: 100%;
@@ -110,6 +117,7 @@
             cursor: help;
         }
 
+        /* Keeps images responsive and prevents them becoming too tall. */
         .oxford-image,
         #dog-image {
             display: block;
@@ -128,6 +136,7 @@
             border-radius: 0.5rem;
         }
 
+        /* Reserves space for status messages so the page does not jump. */
         .status-space {
             min-height: 2rem;
         }
@@ -157,6 +166,7 @@
             font-size: 0.9rem;
         }
 
+        /* Highlights the locally generated form summary. */
         .submission-summary {
             border-left: 0.35rem solid var(--personal-dark-blue);
         }
@@ -165,6 +175,7 @@
             color: #ffffff;
         }
 
+        /* Adds a clear keyboard focus indicator to interactive controls. */
         .footer-link:focus-visible,
         .navbar a:focus-visible,
         button:focus-visible,
@@ -175,6 +186,7 @@
             outline-offset: 3px;
         }
 
+        /* Small-screen adjustments for phones and narrow tablets. */
         @media (max-width: 767.98px) {
             .hero-section {
                 padding: 3rem 0;
@@ -185,6 +197,7 @@
             }
         }
 
+        /* Respects users who prefer reduced animation or motion. */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -204,6 +217,7 @@
 
 <body>
 
+    <!-- Lets keyboard and screen-reader users bypass the navigation. -->
     <a
         class="skip-link"
         href="#main-content">
@@ -295,6 +309,7 @@
         </div>
     </nav>
 
+    <!-- Introductory banner with links to the main interactive features. -->
     <header
         class="hero-section"
         id="top">
@@ -660,6 +675,7 @@
                                     Load a random Cocker Spaniel
                                 </button>
 
+                                <!-- Live region announces API progress and errors. -->
                                 <div
                                     class="status-space mt-3"
                                     id="dog-api-status"
@@ -667,6 +683,7 @@
                                     aria-live="polite">
                                 </div>
 
+                                <!-- Hidden until a valid image has loaded. -->
                                 <div
                                     class="api-image-container mt-3 d-none"
                                     id="dog-image-container">
@@ -786,6 +803,7 @@
                             are required.
                         </p>
 
+                        <!-- JavaScript handles validation and keeps this demo local. -->
                         <form
                             class="needs-validation"
                             id="contact-form"
@@ -891,6 +909,7 @@
 
                                     </div>
 
+                                    <!-- Only shown when the user selects "Other". -->
                                     <div
                                         class="col-md-6 d-none"
                                         id="other-role-group">
@@ -1055,6 +1074,7 @@
                                     aria-describedby="message-help"
                                     placeholder="Enter your message here"></textarea>
 
+                                <!-- Updated live as the user types in the message box. -->
                                 <div
                                     class="form-text form-help"
                                     id="message-help">
@@ -1064,6 +1084,7 @@
 
                             </div>
 
+                            <!-- Shows how much of the main form has been completed. -->
                             <div class="mb-4">
 
                                 <div class="d-flex justify-content-between">
@@ -1119,6 +1140,7 @@
 
                         </form>
 
+                        <!-- Live region for validation and submission messages. -->
                         <div
                             class="mt-4"
                             id="form-feedback"
@@ -1126,6 +1148,7 @@
                             aria-live="polite">
                         </div>
 
+                        <!-- Built with JavaScript after a valid submission. -->
                         <section
                             class="card submission-summary mt-4 d-none"
                             id="submission-summary"
@@ -1436,10 +1459,12 @@
          * HELPER FUNCTIONS
          */
 
+        // Converts a value to text and removes spaces from each end.
         function escapeText(value) {
             return String(value).trim();
         }
 
+        // Creates a Bootstrap alert to give the user form feedback.
         function setFormFeedback(message, type) {
             formFeedback.replaceChildren();
 
@@ -1455,15 +1480,18 @@
             formFeedback.appendChild(alert);
         }
 
+        // Removes any previous form feedback message.
         function clearFormFeedback() {
             formFeedback.replaceChildren();
         }
 
+        // Shows the number of characters currently entered in the message box.
         function updateCharacterCounter() {
             characterCount.textContent =
                 String(messageInput.value.length);
         }
 
+        // Shows and requires the extra role field only when "Other" is selected.
         function updateOtherRoleField() {
             const otherSelected =
                 roleSelect.value === "other";
@@ -1486,6 +1514,7 @@
             }
         }
 
+        // Counts completed key fields and converts the result to a percentage.
         function updateProgress() {
             let completedFields = 0;
             const totalFields = 4;
@@ -1535,6 +1564,7 @@
             );
         }
 
+        // Collects the values of all checked interest boxes.
         function getSelectedInterests() {
             const selected =
                 document.querySelectorAll(
@@ -1548,6 +1578,7 @@
             );
         }
 
+        // Returns the currently selected contact method.
         function getSelectedContactMethod() {
             const selected =
                 document.querySelector(
@@ -1559,6 +1590,7 @@
                 : "Not selected";
         }
 
+        // Returns either the selected role label or the user-entered "Other" role.
         function getRoleText() {
             if (roleSelect.value === "other") {
                 return escapeText(
@@ -1575,6 +1607,7 @@
             return "Not selected";
         }
 
+        // Adds one label-and-value pair to the submission summary.
         function addSummaryItem(term, description) {
             const termElement =
                 document.createElement("dt");
@@ -1603,6 +1636,7 @@
             );
         }
 
+        // Builds a summary from the current form values without sending data anywhere.
         function createSubmissionSummary() {
             summaryDetails.replaceChildren();
 
@@ -1648,6 +1682,7 @@
             );
         }
 
+        // Removes the generated summary and hides its card.
         function clearSubmissionSummary() {
             summaryDetails.replaceChildren();
 
@@ -1656,6 +1691,7 @@
             );
         }
 
+        // Scrolls to an element while respecting the reduced-motion preference.
         function scrollToElement(element) {
             element.scrollIntoView({
                 behavior:
@@ -1670,6 +1706,7 @@
          * FORM EVENTS
          */
 
+        // Re-check the extra role field and progress whenever the role changes.
         roleSelect.addEventListener(
             "change",
             function () {
@@ -1678,21 +1715,25 @@
             }
         );
 
+        // Update progress while the optional role description is typed.
         otherRoleInput.addEventListener(
             "input",
             updateProgress
         );
 
+        // Update progress while the name is typed.
         nameInput.addEventListener(
             "input",
             updateProgress
         );
 
+        // Update progress while the email address is typed.
         emailInput.addEventListener(
             "input",
             updateProgress
         );
 
+        // Update both the character counter and form progress while typing.
         messageInput.addEventListener(
             "input",
             function () {
@@ -1701,14 +1742,17 @@
             }
         );
 
+        // Validate the form, then create a local summary instead of sending it.
         form.addEventListener(
             "submit",
             function (event) {
+                // Stops the browser submitting the form to a server.
                 event.preventDefault();
                 event.stopPropagation();
 
                 updateOtherRoleField();
 
+                // If any required field is invalid, show feedback and stop here.
                 if (!form.checkValidity()) {
                     form.classList.add(
                         "was-validated"
@@ -1719,6 +1763,7 @@
                         "danger"
                     );
 
+                    // Find the first invalid field so keyboard focus can move to it.
                     const firstInvalid =
                         form.querySelector(":invalid");
 
@@ -1733,6 +1778,7 @@
                     "was-validated"
                 );
 
+                // Display the entered values in the browser only.
                 createSubmissionSummary();
 
                 setFormFeedback(
@@ -1746,6 +1792,7 @@
             }
         );
 
+        // Restore the page to its original form state after a reset.
         form.addEventListener(
             "reset",
             function () {
@@ -1770,6 +1817,7 @@
             }
         );
 
+        // Lets the user remove the locally displayed submission summary.
         removeSummaryButton.addEventListener(
             "click",
             function () {
@@ -1790,6 +1838,7 @@
          * DOG CEO API
          */
 
+        // Displays API loading, success or error messages as Bootstrap alerts.
         function setDogStatus(
             message,
             alertType
@@ -1808,6 +1857,7 @@
             dogApiStatus.appendChild(alert);
         }
 
+        // Waits until the browser confirms that the returned image has loaded.
         function waitForImage(imageElement) {
             return new Promise(
                 function (resolve, reject) {
@@ -1828,10 +1878,12 @@
             );
         }
 
+        // Requests one random Cocker Spaniel image and updates the page with the result.
         async function loadRandomDogImage() {
             const apiUrl =
                 "https://dog.ceo/api/breed/spaniel/cocker/images/random";
 
+            // Prevents repeated clicks while the request is running.
             loadDogButton.disabled =
                 true;
 
@@ -1847,19 +1899,24 @@
                 "info"
             );
 
+            // Try the API request and handle any network or response errors below.
             try {
+                // Send the request to the Dog CEO API.
                 const response =
                     await fetch(apiUrl);
 
+                // Treat HTTP error responses as failures.
                 if (!response.ok) {
                     throw new Error(
                         `The API returned HTTP status ${response.status}.`
                     );
                 }
 
+                // Convert the JSON response into a JavaScript object.
                 const data =
                     await response.json();
 
+                // Check that the API returned the structure expected by the page.
                 if (
                     data.status !== "success" ||
                     typeof data.message !== "string"
@@ -1869,12 +1926,14 @@
                     );
                 }
 
+                // Start listening for the image load before changing its source.
                 const imageLoading =
                     waitForImage(dogImage);
 
                 dogImage.alt =
                     "A randomly selected Cocker Spaniel";
 
+                // Use the image URL supplied in the API response.
                 dogImage.src =
                     data.message;
 
@@ -1890,6 +1949,7 @@
                 );
 
             } catch (error) {
+                // Hide the image and show a friendly message if anything fails.
                 dogImage.removeAttribute(
                     "src"
                 );
@@ -1912,6 +1972,7 @@
                 );
 
             } finally {
+                // Always restore the button, whether the request succeeds or fails.
                 loadDogButton.disabled =
                     false;
 
@@ -1920,6 +1981,7 @@
             }
         }
 
+        // Run the API request when the user presses the button.
         loadDogButton.addEventListener(
             "click",
             loadRandomDogImage
@@ -1929,6 +1991,7 @@
          * INITIAL PAGE STATE
          */
 
+        // Set all dynamic controls correctly when the page first loads.
         updateCharacterCounter();
         updateOtherRoleField();
         updateProgress();
