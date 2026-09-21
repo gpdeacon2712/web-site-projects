@@ -45,12 +45,12 @@ The final submitted application is Version 23.4.
 
 Version 23.4 is the final release of the application. It includes all functionality, accessibility, usability, and visual improvements completed in Version 23.3, together with a final code clean-up and verification review before submission.
 
-Changes in Version 23.4
+### Changes in Version 23.4
 - Removed unused .site-nav CSS code from the earlier navigation design.
 - Confirmed that removing the code caused no visual or functional issues.
 - Manually checked navigation and page layouts across all six main application pages.
   
-Improvements retained from Version 23.3
+### Improvements retained from Version 23.3
 - Compact image-based page headers across all six pages.
 - Reuse of circuit, neural, and mesh SVG graphics for a consistent design.
 - Improved presentation of the Dashboard, Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight, and CVE Lookup sections.
