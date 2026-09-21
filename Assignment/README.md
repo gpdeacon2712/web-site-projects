@@ -499,8 +499,8 @@ Future production refinement could include:
 
 ## Academic integrity and project ownership
 
-This repository documents an academic prototype and its iterative development history.
+This repository documents an academic prototype and the development work carried out throughout the project.
 
-AI assistance was limited to AITS Level 1 The author developed, extended, tested, evaluated and refined the application and is responsible for the final submitted work.
+AI assistance was limited to AITS Level 1. The author designed, developed, tested, evaluated, and refined the application and is fully responsible for the final submitted work.
 
-External technical references and standards used in the accompanying report are cited there in accordance with the required academic referencing approach.
+External technical references, standards, and supporting sources used within the accompanying report are cited separately using the required academic referencing format (APA7).
