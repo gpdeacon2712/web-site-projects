@@ -39,26 +39,30 @@ The Risk Register also integrates external cyber-threat intelligence from the **
 
    I take full responsibility for all submitted work. 
 
-## Final submitted build
+## Final Release: Version 23.4
 
 The final submitted application is Version 23.4.
-Version 23.4 is the final controlled release of the application. It retains the substantive functionality and visual/accessibility refinements completed in Version 23.3 and introduces a final code-clean-up and regression-verification step before submission.
-The Version 23.4 changes were deliberately limited in scope:
-removed unused .site-nav CSS rules retained from the pre-Bootstrap navigation design;
-confirmed that removal of the obsolete CSS introduced no visual or functional regressions;
-manually checked navigation and layout across all six principal application pages.
-The substantive visual and accessibility refinements completed in Version 23.3 remain part of the Version 23.4 final release, including:
-- compact image-backed page headers across the six principal pages;
-- selective reuse of circuit, neural and mesh SVG artwork;
-- stronger visual treatment of the Dashboard, Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight and CVE lookup areas;
-- reduced white header fade while maintaining readable foreground content;
-- improved Governance Support contact cards and response-target presentation;
-- additional spacing beneath the Governance Support contact-card grid;
-- correction and redeployment of the Risk Register heat-map contrast styling;
-- correction of the Governance Insight artwork/contrast regression identified during manual accessibility review.
 
-The final presentation deliberately retains a compact operational layout rather than returning to the large decorative hero banners used in earlier iterations.
-For configuration-control purposes, Version 23.4 is the final release baseline. Earlier version numbers in this README are retained where they identify the development stage in which a feature, correction or test result was originally introduced or verified.
+Version 23.4 is the final release of the application. It includes all functionality, accessibility, usability, and visual improvements completed in Version 23.3, together with a final code clean-up and verification review before submission.
+
+Changes in Version 23.4
+Removed unused .site-nav CSS code from the earlier navigation design.
+Confirmed that removing the code caused no visual or functional issues.
+Manually checked navigation and page layouts across all six main application pages.
+Improvements retained from Version 23.3
+Compact image-based page headers across all six pages.
+Reuse of circuit, neural, and mesh SVG graphics for a consistent design.
+Improved presentation of the Dashboard, Relationship Health, Framework Coverage, Upcoming AI Reviews, Governance Insight, and CVE Lookup sections.
+Reduced header fade effects while maintaining readability.
+Improved Governance Support contact cards and response-time presentation.
+Added spacing beneath the Governance Support contact section.
+Corrected Risk Register heat-map contrast issues.
+Corrected Governance Insight image and contrast issues identified during accessibility testing.
+
+The final design intentionally uses a compact, operational layout rather than the larger hero banners used in earlier versions.
+
+Version 23.4 is the final baseline release submitted for assessment. Earlier version numbers are retained in this README to show when features, fixes, and test results were originally introduced or verified.
+
 ## Application architecture
 
 The application uses a multi-page client-side architecture.
