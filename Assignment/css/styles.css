@@ -15,8 +15,9 @@
 
    I take full responsibility for all submitted work.
 
-   The stylesheet uses a mobile-first approach. Base styles are designed for
-   smaller screens and media queries adapt the layout for larger screens.
+   The application uses Bootstrap’s mobile-first responsive foundation.
+   The custom stylesheet combines larger-screen enhancements with targeted 
+   small-screen adjustments for application-specific layouts and components.
 
    Sections:
      1. Design tokens
