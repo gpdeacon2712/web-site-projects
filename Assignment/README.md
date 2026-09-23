@@ -26,7 +26,8 @@ The Risk Register also integrates external cyber-threat intelligence from the **
    
    The concept for this application originated from early ideas for a potential
    Governance, Risk and Compliance project involving dashboards for OneTrust
-   workflows. Intial scaffold was shared to build on and develop further
+   workflows. Intial scaffold was initally developed and shared from that project 
+   to build on and develop further.
    No confidential organisational information or live OneTrust data
    is included.
    I confirm that no generative AI tools were used to design, structure or develop 
