@@ -2096,3 +2096,28 @@ main.container {
       );
   }
 }
+/* Page-header readability below the large breakpoint. The header stacks
+   vertically below 992px, so heading and summary text would otherwise sit
+   over the dark artwork (WCAG 1.4.3). A light treatment is used instead. */
+@media (max-width: 991.98px) {
+  .page-header {
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(
+        135deg,
+        rgba(246, 87, 34, .08),
+        rgba(255, 255, 255, .98)
+      );
+  }
+}
+
+
+/* Keeps header copy within the light part of the artwork on wide screens and
+   gives the secondary header action a solid background (WCAG 1.4.3). */
+.page-header-copy p {
+  max-width: 52ch;
+}
+
+.page-header-actions .btn-outline-secondary {
+  background-color: #ffffff;
+}
