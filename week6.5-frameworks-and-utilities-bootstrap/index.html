@@ -1055,6 +1055,45 @@
                                     </label>
 
                                 </div>
+
+                                <!-- Only shown when LinkedIn is selected. Disabled fields are not validated or submitted. -->
+                                <div
+                                    class="mt-3 d-none"
+                                    id="linkedin-group">
+
+                                    <label
+                                        class="form-label"
+                                        for="linkedin-url">
+                                        LinkedIn profile URL
+                                        <span
+                                            class="required-marker"
+                                            aria-hidden="true">
+                                            *
+                                        </span>
+                                    </label>
+
+                                    <input
+                                        class="form-control"
+                                        type="url"
+                                        id="linkedin-url"
+                                        name="linkedin-url"
+                                        pattern="https://(www\.)?linkedin\.com/in/.+"
+                                        aria-describedby="linkedin-help"
+                                        required
+                                        disabled>
+
+                                    <div
+                                        class="form-text form-help"
+                                        id="linkedin-help">
+                                        For example, https://www.linkedin.com/in/your-name
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        Please enter a LinkedIn profile URL, for
+                                        example https://www.linkedin.com/in/your-name
+                                    </div>
+
+                                </div>
                             </fieldset>
 
                             <div class="mb-4">
@@ -1403,6 +1442,17 @@
         const otherRoleInput =
             document.getElementById("other-role");
 
+        const linkedinGroup =
+            document.getElementById("linkedin-group");
+
+        const linkedinInput =
+            document.getElementById("linkedin-url");
+
+        const contactRadios =
+            document.querySelectorAll(
+                'input[name="contact-method"]'
+            );
+
         const messageInput =
             document.getElementById("message");
 
@@ -1512,6 +1562,21 @@
                     "is-invalid"
                 );
             }
+        }
+
+        // Shows and enables the LinkedIn field only when LinkedIn is selected.
+        // Disabling rather than clearing keeps any text the user entered.
+        function updateLinkedinField() {
+            const linkedinSelected =
+                getSelectedContactMethod() === "LinkedIn";
+
+            linkedinGroup.classList.toggle(
+                "d-none",
+                !linkedinSelected
+            );
+
+            linkedinInput.disabled =
+                !linkedinSelected;
         }
 
         // Counts completed key fields and converts the result to a percentage.
@@ -1670,6 +1735,13 @@
                 getSelectedContactMethod()
             );
 
+            if (getSelectedContactMethod() === "LinkedIn") {
+                addSummaryItem(
+                    "LinkedIn profile",
+                    escapeText(linkedinInput.value)
+                );
+            }
+
             addSummaryItem(
                 "Message",
                 messageInput.value.trim() !== ""
@@ -1712,6 +1784,16 @@
             function () {
                 updateOtherRoleField();
                 updateProgress();
+            }
+        );
+
+        // Show or hide the LinkedIn field when the contact method changes.
+        contactRadios.forEach(
+            function (radio) {
+                radio.addEventListener(
+                    "change",
+                    updateLinkedinField
+                );
             }
         );
 
@@ -1803,6 +1885,8 @@
                         );
 
                         updateOtherRoleField();
+
+                        updateLinkedinField();
 
                         updateCharacterCounter();
 
@@ -1994,9 +2078,11 @@
         // Set all dynamic controls correctly when the page first loads.
         updateCharacterCounter();
         updateOtherRoleField();
+        updateLinkedinField();
         updateProgress();
     </script>
 
 </body>
 
 </html>
+
