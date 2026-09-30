@@ -220,6 +220,7 @@
 
         input[type="text"],
         input[type="email"],
+        input[type="url"],
         select,
         textarea {
             width: 100%;
@@ -1082,6 +1083,31 @@
                                 LinkedIn
                             </label>
                         </div>
+
+                        <!-- Shown only when LinkedIn is selected. Disabled fields are not validated or submitted. -->
+                        <div
+                            class="form-group hidden"
+                            id="linkedin-group">
+
+                            <label for="linkedin-url">
+                                LinkedIn profile URL *
+                            </label>
+
+                            <input
+                                type="url"
+                                id="linkedin-url"
+                                name="linkedin-url"
+                                pattern="https://(www\.)?linkedin\.com/in/.+"
+                                aria-describedby="linkedin-hint"
+                                required
+                                disabled>
+
+                            <small
+                                class="form-note"
+                                id="linkedin-hint">
+                                For example, https://www.linkedin.com/in/your-name/
+                            </small>
+                        </div>
                     </fieldset>
 
                     <!-- Message field and live character counter -->
@@ -1201,6 +1227,12 @@
                         </li>
 
                         <li>
+                            A <code>url</code> input with a <code>pattern</code>
+                            attribute checks that a LinkedIn profile address is
+                            entered correctly.
+                        </li>
+
+                        <li>
                             A textarea accepts longer messages.
                         </li>
 
@@ -1237,6 +1269,14 @@
                         <li>
                             The additional role field becomes required only when
                             it is displayed.
+                        </li>
+
+                        <li>
+                            Selecting LinkedIn as the preferred contact method
+                            displays a LinkedIn profile field. The field is
+                            disabled while hidden, so it is only validated when
+                            relevant and any text entered is kept if the user
+                            switches back.
                         </li>
 
                         <li>
@@ -1375,6 +1415,17 @@
         const otherRoleInput =
             document.getElementById("other-role");
 
+        const linkedinGroup =
+            document.getElementById("linkedin-group");
+
+        const linkedinInput =
+            document.getElementById("linkedin-url");
+
+        const contactRadios =
+            document.querySelectorAll(
+                'input[name="contact-method"]'
+            );
+
         const messageBox =
             document.getElementById("message");
 
@@ -1466,6 +1517,33 @@
             }
         );
 
+        /* Show and enable the LinkedIn field only when LinkedIn is selected.
+           Disabling rather than clearing keeps any text the user entered. */
+        function updateLinkedinField() {
+            const linkedinSelected =
+                document.querySelector(
+                    'input[name="contact-method"]:checked'
+                ).value === "linkedin";
+
+            linkedinGroup.classList.toggle(
+                "hidden",
+                !linkedinSelected
+            );
+
+            linkedinInput.disabled =
+                !linkedinSelected;
+        }
+
+        contactRadios.forEach(function (radio) {
+            radio.addEventListener(
+                "change",
+                updateLinkedinField
+            );
+        });
+
+        /* Match the field to the selected option when the page loads */
+        updateLinkedinField();
+
         /* Update progress when the Other role field changes */
         otherRoleInput.addEventListener(
             "input",
@@ -1542,7 +1620,9 @@
                 document.createElement("li");
 
             contactItem.textContent =
-                `Preferred contact: ${contactMethod.value}`;
+                contactMethod.value === "linkedin"
+                    ? `Preferred contact: LinkedIn (${linkedinInput.value})`
+                    : `Preferred contact: ${contactMethod.value}`;
 
             const checkedInterests =
                 document.querySelectorAll(
@@ -1694,6 +1774,9 @@
 
                         otherRoleInput.value =
                             "";
+
+                        /* Email is checked again after reset, so hide and disable the LinkedIn field */
+                        updateLinkedinField();
 
                         confirmation.classList.add(
                             "hidden"
@@ -1860,3 +1943,4 @@
 </body>
 
 </html>
+
