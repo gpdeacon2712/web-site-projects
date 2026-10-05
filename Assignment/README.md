@@ -244,7 +244,7 @@ The Control Library retains a minor future-refinement opportunity around linked-
 
 Lighthouse 13.4.1 testing was conducted against the published GitHub Pages application rather than a local development copy.
 
-### Initial testing - 6 August 2026
+### Initial testing - 6th September 2026
 
 Initial desktop testing covered all six principal application pages, with an additional mobile assessment of the Risk Register.
 
@@ -259,7 +259,7 @@ Initial desktop testing covered all six principal application pages, with an add
 | Governance Support   |         100 |           100 |            100 | 100 |
 | My Profile           |          99 |           100 |            100 | 100 |
 
-The Risk Register initially recorded Accessibility 97 before correction of the identified colour-contrast problem. The value shown above represents the corrected desktop result following redeployment and retesting on 6 August 2026.
+The Risk Register initially recorded Accessibility 97 before correction of the identified colour-contrast problem. The value shown above represents the corrected desktop result following redeployment and retesting on 6th September 2026.
 
 #### Initial desktop performance metrics
 
