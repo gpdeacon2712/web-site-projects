@@ -290,7 +290,7 @@ The principal performance limitation was layout stability on dynamically rendere
 
 The initial mobile Accessibility score of 96 reflected the same Risk Register heat-map contrast problem identified during desktop testing. This result is retained as evidence of the issue that subsequently triggered corrective action.
 
-### Final Lighthouse retesting - 3 September 2026
+### Final Lighthouse retesting - 3rd October 2026
 
 Following completion of the final accessibility and usability corrections, the Governance Dashboard and Risk Register were reassessed using both desktop and mobile Lighthouse profiles.
 
