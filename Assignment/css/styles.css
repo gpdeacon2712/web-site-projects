@@ -605,6 +605,7 @@ button[type="submit"]:hover {
   color: #ffffff;
   cursor: pointer;
   margin-top: var(--space-2);
+  margin-bottom: var(--space-3);  
 }
 
 .add-risk-button:hover:not(:disabled) {
