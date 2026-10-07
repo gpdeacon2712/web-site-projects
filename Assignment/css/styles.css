@@ -617,6 +617,12 @@ button[type="submit"]:hover {
   cursor: default;
 }
 
+/* new rule to move CVE button away from text */
+.add-risk-button + .form-hint {
+  margin-top: var(--space-2);
+}
+
+
 .table-actions {
   display: flex;
   gap: var(--space-2);
